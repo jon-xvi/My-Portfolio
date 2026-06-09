@@ -3,7 +3,7 @@
 
 :root {
   /* Backgrounds */
-  --color-surface: #FFFFFF;
+  --color-surface: #F5F5F5;
   --color-surface-alt: #F4F6F9;
   --color-surface-dark: #0D1117;
 
@@ -281,6 +281,11 @@ nav .logo {
   padding-top: 167px;
   overflow: hidden;
   position: relative;
+  background-image: url('assets/BG SVG.svg');
+  background-attachment: fixed;
+  background-position: center 84px;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
 }
 
 .hero .container {
@@ -344,23 +349,7 @@ nav .logo {
   box-shadow: 0 8px 24px rgba(15, 15, 15, 0.15);
 }
 
-.hero-bg-image {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  z-index: 0;
-  pointer-events: none;
-}
 
-.hero-bg-image img {
-  width: 100%;
-  max-width: 1440px;
-  height: auto;
-  display: block;
-}
 
 #particle-canvas {
   position: absolute;
