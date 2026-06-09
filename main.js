@@ -112,16 +112,28 @@ function initParticleRing() {
 
   let width, height, centerX, centerY;
   
-  // Constants from Antigravity spec
-  const PARTICLE_COUNT = 80;
-  const PARTICLE_ROWS = 25;
-  const PARTICLE_SIZE = 2;
+  // Constants from Antigravity spec (Adjusted for smaller size & fewer quantity)
+  const PARTICLE_COUNT = 120; // Reduced quantity
+  const PARTICLE_SIZE = 1;    // Reduced size
   const PARTICLE_MIN_ALPHA = 0.1;
   const PARTICLE_MAX_ALPHA = 1.0;
-  const BASE_RING_THICKNESS = 600;
+  const BASE_RING_THICKNESS = 500;
   
   let particles = [];
-  let time = 0;
+  
+  // Track mouse position for interaction
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let targetMouseX = mouseX;
+  let targetMouseY = mouseY;
+
+  window.addEventListener('mousemove', (e) => {
+    // Only interact if hero section is visible
+    if (window.scrollY < window.innerHeight) {
+      targetMouseX = e.clientX;
+      targetMouseY = e.clientY;
+    }
+  });
 
   function resize() {
     width = window.innerWidth;
@@ -145,7 +157,6 @@ function initParticleRing() {
       // distribute angle randomly but smoothly
       this.angle = Math.random() * Math.PI * 2;
       // distance from center (orbit radius)
-      // Base radius depends on screen size, thickness is distributed
       const baseRadius = Math.min(width, height) * 0.35;
       this.radius = baseRadius + (Math.random() - 0.5) * BASE_RING_THICKNESS * (width > 768 ? 1 : 0.5);
       
@@ -155,20 +166,43 @@ function initParticleRing() {
       // Depth (z-axis simulation for alpha/size)
       this.z = Math.random() * Math.PI * 2;
       this.zSpeed = Math.random() * 0.01 + 0.005;
+      
+      // Store current pos for rendering
+      this.x = 0;
+      this.y = 0;
     }
 
     update() {
       this.angle += this.speed;
       this.z += this.zSpeed;
+      
+      // Smooth lerp mouse tracking
+      mouseX += (targetMouseX - mouseX) * 0.05;
+      mouseY += (targetMouseY - mouseY) * 0.05;
+      
+      // Base orbital position
+      let baseX = centerX + Math.cos(this.angle) * this.radius;
+      let baseY = centerY + Math.sin(this.angle) * this.radius * 0.4; // 0.4 tilt
+
+      // Calculate distance to mouse cursor
+      const dx = mouseX - baseX;
+      const dy = mouseY - baseY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      
+      // Interaction radius
+      const maxDist = 300;
+      if (dist < maxDist) {
+        // Pull particles gently towards cursor
+        const pull = (maxDist - dist) / maxDist;
+        baseX += dx * pull * 0.15;
+        baseY += dy * pull * 0.15;
+      }
+      
+      this.x = baseX;
+      this.y = baseY;
     }
 
     draw(ctx) {
-      const x = centerX + Math.cos(this.angle) * this.radius;
-      
-      // Create a tilt effect by scaling the Y axis
-      const tilt = 0.4; // 3D tilt
-      const y = centerY + Math.sin(this.angle) * this.radius * tilt;
-
       // Calculate alpha based on "z" depth
       const zScale = (Math.sin(this.z) + 1) / 2; // 0 to 1
       const alpha = PARTICLE_MIN_ALPHA + zScale * (PARTICLE_MAX_ALPHA - PARTICLE_MIN_ALPHA);
@@ -177,26 +211,23 @@ function initParticleRing() {
       const currentSize = PARTICLE_SIZE * (0.5 + zScale * 1.5);
 
       ctx.beginPath();
-      ctx.arc(x, y, currentSize, 0, Math.PI * 2);
+      ctx.arc(this.x, this.y, currentSize, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(0, 0, 128, ${alpha})`; // Navy: #000080
       ctx.fill();
     }
   }
 
   // Initialize
-  for (let i = 0; i < PARTICLE_COUNT * PARTICLE_ROWS / 5; i++) { // Using slightly fewer for performance, but giving the dense feel
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
     particles.push(new Particle(i));
   }
 
   function render() {
     ctx.clearRect(0, 0, width, height);
-    
-    // Slow rotation of the whole canvas could be applied, but updating particles gives more 3D feel
     particles.forEach(p => {
       p.update();
       p.draw(ctx);
     });
-
     requestAnimationFrame(render);
   }
 
