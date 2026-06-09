@@ -309,6 +309,9 @@ nav .logo {
 }
 
 .hero-center h1 {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
   letter-spacing: -0.03em;
   margin-left: auto;
   margin-right: auto;
@@ -763,6 +766,7 @@ nav .logo {
     align-items: center;
     text-align: center;
   }
+
   .hero {
     background-size: 100% auto;
   }
