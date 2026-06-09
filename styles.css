@@ -346,7 +346,7 @@ nav .logo {
   border-top: 1px solid rgba(255, 255, 255, 0.38);
   box-shadow: 0px 0px 0px 1px #F06312, inset 1px 1px 0.25px rgba(255, 255, 255, 0.12), inset -1px 1px 0.25px rgba(255, 255, 255, 0.12);
   border-radius: 32px;
-  filter: drop-shadow(0px 31px 41px rgba(171, 86, 32, 0.3)) drop-shadow(0px 21.4741px 26.0344px rgba(171, 86, 32, 0.236152)) drop-shadow(0px 14.0087px 15.6589px rgba(171, 86, 32, 0.193294)) drop-shadow(0px 8.38717px 8.94111px rgba(171, 86, 32, 0.163032)) drop-shadow(0px 4.39242px 4.94869px rgba(171, 86, 32, 0.136968)) drop-shadow(0px 1.80758px 2.74927px rgba(171, 86, 32, 0.106706)) drop-shadow(0px 0.415743px 1.4105px rgba(171, 86, 32, 0.0638484));
+  filter: drop-shadow(0px 15px 20px rgba(171, 86, 32, 0.3)) drop-shadow(0px 10px 13px rgba(171, 86, 32, 0.236)) drop-shadow(0px 7px 8px rgba(171, 86, 32, 0.193)) drop-shadow(0px 4px 4.5px rgba(171, 86, 32, 0.163)) drop-shadow(0px 2px 2.5px rgba(171, 86, 32, 0.137)) drop-shadow(0px 1px 1.4px rgba(171, 86, 32, 0.107)) drop-shadow(0px 0.2px 0.7px rgba(171, 86, 32, 0.064));
   font-family: 'Cabinet Grotesk', sans-serif;
   font-style: normal;
   font-weight: 500;
