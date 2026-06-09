@@ -254,9 +254,12 @@ nav .logo {
 .hero {
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  padding-bottom: 15vh; /* Push text up to make room for bottom image */
   overflow: hidden;
+  position: relative;
 }
 
 .hero .container {

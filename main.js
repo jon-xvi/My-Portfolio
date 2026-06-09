@@ -212,7 +212,15 @@ function initParticleRing() {
 
       ctx.beginPath();
       ctx.arc(this.x, this.y, currentSize, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(0, 0, 128, ${alpha})`; // Navy: #000080
+      
+      // Warm gradient colors based on index to match bg image
+      const colors = [
+        `rgba(255, 94, 77, ${alpha})`,   // Red-orange
+        `rgba(255, 140, 66, ${alpha})`,  // Orange
+        `rgba(255, 204, 92, ${alpha})`   // Yellow
+      ];
+      ctx.fillStyle = colors[this.index % colors.length];
+      
       ctx.fill();
     }
   }
