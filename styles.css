@@ -234,6 +234,7 @@ nav .logo {
   min-height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
 
@@ -245,6 +246,27 @@ nav .logo {
 .hero h1 {
   margin-bottom: 24px;
   max-width: 800px;
+}
+
+.hero-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-center h1 {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  max-width: 1000px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-center p {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero p {
