@@ -49,8 +49,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* Hide default cursor on interactive elements */
-  cursor: none !important;
 }
 
 body {
@@ -259,12 +257,12 @@ nav .logo {
   left: 0;
   width: 0;
   height: 2px;
-  background-color: var(--color-accent);
+  background-color: #FF640D;
   transition: width 250ms ease;
 }
 
 .nav-links a:hover {
-  color: var(--color-accent);
+  color: #FF640D;
 }
 
 .nav-links a:hover::after {
@@ -712,57 +710,7 @@ nav .logo {
   transform: translateY(0);
 }
 
-/* Custom Cursor */
-#custom-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: transparent;
-  border: 1.5px solid rgba(26, 115, 232, 0.5);
-  /* --color-accent at 50% opacity */
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: width 200ms ease, height 200ms ease, background 200ms ease, border-color 200ms ease;
-  font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--color-accent);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  opacity: 0;
-}
 
-#custom-cursor.active {
-  width: 48px;
-  height: 48px;
-  background: rgba(26, 115, 232, 0.08);
-  border-color: rgba(26, 115, 232, 1);
-}
-
-#custom-cursor span {
-  display: none;
-}
-
-#custom-cursor.active span {
-  display: block;
-}
-
-@media (pointer: coarse) {
-  #custom-cursor {
-    display: none !important;
-  }
-
-  * {
-    cursor: auto !important;
-  }
-}
 
 @media (max-width: 1280px) {
   h1 {
