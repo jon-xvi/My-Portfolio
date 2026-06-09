@@ -332,20 +332,29 @@ nav .logo {
 }
 
 .hero-cta {
-  background-color: #0F0F0F;
-  color: #fff;
-  border: 1px solid #0F0F0F;
-  width: 224px;
-  height: 57px;
+  box-sizing: border-box;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+  padding: 16px 21px 16px 24px;
+  gap: 8px;
+  width: 224px;
+  height: 57px;
+  background: linear-gradient(180deg, #FF640D 0%, #AB20AB 170.45%);
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.38);
+  box-shadow: 0px 0px 0px 1px #F06312, inset 1px 1px 0.25px rgba(255, 255, 255, 0.12), inset -1px 1px 0.25px rgba(255, 255, 255, 0.12);
+  border-radius: 32px;
+  filter: drop-shadow(0px 31px 41px rgba(171, 86, 32, 0.3)) drop-shadow(0px 21.4741px 26.0344px rgba(171, 86, 32, 0.236152)) drop-shadow(0px 14.0087px 15.6589px rgba(171, 86, 32, 0.193294)) drop-shadow(0px 8.38717px 8.94111px rgba(171, 86, 32, 0.163032)) drop-shadow(0px 4.39242px 4.94869px rgba(171, 86, 32, 0.136968)) drop-shadow(0px 1.80758px 2.74927px rgba(171, 86, 32, 0.106706)) drop-shadow(0px 0.415743px 1.4105px rgba(171, 86, 32, 0.0638484));
   font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: 18px;
-  border-radius: 100px;
-  text-decoration: none;
+  font-style: normal;
   font-weight: 500;
-  transition: opacity 250ms ease, transform 250ms ease, box-shadow 250ms ease;
+  font-size: 16px;
+  line-height: 25px;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: opacity 250ms ease, transform 250ms ease, filter 250ms ease;
 }
 
 .hero-cta:hover {
