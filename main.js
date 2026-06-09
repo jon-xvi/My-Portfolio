@@ -171,12 +171,12 @@ function initParticleRing() {
     reset() {
       // distribute angle randomly but smoothly
       this.angle = Math.random() * Math.PI * 2;
-      // distance from center (orbit radius)
-      const baseRadius = Math.min(width, height) * 0.35;
-      this.radius = baseRadius + (Math.random() - 0.5) * BASE_RING_THICKNESS * (width > 768 ? 1 : 0.5);
+      // Tight cluster around the cursor
+      const baseRadius = 20 + Math.random() * 60;
+      this.radius = baseRadius;
       
       // Speed of orbit
-      this.speed = (Math.random() * 0.001 + 0.0005) * (Math.random() < 0.5 ? 1 : -1);
+      this.speed = (Math.random() * 0.02 + 0.01) * (Math.random() < 0.5 ? 1 : -1);
       
       // Depth (z-axis simulation for alpha/size)
       this.z = Math.random() * Math.PI * 2;
@@ -192,33 +192,19 @@ function initParticleRing() {
       this.z += this.zSpeed;
       
       // Smooth lerp mouse tracking
-      mouseX += (targetMouseX - mouseX) * 0.05;
-      mouseY += (targetMouseY - mouseY) * 0.05;
+      mouseX += (targetMouseX - mouseX) * 0.1;
+      mouseY += (targetMouseY - mouseY) * 0.1;
       
-      // Add a fluid offset to the entire ring based on mouse
-      let ringOffsetX = (mouseX - width / 2) * 0.15;
-      let ringOffsetY = (mouseY - height / 2) * 0.15;
-
-      // Base orbital position tracking the mouse fluidly
-      let baseX = ringCenterX + ringOffsetX + Math.cos(this.angle) * this.radius;
-      let baseY = ringCenterY + ringOffsetY + Math.sin(this.angle) * this.radius * 0.4; // 0.4 tilt
-
-      // Calculate distance to mouse cursor
-      const dx = mouseX - baseX;
-      const dy = mouseY - baseY;
-      const dist = Math.sqrt(dx * dx + dy * dy);
+      // Base orbital position tracking the mouse directly
+      let baseX = mouseX + Math.cos(this.angle) * this.radius;
+      let baseY = mouseY + Math.sin(this.angle) * this.radius * 0.6; // Slight tilt
       
-      // Increased interaction radius and pull for fluid magnetic tracking
-      const maxDist = 400;
-      if (dist < maxDist) {
-        // Pull particles smoothly towards cursor
-        const pull = Math.pow((maxDist - dist) / maxDist, 1.5);
-        baseX += dx * pull * 0.35;
-        baseY += dy * pull * 0.35;
-      }
+      // Add a slight rubber-band lag to the particles based on mouse movement speed
+      const dx = targetMouseX - mouseX;
+      const dy = targetMouseY - mouseY;
       
-      this.x = baseX;
-      this.y = baseY;
+      this.x = baseX - dx * 0.2;
+      this.y = baseY - dy * 0.2;
     }
 
     draw(ctx) {
