@@ -75,11 +75,19 @@ h3,
 }
 
 h1 {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 52px;
-  font-weight: 800;
-  line-height: 1.05;
+  font-weight: 700;
+  line-height: 1.2;
   letter-spacing: -0.02em;
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #FF640D, #D63439);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: #FF640D;
 }
 
 h2 {
@@ -327,15 +335,19 @@ nav .logo {
   border-radius: 100px;
   text-decoration: none;
   font-weight: 500;
-  transition: opacity 250ms ease;
+  transition: opacity 250ms ease, transform 250ms ease, box-shadow 250ms ease;
 }
 
 .hero-cta:hover {
   opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15, 15, 15, 0.15);
 }
 
 .hero-bg-image {
-  margin-top: -120px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -347,8 +359,7 @@ nav .logo {
   width: 100%;
   max-width: 1440px;
   height: auto;
-  object-fit: contain;
-  object-position: top;
+  display: block;
 }
 
 #particle-canvas {

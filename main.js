@@ -111,6 +111,7 @@ function initParticleRing() {
   const ctx = canvas.getContext('2d');
 
   let width, height, centerX, centerY;
+  let ringCenterX, ringCenterY;
   
   // Constants from Antigravity spec (Adjusted for smaller size & fewer quantity)
   let PARTICLE_COUNT = window.innerWidth <= 768 ? 40 : 120; // Reduced quantity on mobile
@@ -142,6 +143,8 @@ function initParticleRing() {
     canvas.height = height;
     centerX = width / 2;
     centerY = height / 2;
+    ringCenterX = centerX;
+    ringCenterY = centerY;
 
     const targetCount = width <= 768 ? 40 : 120;
     if (targetCount !== PARTICLE_COUNT && particles.length > 0) {
@@ -192,22 +195,26 @@ function initParticleRing() {
       mouseX += (targetMouseX - mouseX) * 0.05;
       mouseY += (targetMouseY - mouseY) * 0.05;
       
-      // Base orbital position
-      let baseX = centerX + Math.cos(this.angle) * this.radius;
-      let baseY = centerY + Math.sin(this.angle) * this.radius * 0.4; // 0.4 tilt
+      // Add a fluid offset to the entire ring based on mouse
+      let ringOffsetX = (mouseX - width / 2) * 0.15;
+      let ringOffsetY = (mouseY - height / 2) * 0.15;
+
+      // Base orbital position tracking the mouse fluidly
+      let baseX = ringCenterX + ringOffsetX + Math.cos(this.angle) * this.radius;
+      let baseY = ringCenterY + ringOffsetY + Math.sin(this.angle) * this.radius * 0.4; // 0.4 tilt
 
       // Calculate distance to mouse cursor
       const dx = mouseX - baseX;
       const dy = mouseY - baseY;
       const dist = Math.sqrt(dx * dx + dy * dy);
       
-      // Interaction radius
-      const maxDist = 300;
+      // Increased interaction radius and pull for fluid magnetic tracking
+      const maxDist = 400;
       if (dist < maxDist) {
-        // Pull particles gently towards cursor
-        const pull = (maxDist - dist) / maxDist;
-        baseX += dx * pull * 0.15;
-        baseY += dy * pull * 0.15;
+        // Pull particles smoothly towards cursor
+        const pull = Math.pow((maxDist - dist) / maxDist, 1.5);
+        baseX += dx * pull * 0.35;
+        baseY += dy * pull * 0.35;
       }
       
       this.x = baseX;
