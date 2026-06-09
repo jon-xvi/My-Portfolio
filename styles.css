@@ -323,6 +323,7 @@ nav .logo {
 }
 
 .hero p {
+  display: none; /* Hidden for now */
   font-family: 'Cabinet Grotesk', sans-serif;
   font-weight: 500;
   font-size: clamp(16px, 1.8vw, 18px);
