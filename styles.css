@@ -645,7 +645,7 @@ nav .logo {
   border-radius: 100px;
   font-weight: 500;
   font-size: 15px;
-  cursor: none;
+  cursor: pointer;
   transition: background-color 250ms ease, transform 250ms ease, border-color 250ms ease;
   display: inline-flex;
   align-items: center;
