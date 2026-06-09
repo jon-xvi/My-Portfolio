@@ -113,7 +113,7 @@ function initParticleRing() {
   let width, height, centerX, centerY;
   
   // Constants from Antigravity spec (Adjusted for smaller size & fewer quantity)
-  const PARTICLE_COUNT = 120; // Reduced quantity
+  let PARTICLE_COUNT = window.innerWidth <= 768 ? 40 : 120; // Reduced quantity on mobile
   const PARTICLE_SIZE = 1;    // Reduced size
   const PARTICLE_MIN_ALPHA = 0.1;
   const PARTICLE_MAX_ALPHA = 1.0;
@@ -142,6 +142,18 @@ function initParticleRing() {
     canvas.height = height;
     centerX = width / 2;
     centerY = height / 2;
+
+    const targetCount = width <= 768 ? 40 : 120;
+    if (targetCount !== PARTICLE_COUNT && particles.length > 0) {
+      PARTICLE_COUNT = targetCount;
+      if (particles.length < PARTICLE_COUNT) {
+        for (let i = particles.length; i < PARTICLE_COUNT; i++) {
+          particles.push(new Particle(i));
+        }
+      } else if (particles.length > PARTICLE_COUNT) {
+        particles.splice(PARTICLE_COUNT);
+      }
+    }
   }
 
   window.addEventListener('resize', resize);
