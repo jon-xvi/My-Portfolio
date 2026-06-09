@@ -749,3 +749,16 @@ nav .logo {
     cursor: auto !important;
   }
 }
+
+@media (max-width: 1264px) {
+  .hero h1 {
+    font-size: 45px;
+  }
+  .hero-center {
+    align-items: center;
+    text-align: center;
+  }
+  .hero {
+    background-size: 100% auto;
+  }
+}
