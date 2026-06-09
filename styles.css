@@ -303,10 +303,11 @@ nav .logo {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  max-width: 890px;
+  margin: 0 auto;
 }
 
 .hero-center h1 {
-  max-width: 1000px;
   letter-spacing: -0.03em;
   margin-left: auto;
   margin-right: auto;
@@ -323,7 +324,6 @@ nav .logo {
   font-size: 18px;
   color: var(--color-on-surface-var);
   margin-bottom: 40px;
-  max-width: 1000px;
 }
 
 .hero-cta {
