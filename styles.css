@@ -452,6 +452,45 @@ nav .logo {
   pointer-events: none;
 }
 
+/* Infinite Marquee Section */
+.shots-marquee-section {
+  width: 100%;
+  overflow: hidden;
+  padding: 40px 0 80px 0;
+  display: flex;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: scrollMarquee 30s linear infinite;
+}
+
+.marquee-content {
+  display: flex;
+  gap: 24px;
+  padding-right: 24px;
+}
+
+.marquee-content img {
+  height: 280px;
+  width: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+@keyframes scrollMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (max-width: 768px) {
+  .marquee-content img {
+    height: 180px;
+  }
+}
+
 /* Cards */
 .card {
   background: var(--color-surface);
