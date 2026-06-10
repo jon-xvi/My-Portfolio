@@ -458,6 +458,8 @@ nav .logo {
   overflow: hidden;
   padding: 40px 0 80px 0;
   display: flex;
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
 
 .marquee-track {
