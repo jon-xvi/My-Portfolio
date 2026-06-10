@@ -228,9 +228,9 @@ nav.scrolled {
 
 nav .container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 120px;
+  position: relative;
 }
 
 nav .logo {
@@ -245,6 +245,9 @@ nav .logo {
 .nav-links {
   display: flex;
   gap: 32px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .nav-links a {
