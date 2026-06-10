@@ -309,7 +309,19 @@ nav .logo {
   border-radius: 100px;
   margin-bottom: 16px;
   background: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.eyebrow-circle {
+  width: 6px;
+  height: 6px;
+  background-color: #FA00AB;
+  border-radius: 50%;
   display: inline-block;
+  flex-shrink: 0;
 }
 
 .hero-center {
