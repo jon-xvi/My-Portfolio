@@ -13,7 +13,7 @@ function initCursor() {
   // Track cursor position
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
-  
+
   // Custom cursor position (for lerp)
   let cursorX = mouseX;
   let cursorY = mouseY;
@@ -22,7 +22,7 @@ function initCursor() {
   window.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-    
+
     // Initial display of cursor when mouse moves
     if (cursor.style.opacity === '0' || cursor.style.opacity === '') {
       cursor.style.opacity = '1';
@@ -33,7 +33,7 @@ function initCursor() {
   function renderCursor() {
     cursorX += (mouseX - cursorX) * 0.85;
     cursorY += (mouseY - cursorY) * 0.85;
-    
+
     cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
     requestAnimationFrame(renderCursor);
   }
@@ -71,7 +71,7 @@ function initScrollAnimations() {
   }, observerOptions);
 
   const elements = document.querySelectorAll('.animate-on-scroll');
-  
+
   // Add stagger delays for grid items (siblings)
   const grids = document.querySelectorAll('.grid');
   grids.forEach(grid => {
@@ -80,7 +80,7 @@ function initScrollAnimations() {
       card.style.transitionDelay = `${index * 80}ms`;
     });
   });
-  
+
   const blogList = document.querySelector('.blog-list');
   if (blogList) {
     const entries = blogList.querySelectorAll('.blog-entry');
@@ -112,16 +112,16 @@ function initParticleRing() {
 
   let width, height, centerX, centerY;
   let ringCenterX, ringCenterY;
-  
+
   // Constants from Antigravity spec (Adjusted for smaller size & fewer quantity)
   let PARTICLE_COUNT = window.innerWidth <= 768 ? 40 : 120; // Reduced quantity on mobile
   const PARTICLE_SIZE = 1;    // Reduced size
   const PARTICLE_MIN_ALPHA = 0.1;
   const PARTICLE_MAX_ALPHA = 1.0;
   const BASE_RING_THICKNESS = 500;
-  
+
   let particles = [];
-  
+
   // Track mouse position for interaction
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
@@ -174,14 +174,14 @@ function initParticleRing() {
       // Tight cluster around the cursor
       const baseRadius = 20 + Math.random() * 60;
       this.radius = baseRadius;
-      
+
       // Speed of orbit
       this.speed = (Math.random() * 0.02 + 0.01) * (Math.random() < 0.5 ? 1 : -1);
-      
+
       // Depth (z-axis simulation for alpha/size)
       this.z = Math.random() * Math.PI * 2;
       this.zSpeed = Math.random() * 0.01 + 0.005;
-      
+
       // Store current pos for rendering
       this.x = 0;
       this.y = 0;
@@ -190,19 +190,19 @@ function initParticleRing() {
     update() {
       this.angle += this.speed;
       this.z += this.zSpeed;
-      
+
       // Smooth lerp mouse tracking
       mouseX += (targetMouseX - mouseX) * 0.1;
       mouseY += (targetMouseY - mouseY) * 0.1;
-      
+
       // Base orbital position tracking the mouse directly
       let baseX = mouseX + Math.cos(this.angle) * this.radius;
       let baseY = mouseY + Math.sin(this.angle) * this.radius * 0.6; // Slight tilt
-      
+
       // Add a slight rubber-band lag to the particles based on mouse movement speed
       const dx = targetMouseX - mouseX;
       const dy = targetMouseY - mouseY;
-      
+
       this.x = baseX - dx * 0.2;
       this.y = baseY - dy * 0.2;
     }
@@ -211,13 +211,13 @@ function initParticleRing() {
       // Calculate alpha based on "z" depth
       const zScale = (Math.sin(this.z) + 1) / 2; // 0 to 1
       const alpha = PARTICLE_MIN_ALPHA + zScale * (PARTICLE_MAX_ALPHA - PARTICLE_MIN_ALPHA);
-      
+
       // Make particles closer to us slightly larger
       const currentSize = PARTICLE_SIZE * (0.5 + zScale * 1.5);
 
       ctx.beginPath();
       ctx.arc(this.x, this.y, currentSize, 0, Math.PI * 2);
-      
+
       // Warm gradient colors based on index to match bg image
       const colors = [
         `rgba(255, 94, 77, ${alpha})`,   // Red-orange
@@ -225,7 +225,7 @@ function initParticleRing() {
         `rgba(255, 204, 92, ${alpha})`   // Yellow
       ];
       ctx.fillStyle = colors[this.index % colors.length];
-      
+
       ctx.fill();
     }
   }
