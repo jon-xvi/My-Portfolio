@@ -81,7 +81,7 @@ h1 {
 }
 
 .text-gradient {
-  background: linear-gradient(to right, #FF640D, #D63439);
+  background: linear-gradient(to right, #FF640D, #AB20AB);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
