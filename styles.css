@@ -105,6 +105,7 @@ h3 {
 }
 
 p {
+  font-family: 'Cabinet Grotesk', sans-serif;
   max-width: 640px;
 }
 
@@ -298,6 +299,19 @@ nav .logo {
   max-width: 800px;
 }
 
+.hero-eyebrow {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 14px;
+  color: #525252;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.04);
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+  background: white;
+  display: inline-block;
+}
+
 .hero-center {
   display: flex;
   flex-direction: column;
@@ -306,6 +320,47 @@ nav .logo {
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
+  position: relative;
+}
+
+.hero-artifact {
+  position: absolute;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.hero-artifact-left {
+  top: 50%;
+  left: 0;
+  transform: translate(-150%, -50%);
+}
+
+.hero-artifact-right {
+  top: 50%;
+  right: 0;
+  transform: translate(120%, -50%);
+}
+
+.animated-pointer {
+  position: absolute;
+  bottom: -40px;
+  pointer-events: none;
+  z-index: 10;
+  animation: glidePointer 10s ease-in-out infinite alternate;
+}
+
+@keyframes glidePointer {
+  0% { left: 5%; opacity: 0; transform: translateY(40px); }
+  15% { opacity: 1; transform: translateY(0); }
+  50% { left: 45%; transform: translateY(-10px); }
+  85% { opacity: 1; transform: translateY(0); }
+  100% { left: 85%; opacity: 0; transform: translateY(40px); }
+}
+
+@media (max-width: 768px) {
+  .hero-artifact, .animated-pointer {
+    display: none !important;
+  }
 }
 
 .hero-center h1 {
@@ -323,7 +378,6 @@ nav .logo {
 }
 
 .hero p {
-  font-family: 'Cabinet Grotesk', sans-serif;
   font-weight: 500;
   font-size: clamp(16px, 1.8vw, 18px);
   color: #0a0a0a;
