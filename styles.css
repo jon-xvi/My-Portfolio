@@ -203,7 +203,7 @@ section.alt {
 }
 
 /* Navigation */
-nav {
+#navbar {
   position: fixed;
   top: 0;
   left: 0;
@@ -219,21 +219,21 @@ nav {
   transition: background 300ms ease;
 }
 
-nav.scrolled {
+#navbar.scrolled {
   background: rgba(255, 255, 255, 0.65);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--color-border);
 }
 
-nav .container {
+#navbar .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
 }
 
-nav .logo {
+#navbar .logo {
   font-weight: 500;
   color: var(--color-on-surface);
   font-size: 16px;
@@ -754,9 +754,10 @@ nav .logo {
   display: flex;
   gap: 16px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .btn-group {
     flex-direction: column;
     width: 100%;
@@ -853,8 +854,412 @@ nav .logo {
   }
 }
 
+/* ============================== */
+/* Hamburger Menu Button          */
+/* ============================== */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 110;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--color-on-surface);
+  border-radius: 2px;
+  transition: transform 300ms ease, opacity 200ms ease, background-color 200ms ease;
+  transform-origin: center;
+}
+
+/* Hamburger → X animation */
+#navbar.nav-open .nav-toggle span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+#navbar.nav-open .nav-toggle span:nth-child(2) {
+  opacity: 0;
+}
+
+#navbar.nav-open .nav-toggle span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ============================== */
+/* Tablet Breakpoint (1024px)     */
+/* ============================== */
+@media (max-width: 1024px) {
+  :root {
+    --site-margin: 48px;
+  }
+
+  .hero {
+    padding-top: 140px;
+  }
+
+  .featured-overlay {
+    padding: 32px;
+  }
+
+  .featured-overlay h2 {
+    font-size: clamp(24px, 3.5vw, 36px);
+  }
+
+  .col-6 {
+    grid-column: span 12;
+  }
+
+  .col-4 {
+    grid-column: span 6;
+  }
+}
+
+/* ============================== */
+/* Mobile Breakpoint (768px)      */
+/* ============================== */
 @media (max-width: 768px) {
   h1 {
     font-size: clamp(28px, 6vw, 40px);
+  }
+
+  /* Show hamburger, hide nav links by default */
+  .nav-toggle {
+    display: flex;
+  }
+
+  #navbar {
+    height: auto;
+    min-height: 64px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  #navbar .container {
+    flex-wrap: wrap;
+  }
+
+  .nav-links {
+    position: static;
+    transform: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                opacity 300ms ease,
+                padding 300ms ease;
+    padding: 0;
+  }
+
+  #navbar.nav-open .nav-links {
+    max-height: 300px;
+    opacity: 1;
+    padding: 16px 0 8px 0;
+  }
+
+  .nav-links a {
+    padding: 12px 0;
+    font-size: 16px;
+    border-bottom: 1px solid var(--color-border);
+    width: 100%;
+    display: block;
+  }
+
+  .nav-links a:last-child {
+    border-bottom: none;
+  }
+
+  /* Scrolled state with open menu */
+  #navbar.nav-open {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  /* Hero adjustments */
+  .hero {
+    padding-top: 120px;
+    min-height: auto;
+    padding-bottom: 60px;
+    background-attachment: scroll;
+    background-size: cover;
+  }
+
+  .hero p {
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+
+  .hero p br {
+    display: none;
+  }
+
+  .hero-cta {
+    width: auto;
+    padding: 14px 20px;
+    font-size: 15px;
+    height: auto;
+  }
+
+  /* Marquee adjustments */
+  .shots-marquee-section {
+    padding: 24px 0 48px 0;
+  }
+
+  /* Featured card overlay */
+  .featured-overlay {
+    padding: 20px;
+  }
+
+  .featured-overlay h2 {
+    font-size: clamp(20px, 5vw, 28px);
+    margin-bottom: 8px;
+  }
+
+  .featured-overlay .tag {
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+
+  /* Blog entries */
+  .blog-info p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* Testimonials */
+  .testimonial {
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+  }
+
+  .testimonial blockquote {
+    font-size: clamp(17px, 4vw, 22px);
+  }
+
+  /* Dark CTA */
+  .dark-card h2 {
+    font-size: clamp(24px, 5vw, 36px);
+  }
+
+  .dark-card p {
+    font-size: 15px;
+    margin-bottom: 28px;
+  }
+}
+
+/* ============================== */
+/* Small Mobile Breakpoint (480px)*/
+/* ============================== */
+@media (max-width: 480px) {
+  :root {
+    --site-margin: 16px;
+    --gutter: 12px;
+  }
+
+  h1 {
+    font-size: clamp(24px, 7vw, 32px);
+  }
+
+  h2 {
+    font-size: clamp(24px, 6vw, 32px);
+    margin-bottom: 24px;
+  }
+
+  section {
+    padding: 48px 0;
+  }
+
+  .hero {
+    padding-top: 100px;
+    padding-bottom: 40px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    padding: 5px 12px;
+  }
+
+  .marquee-content img {
+    height: 140px;
+  }
+
+  .card-content {
+    padding: 16px;
+  }
+
+  .card p.desc {
+    font-size: 13px;
+  }
+
+  .featured-overlay {
+    padding: 16px;
+  }
+
+  .featured-overlay h2 {
+    font-size: clamp(18px, 5vw, 24px);
+  }
+
+  .blog-entry {
+    padding: 20px 0;
+  }
+
+  .testimonial blockquote {
+    font-size: 16px;
+  }
+
+  .dark-card {
+    padding: 28px 16px;
+    border-radius: var(--radius-card);
+  }
+
+  .dark-card h2 {
+    font-size: clamp(20px, 5.5vw, 28px);
+  }
+
+  .btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  .btn-group {
+    gap: 10px;
+  }
+}
+
+/* ============================== */
+/* Progressive Blur Overlay       */
+/* ============================== */
+.progressive-blur {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  z-index: 90;
+  pointer-events: none;
+}
+
+.progressive-blur .blur-layer {
+  position: absolute;
+  inset: 0;
+}
+
+/* ============================== */
+/* Floating Navigation Dock       */
+/* ============================== */
+.floating-dock {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 95;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 18px;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: transform 350ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 350ms ease,
+              box-shadow 300ms ease;
+}
+
+.floating-dock:hover {
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 12px 40px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.dock-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  color: var(--color-on-surface-var);
+  transition: background-color 200ms ease,
+              color 200ms ease,
+              transform 200ms ease;
+  text-decoration: none;
+}
+
+.dock-item:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--color-on-surface);
+  transform: translateY(-2px);
+}
+
+.dock-item:active {
+  transform: translateY(0) scale(0.95);
+}
+
+.dock-item svg {
+  flex-shrink: 0;
+}
+
+.dock-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 0 4px;
+  flex-shrink: 0;
+}
+
+/* Add bottom padding to body so content isn't hidden behind dock */
+body {
+  padding-bottom: 80px;
+}
+
+/* ============================== */
+/* Dock Responsive                */
+/* ============================== */
+@media (max-width: 480px) {
+  .floating-dock {
+    bottom: 12px;
+    padding: 6px 8px;
+    gap: 2px;
+    border-radius: 14px;
+  }
+
+  .dock-item {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .dock-item svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .progressive-blur {
+    height: 56px;
   }
 }

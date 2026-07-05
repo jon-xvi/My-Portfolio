@@ -16,12 +16,18 @@
   <nav id="navbar" aria-label="Main Navigation">
     <div class="container">
       <div class="logo display-font">
-        <div style="width: 40px; height: 40px; background: url('artifacts/hero/AVI.png') center/cover; border-radius: 8px;"
+        <div
+          style="width: 40px; height: 40px; background: url('artifacts/hero/AVI.png') center/cover; border-radius: 8px;"
           role="img" aria-label="John Erizu profile picture">
         </div>
         <b>John Erizu.</b>
       </div>
-      <div class="nav-links">
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
         <a href="#projects">Work</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
@@ -117,7 +123,8 @@
         <!-- Row 1: Featured (12 col) -->
         <a href="#" class="card featured col-12 animate-on-scroll">
           <div class="card-img-wrap">
-            <img src="artifacts/projects/project_featured_1781015885821.png" alt="Data Visualization Dashboard" class="card-img">
+            <img src="artifacts/projects/project_featured_1781015885821.png" alt="Data Visualization Dashboard"
+              class="card-img">
           </div>
           <div class="featured-overlay">
             <span class="tag">Fintech</span>
@@ -260,6 +267,38 @@
       </div>
     </div>
   </section>
+
+  <!-- Progressive Blur Overlay (Fixed Bottom) -->
+  <div class="progressive-blur" aria-hidden="true">
+    <div class="blur-layer" style="backdrop-filter: blur(0.5px); -webkit-backdrop-filter: blur(0.5px); mask-image: linear-gradient(to bottom, transparent 0%, black 12.5%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12.5%);"></div>
+    <div class="blur-layer" style="backdrop-filter: blur(1px); -webkit-backdrop-filter: blur(1px); mask-image: linear-gradient(to bottom, transparent 12.5%, black 25%); -webkit-mask-image: linear-gradient(to bottom, transparent 12.5%, black 25%);"></div>
+    <div class="blur-layer" style="backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); mask-image: linear-gradient(to bottom, transparent 25%, black 37.5%); -webkit-mask-image: linear-gradient(to bottom, transparent 25%, black 37.5%);"></div>
+    <div class="blur-layer" style="backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); mask-image: linear-gradient(to bottom, transparent 37.5%, black 50%); -webkit-mask-image: linear-gradient(to bottom, transparent 37.5%, black 50%);"></div>
+    <div class="blur-layer" style="backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); mask-image: linear-gradient(to bottom, transparent 50%, black 62.5%); -webkit-mask-image: linear-gradient(to bottom, transparent 50%, black 62.5%);"></div>
+    <div class="blur-layer" style="backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); mask-image: linear-gradient(to bottom, transparent 62.5%, black 75%); -webkit-mask-image: linear-gradient(to bottom, transparent 62.5%, black 75%);"></div>
+    <div class="blur-layer" style="backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); mask-image: linear-gradient(to bottom, transparent 75%, black 87.5%); -webkit-mask-image: linear-gradient(to bottom, transparent 75%, black 87.5%);"></div>
+    <div class="blur-layer" style="backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); mask-image: linear-gradient(to bottom, transparent 87.5%, black 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 87.5%, black 100%);"></div>
+  </div>
+
+  <!-- Floating Navigation Dock -->
+  <nav class="floating-dock" aria-label="Quick navigation">
+    <a href="#home" class="dock-item" title="Home">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </a>
+    <a href="#projects" class="dock-item" title="Work">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+    </a>
+    <a href="#writing" class="dock-item" title="Writing">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+    </a>
+    <a href="#about" class="dock-item" title="About">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+    <div class="dock-divider"></div>
+    <a href="mailto:hello@example.com" class="dock-item" title="Email">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    </a>
+  </nav>
 
   <script src="main.js"></script>
 </body>
