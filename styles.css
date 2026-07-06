@@ -927,6 +927,7 @@ html.dark .dock-divider {
     flex-wrap: wrap;
     height: auto;
     min-height: 72px;
+    align-content: center;
   }
 
   #navbar.nav-open {
