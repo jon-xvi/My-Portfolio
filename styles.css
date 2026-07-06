@@ -334,47 +334,6 @@ html.dark .icon-moon {
   line-height: 1.6;
 }
 
-/* Hero Tags Marquee */
-.hero-tags {
-  margin-top: 48px;
-  overflow: hidden;
-  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-}
-
-.tags-track {
-  display: flex;
-  width: max-content;
-  animation: scrollTags 20s linear infinite;
-}
-
-.tags-content {
-  display: flex;
-  gap: 16px;
-  padding-right: 16px;
-}
-
-.tag-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--fg-2);
-  white-space: nowrap;
-}
-
-.tag-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-@keyframes scrollTags {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
 
 /* ============================================ */
 /* Shots Marquee                                */
