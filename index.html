@@ -4,94 +4,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>John | Product Designer</title>
-  <meta name="description" content="Portfolio of John, a digital product designer crafting elevated experiences.">
+  <title>John Erizu — Product Designer</title>
+  <meta name="description"
+    content="Portfolio of John Erizu, a digital product designer crafting elevated experiences for modern businesses.">
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <!-- Custom Cursor removed -->
 
   <!-- Navigation -->
   <nav id="navbar" aria-label="Main Navigation">
-    <div class="container">
-      <div class="logo display-font">
-        <div
-          style="width: 40px; height: 40px; background: url('artifacts/hero/AVI.png') center/cover; border-radius: 8px;"
-          role="img" aria-label="John Erizu profile picture">
-        </div>
-        <b>John Erizu.</b>
+    <div class="container nav-inner">
+      <a href="#home" class="nav-brand">
+        <img src="artifacts/hero/AVI.png" alt="John Erizu" class="nav-avatar">
+        JOHN ERIZU
+      </a>
+      <div class="nav-center">
+        <a href="#projects">Works</a>
+        <a href="#writing">Feed</a>
+        <a href="#about">About</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+        <a href="#contact" class="nav-cta">Contact me</a>
       </div>
       <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
       </button>
-      <div class="nav-links" id="nav-links">
-        <a href="#projects">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div class="nav-mobile" id="nav-mobile">
+      <a href="#projects">Works</a>
+      <a href="#writing">Feed</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
     </div>
   </nav>
 
   <!-- Hero Section -->
   <header class="hero" id="home">
-    <!-- Particles removed -->
-    <div class="container hero-center animate-on-scroll">
-      <div class="hero-eyebrow">
-        <span class="eyebrow-circle"></span>
-        Product/UX Designer
+    <div class="container">
+      <div class="hero-content animate-on-scroll">
+        <h1>Building brands and digital products<br>for modern businesses.</h1>
+        <p class="hero-sub">From early ideas to launch, I build products users connect with and businesses rely on.</p>
       </div>
-      <h1>
-        <div class="text-gradient" style="position: relative;">
-          Building brands and digital products
+      <div class="hero-tags animate-on-scroll">
+        <div class="tags-track">
+          <div class="tags-content">
+            <span class="tag-pill"><span class="tag-dot" style="background:#4F6BFF"></span>Fintech</span>
+            <span class="tag-pill"><span class="tag-dot" style="background:#FF8C42"></span>Travel</span>
+            <span class="tag-pill"><span class="tag-dot" style="background:#D946EF"></span>E-commerce</span>
+            <span class="tag-pill"><span class="tag-dot" style="background:#EF4444"></span>AI</span>
+            <span class="tag-pill"><span class="tag-dot" style="background:#22C55E"></span>SaaS</span>
+            <span class="tag-pill"><span class="tag-dot" style="background:#67E8F9"></span>Social Media</span>
+          </div>
+          <div class="tags-content" aria-hidden="true">
+            <span class="tag-pill"><span class="tag-dot" style="background:#4F6BFF"></span>Fintech</span>
+            <span class="tag-pill"><span class="tag-dot" style="background:#FF8C42"></span>Travel</span>
+            <span class="tag-pill"><span class="tag-dot" style="background:#D946EF"></span>E-commerce</span>
+            <span class="tag-pill"><span class="tag-dot" style="background:#EF4444"></span>AI</span>
+            <span class="tag-pill"><span class="tag-dot" style="background:#22C55E"></span>SaaS</span>
+            <span class="tag-pill"><span class="tag-dot" style="background:#67E8F9"></span>Social Media</span>
+          </div>
         </div>
-        <div style="position: relative;">
-          for modern businesses.
-        </div>
-      </h1>
-      <p>From early ideas to launch,
-        <br>I build products users connect with and businesses rely on.
-      </p>
-      <div class="btn-group">
-        <a href="#contact" class="btn hero-cta">
-          <svg aria-hidden="true"
-            style="width:18px;height:18px;margin-right:10px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"
-            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <line x1="22" y1="2" x2="11" y2="13"></line>
-            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-          </svg> Let's talk
-        </a>
       </div>
-      <svg width="107" height="43" viewBox="0 0 107 43" fill="none" xmlns="http://www.w3.org/2000/svg"
-        class="animated-pointer" aria-hidden="true">
-        <path class="pointer-tip"
-          d="M4.30969 4.3111C4.28909 4.12653 4.32029 3.93988 4.39979 3.77204C4.4793 3.60421 4.60397 3.46183 4.75983 3.36086C4.9157 3.2599 5.0966 3.20432 5.28227 3.20038C5.46794 3.19643 5.65104 3.24427 5.81106 3.33853L14.4256 8.41613C15.2527 8.90337 14.9831 10.1651 14.029 10.2716L10.1064 10.7095C9.95406 10.7264 9.80769 10.7781 9.67855 10.8605C9.5494 10.943 9.44093 11.054 9.36151 11.1851L7.26743 14.6538C6.77411 15.4716 5.52399 15.1976 5.41793 14.2475L4.30969 4.3111Z"
-          fill="#EB29BC" />
-        <g filter="url(#filter0_i_49_858)">
-          <rect x="10" y="13" width="97" height="30" rx="15" fill="#AB20AB" fill-opacity="0.2" />
-          <rect x="10" y="13" width="97" height="30" rx="15" fill="#C405C4" fill-opacity="0.5" />
-          <rect x="10" y="13" width="97" height="30" rx="15" fill="#FA00AB" fill-opacity="0.6" />
-          <path
-            d="M45.5574 33.2393C45.1017 33.2393 44.6938 33.1732 44.3337 33.041C43.9737 32.9134 43.6684 32.7288 43.4177 32.4873C43.1671 32.2458 42.9711 31.9609 42.8298 31.6328C42.6886 31.3047 42.6065 30.9447 42.5837 30.5527L42.5769 30.4707H44.0945V30.5254C44.1173 30.776 44.1856 31.0039 44.2996 31.209C44.4135 31.4095 44.573 31.569 44.7781 31.6875C44.9877 31.806 45.2452 31.8652 45.5505 31.8652C46.0564 31.8652 46.4415 31.7194 46.7058 31.4277C46.9701 31.1315 47.1023 30.7008 47.1023 30.1357V23.1357H48.6404V30.1494C48.6404 30.7965 48.5173 31.3503 48.2712 31.8105C48.0297 32.2708 47.6788 32.624 47.2185 32.8701C46.7628 33.1162 46.2091 33.2393 45.5574 33.2393ZM53.9853 33.1436C53.2607 33.1436 52.634 32.9886 52.1054 32.6787C51.5813 32.3688 51.178 31.9268 50.8954 31.3525C50.6129 30.7738 50.4716 30.0879 50.4716 29.2949V29.2812C50.4716 28.4837 50.6129 27.7979 50.8954 27.2236C51.1825 26.6494 51.5881 26.2074 52.1122 25.8975C52.6409 25.5876 53.2652 25.4326 53.9853 25.4326C54.7099 25.4326 55.3342 25.5876 55.8583 25.8975C56.3824 26.2028 56.7857 26.6449 57.0683 27.2236C57.3554 27.7979 57.4989 28.4837 57.4989 29.2812V29.2949C57.4989 30.0879 57.3554 30.7738 57.0683 31.3525C56.7857 31.9268 56.3824 32.3688 55.8583 32.6787C55.3388 32.9886 54.7144 33.1436 53.9853 33.1436ZM53.9853 31.8994C54.4091 31.8994 54.7691 31.7969 55.0654 31.5918C55.3616 31.3822 55.5872 31.0837 55.7421 30.6963C55.8971 30.3089 55.9745 29.8418 55.9745 29.2949V29.2812C55.9745 28.7298 55.8971 28.2604 55.7421 27.873C55.5872 27.4857 55.3616 27.1895 55.0654 26.9844C54.7691 26.7747 54.4091 26.6699 53.9853 26.6699C53.5614 26.6699 53.2014 26.7747 52.9052 26.9844C52.609 27.1895 52.3811 27.4857 52.2216 27.873C52.0667 28.2604 51.9892 28.7298 51.9892 29.2812V29.2949C51.9892 29.8418 52.0667 30.3089 52.2216 30.6963C52.3811 31.0837 52.609 31.3822 52.9052 31.5918C53.2014 31.7969 53.5614 31.8994 53.9853 31.8994ZM59.296 33V22.6641H60.7794V26.6973H60.8956C61.0779 26.3008 61.3468 25.9909 61.7022 25.7676C62.0577 25.5443 62.5066 25.4326 63.0489 25.4326C63.6003 25.4326 64.0675 25.5397 64.4503 25.7539C64.8331 25.9681 65.1248 26.2826 65.3253 26.6973C65.5258 27.1074 65.6261 27.6064 65.6261 28.1943V33H64.1358V28.543C64.1358 27.9232 64.0059 27.4629 63.7462 27.1621C63.491 26.8568 63.0899 26.7041 62.543 26.7041C62.183 26.7041 61.8708 26.7839 61.6065 26.9434C61.3422 27.0983 61.1371 27.3216 60.9913 27.6133C60.85 27.9004 60.7794 28.2445 60.7794 28.6455V33H59.296ZM67.6555 33V25.5762H69.1389V26.6973H69.2551C69.4374 26.3008 69.7063 25.9909 70.0618 25.7676C70.4172 25.5443 70.8661 25.4326 71.4084 25.4326C72.2424 25.4326 72.8804 25.6719 73.3225 26.1504C73.7646 26.6289 73.9856 27.3102 73.9856 28.1943V33H72.4954V28.543C72.4954 27.9232 72.3655 27.4629 72.1057 27.1621C71.8505 26.8568 71.4495 26.7041 70.9026 26.7041C70.5426 26.7041 70.2304 26.7839 69.9661 26.9434C69.7017 27.0983 69.4967 27.3216 69.3508 27.6133C69.2095 27.9004 69.1389 28.2445 69.1389 28.6455V33H67.6555Z"
-            fill="white" />
-        </g>
-        <defs>
-          <filter id="filter0_i_49_858" x="10" y="13" width="97" height="34" filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB">
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
-            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-              result="hardAlpha" />
-            <feOffset dy="4" />
-            <feGaussianBlur stdDeviation="2" />
-            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
-            <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.25 0" />
-            <feBlend mode="normal" in2="shape" result="effect1_innerShadow_49_858" />
-          </filter>
-        </defs>
-      </svg>
     </div>
   </header>
 
@@ -114,85 +109,69 @@
       </div>
     </div>
   </section>
+
   <!-- Projects Grid Section -->
-  <section id="projects" class="alt">
+  <section id="projects">
     <div class="container">
-      <h2 class="animate-on-scroll">Selected Work</h2>
+      <h2 class="section-title animate-on-scroll">Selected Work</h2>
 
-      <div class="grid">
-        <!-- Row 1: Featured (12 col) -->
-        <a href="#" class="card featured col-12 animate-on-scroll">
-          <div class="card-img-wrap">
+      <div class="projects-grid">
+        <!-- Featured -->
+        <a href="#" class="project-card featured animate-on-scroll">
+          <div class="project-img-wrap">
             <img src="artifacts/projects/project_featured_1781015885821.png" alt="Data Visualization Dashboard"
-              class="card-img">
+              class="project-img">
           </div>
-          <div class="featured-overlay">
-            <span class="tag">Fintech</span>
-            <h2>Antigravity Data Platform</h2>
-            <div class="link">View Project <span class="arrow">→</span></div>
-          </div>
-        </a>
-
-        <!-- Row 2: Standard (6 col) -->
-        <a href="#" class="card standard col-6 animate-on-scroll">
-          <div class="card-img-wrap">
-            <img src="artifacts/projects/project_standard_1781015903362.png" alt="Banking App" class="card-img">
-          </div>
-          <div class="card-content">
-            <span class="tag">Mobile App</span>
-            <h3>Nexus Banking Experience</h3>
-            <p class="desc">A complete redesign of the core banking flow, focusing on minimal friction and aesthetic
-              joy.</p>
-            <div class="card-meta meta">2025 • iOS & Android</div>
-            <div class="link">View Project <span class="arrow">→</span></div>
+          <div class="project-info">
+            <span class="project-tag">Fintech</span>
+            <h3>Antigravity Data Platform <span class="arrow-icon">↗</span></h3>
+            <p>A complete data visualization and analytics platform redesign for enterprise users.</p>
           </div>
         </a>
 
-        <a href="#" class="card standard col-6 animate-on-scroll">
-          <div class="card-img-wrap">
-            <img src="artifacts/projects/project_standard_1781015903362.png" alt="Design System" class="card-img">
+        <!-- Standard Cards -->
+        <a href="#" class="project-card animate-on-scroll">
+          <div class="project-img-wrap">
+            <img src="artifacts/projects/project_standard_1781015903362.png" alt="Banking App" class="project-img">
           </div>
-          <div class="card-content">
-            <span class="tag">Design System</span>
-            <h3>Lumina UI Kit</h3>
-            <p class="desc">An enterprise-grade component library built for scale, accessibility, and visual harmony.
-            </p>
-            <div class="card-meta meta">2024 • Web Platform</div>
-            <div class="link">View Project <span class="arrow">→</span></div>
+          <div class="project-info">
+            <span class="project-tag">Mobile App</span>
+            <h3>Nexus Banking Experience <span class="arrow-icon">↗</span></h3>
+            <p>A complete redesign of the core banking flow, focusing on minimal friction and aesthetic joy.</p>
           </div>
         </a>
 
-        <!-- Row 3: Compact (4 col) -->
-        <a href="#" class="card compact col-4 animate-on-scroll">
-          <div class="card-img-wrap">
-            <img src="artifacts/projects/project_compact_1781015914671.png" alt="Abstract 3D Shape" class="card-img">
+        <a href="#" class="project-card animate-on-scroll">
+          <div class="project-img-wrap">
+            <img src="artifacts/projects/project_standard_1781015903362.png" alt="Design System" class="project-img">
           </div>
-          <div class="card-content">
-            <span class="tag">Exploration</span>
-            <h3>Spatial Interfaces</h3>
-            <div class="card-meta meta" style="margin-top: 8px;">2024 • R&D</div>
-          </div>
-        </a>
-
-        <a href="#" class="card compact col-4 animate-on-scroll">
-          <div class="card-img-wrap">
-            <img src="artifacts/projects/project_compact_1781015914671.png" alt="Abstract 3D Shape" class="card-img">
-          </div>
-          <div class="card-content">
-            <span class="tag">Concept</span>
-            <h3>Glassmorphic OS</h3>
-            <div class="card-meta meta" style="margin-top: 8px;">2023 • Desktop</div>
+          <div class="project-info">
+            <span class="project-tag">Design System</span>
+            <h3>Lumina UI Kit <span class="arrow-icon">↗</span></h3>
+            <p>An enterprise-grade component library built for scale, accessibility, and visual harmony.</p>
           </div>
         </a>
 
-        <a href="#" class="card compact col-4 animate-on-scroll">
-          <div class="card-img-wrap">
-            <img src="artifacts/projects/project_compact_1781015914671.png" alt="Abstract 3D Shape" class="card-img">
+        <a href="#" class="project-card animate-on-scroll">
+          <div class="project-img-wrap">
+            <img src="artifacts/projects/project_compact_1781015914671.png" alt="Spatial Interfaces"
+              class="project-img">
           </div>
-          <div class="card-content">
-            <span class="tag">Web3</span>
-            <h3>Orbit Wallet</h3>
-            <div class="card-meta meta" style="margin-top: 8px;">2023 • Mobile</div>
+          <div class="project-info">
+            <span class="project-tag">Exploration</span>
+            <h3>Spatial Interfaces <span class="arrow-icon">↗</span></h3>
+            <p>Exploring immersive 3D interface paradigms for next-gen spatial computing platforms.</p>
+          </div>
+        </a>
+
+        <a href="#" class="project-card animate-on-scroll">
+          <div class="project-img-wrap">
+            <img src="artifacts/projects/project_compact_1781015914671.png" alt="Glassmorphic OS" class="project-img">
+          </div>
+          <div class="project-info">
+            <span class="project-tag">Concept</span>
+            <h3>Glassmorphic OS <span class="arrow-icon">↗</span></h3>
+            <p>A desktop OS concept built on layered translucency and depth-aware interactions.</p>
           </div>
         </a>
       </div>
@@ -202,7 +181,7 @@
   <!-- Blog / Writing Section -->
   <section id="writing">
     <div class="container">
-      <h2 class="animate-on-scroll">Thoughts & Process</h2>
+      <h2 class="section-title animate-on-scroll">Thoughts & Process</h2>
 
       <div class="blog-list animate-on-scroll">
         <a href="#" class="blog-entry">
@@ -211,7 +190,7 @@
             <p>Why modern enterprise software needs to learn from consumer apps, and how to reduce cognitive load
               without sacrificing power.</p>
           </div>
-          <div class="blog-meta meta">Mar 12 • 5 min read</div>
+          <div class="blog-meta">Mar 12 • 5 min read</div>
         </a>
 
         <a href="#" class="blog-entry">
@@ -220,7 +199,7 @@
             <p>A deep dive into why motion and micro-interactions are the true markers of a premium digital experience.
             </p>
           </div>
-          <div class="blog-meta meta">Feb 28 • 8 min read</div>
+          <div class="blog-meta">Feb 28 • 8 min read</div>
         </a>
 
         <a href="#" class="blog-entry">
@@ -228,16 +207,16 @@
             <h3>Tokens, Themes, and Tension</h3>
             <p>How to build a design system that scales without becoming a rigid, soulless bureaucracy.</p>
           </div>
-          <div class="blog-meta meta">Jan 15 • 6 min read</div>
+          <div class="blog-meta">Jan 15 • 6 min read</div>
         </a>
       </div>
     </div>
   </section>
 
   <!-- Testimonials Section -->
-  <section id="about" class="alt">
+  <section id="about">
     <div class="container">
-      <h2 class="animate-on-scroll">What people say</h2>
+      <h2 class="section-title animate-on-scroll">What people say</h2>
 
       <div class="testimonial animate-on-scroll">
         <blockquote>"John doesn't just design screens; they architect entire systems of interaction that feel
@@ -254,19 +233,32 @@
     </div>
   </section>
 
-  <!-- Dark CTA Section -->
-  <section id="contact" style="padding-top: 60px;">
-    <div class="container animate-on-scroll">
-      <div class="dark-card">
-        <h2 class="display-font">Ready to build something extraordinary?</h2>
-        <p>I'm currently accepting new projects for Q3 2026. Let's discuss your product vision.</p>
-        <div class="btn-group">
-          <a href="mailto:hello@example.com" class="btn btn-primary">Start a Conversation</a>
-          <a href="#" class="btn btn-ghost">Download Résumé</a>
+  <!-- Footer Section -->
+  <footer id="contact" class="footer-section">
+    <div class="container">
+      <!-- CTA Row: "Let's Talk" left, Social Links right -->
+      <div class="footer-cta-row animate-on-scroll">
+        <div class="footer-cta-left">
+          <p class="footer-label">Have a project in mind?</p>
+          <a href="#" class="footer-big-link">Let's Talk....</a>
+        </div>
+        <div class="footer-cta-right">
+          <a href="#" class="footer-social-link">X (twitter)</a>
+          <a href="#" class="footer-social-link">LinkedIn</a>
+          <a href="#" class="footer-social-link">Medium</a>
+          <a href="#" class="footer-social-link">Dribbble</a>
         </div>
       </div>
+
+      <!-- Giant Name Wordmark -->
+      <div class="footer-wordmark animate-on-scroll">JOHN ERIZU</div>
+
+      <!-- Copyright -->
+      <div class="footer-copyright animate-on-scroll">
+        © 2026 John Erizu. All rights reserved.
+      </div>
     </div>
-  </section>
+  </footer>
 
   <!-- Progressive Blur Overlay (Fixed Bottom) -->
   <div class="progressive-blur" aria-hidden="true">
@@ -280,25 +272,20 @@
     <div class="blur-layer" style="backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); mask-image: linear-gradient(to bottom, transparent 87.5%, black 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 87.5%, black 100%);"></div>
   </div>
 
-  <!-- Floating Navigation Dock -->
-  <nav class="floating-dock" aria-label="Quick navigation">
-    <a href="#home" class="dock-item" title="Home">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+  <!-- Floating Social Dock -->
+  <div class="floating-dock" aria-label="Social links">
+    <a href="#" class="dock-item" title="X (Twitter)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
     </a>
-    <a href="#projects" class="dock-item" title="Work">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+    <a href="#" class="dock-item" title="Dribbble">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94"/><path d="M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32"/><path d="M8.56 2.75c4.37 6 6.56 12 7.56 18.5"/></svg>
     </a>
-    <a href="#writing" class="dock-item" title="Writing">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-    </a>
-    <a href="#about" class="dock-item" title="About">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <a href="#" class="dock-item" title="LinkedIn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
     </a>
     <div class="dock-divider"></div>
-    <a href="mailto:hello@example.com" class="dock-item" title="Email">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-    </a>
-  </nav>
+    <a href="mailto:hello@example.com" class="dock-cta">Book a call</a>
+  </div>
 
   <script src="main.js"></script>
 </body>
