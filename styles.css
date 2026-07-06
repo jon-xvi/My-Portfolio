@@ -988,18 +988,18 @@ html.dark .dock-divider {
   }
 
   .floating-dock {
-    bottom: 12px;
-    padding: 6px 6px 6px 10px;
+    bottom: 16px;
+    padding: 8px 8px 8px 12px;
   }
 
   .dock-item {
-    width: 34px;
-    height: 34px;
+    width: 38px;
+    height: 38px;
   }
 
   .dock-cta {
-    font-size: 12px;
-    padding: 6px 14px;
+    font-size: 14px;
+    padding: 8px 16px;
   }
 
   .progressive-blur {
