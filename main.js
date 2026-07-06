@@ -102,9 +102,52 @@ function initSmoothScroll() {
 // ============================================
 // Initialize All
 // ============================================
+
+function initModal() {
+  const modal = document.getElementById('contact-modal');
+  if (!modal) return;
+
+  const triggers = document.querySelectorAll('[data-modal-trigger="contact-modal"]');
+  const closeBtn = modal.querySelector('.modal-close');
+
+  const openModal = (e) => {
+    e.preventDefault();
+    modal.setAttribute('aria-hidden', 'false');
+    // Close mobile nav if it's open
+    const navbar = document.getElementById('navbar');
+    const navToggle = document.getElementById('nav-toggle');
+    if (navbar && navbar.classList.contains('nav-open')) {
+      navbar.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+  };
+
+  const closeModal = () => {
+    modal.setAttribute('aria-hidden', 'true');
+  };
+
+  triggers.forEach(trigger => trigger.addEventListener('click', openModal));
+  closeBtn.addEventListener('click', closeModal);
+
+  // Close when clicking outside modal content
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
+      closeModal();
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initMobileNav();
   initScrollAnimations();
   initSmoothScroll();
+  initModal();
 });
