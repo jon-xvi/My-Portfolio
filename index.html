@@ -7,6 +7,10 @@
   <title>John Erizu — Product Designer</title>
   <meta name="description"
     content="Portfolio of John Erizu, a digital product designer crafting elevated experiences for modern businesses.">
+  <link rel="icon" type="image/png" href="artifacts/hero/AVI.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..600&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -102,8 +106,6 @@
       <h2 class="section-title animate-on-scroll">Selected Work</h2>
 
       <div class="projects-grid">
-        <!-- Featured -->
-
         <!-- Standard Cards -->
         <a href="#" class="project-card animate-on-scroll">
           <div class="project-img-wrap">
@@ -215,7 +217,7 @@
       <div class="footer-cta-row animate-on-scroll">
         <div class="footer-cta-left">
           <p class="footer-label">Have a project in mind?</p>
-          <div class="footer-big-link">Let's Talk....</div>
+          <a href="#" class="footer-big-link" data-modal-trigger="contact-modal">Let's Talk....</a>
         </div>
         <div class="footer-cta-right">
           <a href="https://x.com/_JonXVI" target="_blank" rel="noopener noreferrer" class="footer-social-link">X (twitter)</a>
@@ -268,10 +270,10 @@
   <!-- Contact Modal -->
   <div class="modal-overlay" id="contact-modal" aria-hidden="true">
     <div class="modal-container">
-      <button class="modal-close" aria-label="Close modal">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-      </button>
       <div class="modal-content">
+        <button class="modal-close" aria-label="Close modal">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
         <h2>Let's collaborate today!</h2>
         <form action="https://formsubmit.co/johnerizu7@gmail.com" method="POST" class="contact-form">
           <!-- FormSubmit Configuration -->

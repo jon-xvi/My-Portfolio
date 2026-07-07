@@ -18,7 +18,8 @@
   --section-padding: 140px;
 
   /* Typography */
-  --font-body: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: "Plus Jakarta Sans", var(--font-body);
 
   /* Transitions */
   --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -62,7 +63,7 @@ body {
 /* Typography                                   */
 /* ============================================ */
 h1, h2, h3 {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   color: var(--fg);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -151,6 +152,7 @@ section {
 }
 
 .nav-brand {
+  font-family: var(--font-display);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -623,6 +625,7 @@ html.dark .hero-cta-pill:hover {
 }
 
 .footer-big-link {
+  font-family: var(--font-display);
   font-size: clamp(48px, 10vw, 140px);
   font-weight: 300;
   color: var(--fg-4);
@@ -630,7 +633,7 @@ html.dark .hero-cta-pill:hover {
   line-height: 1;
   display: block;
   transition: color 0.3s ease;
-  cursor: crosshair;
+  cursor: pointer;
 }
 
 .footer-big-link:hover {
@@ -1062,6 +1065,7 @@ html.dark .dock-divider {
 }
 
 .modal-content {
+  position: relative;
   background-color: #F5F4F2;
   border-radius: 24px;
   padding: 40px;
@@ -1075,23 +1079,24 @@ html.dark .modal-content {
 
 .modal-close {
   position: absolute;
-  top: -48px;
-  right: 0;
+  top: 20px;
+  right: 20px;
   background: none;
   border: none;
-  color: #fff;
+  color: var(--fg-3);
   cursor: pointer;
   padding: 8px;
   border-radius: 50%;
-  background: rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s;
+  z-index: 10;
 }
 
 .modal-close:hover {
-  background: rgba(0,0,0,0.4);
+  background: var(--border);
+  color: var(--fg);
 }
 
 .modal-content h2 {
