@@ -293,6 +293,30 @@ function initCaseStudyOverlay() {
   });
 }
 
+// ============================================
+// Floating Dock Scroll Visibility
+// ============================================
+function initFloatingDockVisibility() {
+  const dock = document.querySelector('.floating-dock');
+  const hero = document.getElementById('home');
+  if (!dock || !hero) return;
+
+  const handleScroll = () => {
+    const heroHeight = hero.offsetHeight;
+    // Reveal the dock when scrolled past 80% of the hero section height
+    if (window.scrollY > heroHeight * 0.8) {
+      dock.classList.add('dock-visible');
+    } else {
+      dock.classList.remove('dock-visible');
+    }
+  };
+
+  // Check visibility on load in case the page is already scrolled down
+  handleScroll();
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initMobileNav();
@@ -300,4 +324,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initModal();
   initCaseStudyOverlay();
+  initFloatingDockVisibility();
 });

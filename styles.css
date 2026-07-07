@@ -825,7 +825,9 @@ html.dark .dock-divider {
   position: fixed;
   bottom: 20px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, 100px);
+  opacity: 0;
+  pointer-events: none;
   z-index: 95;
   display: flex;
   align-items: center;
@@ -834,7 +836,13 @@ html.dark .dock-divider {
   background: var(--fg);
   border-radius: 100px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
-  transition: var(--transition-color), box-shadow 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, var(--transition-color), box-shadow 0.3s ease;
+}
+
+.floating-dock.dock-visible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .dock-item {
