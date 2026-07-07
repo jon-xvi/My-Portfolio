@@ -1407,3 +1407,87 @@ html.dark .form-submit-btn:hover {
     height: 18px;
   }
 }
+
+/* ============================================ */
+/* Work Experience Section                      */
+/* ============================================ */
+.experience-section {
+  padding: var(--section-padding) 0;
+  border-top: 1px solid var(--border);
+  transition: background-color 0.3s ease;
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: calc(860px + (var(--site-margin) * 2));
+  margin: 0 auto;
+  padding: 0 var(--site-margin);
+}
+
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 48px;
+}
+
+.experience-item {
+  display: flex;
+  gap: 48px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.experience-item:last-child {
+  border-bottom: none;
+}
+
+.experience-time {
+  width: 180px;
+  flex-shrink: 0;
+  font-size: 15px;
+  font-family: var(--font-body);
+  color: var(--fg);
+}
+
+.experience-details {
+  flex-grow: 1;
+}
+
+.experience-details h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--fg);
+  margin-bottom: 6px;
+}
+
+.experience-details p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--fg-3);
+  max-width: none;
+}
+
+.experience-role {
+  color: var(--fg-2);
+  font-weight: 500;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .experience-item {
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px 0;
+  }
+  
+  .experience-time {
+    width: 100%;
+    font-size: 14px;
+    color: var(--fg-3);
+  }
+  
+  .experience-details h3 {
+    font-size: 16px;
+  }
+}
