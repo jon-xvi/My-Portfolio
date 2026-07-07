@@ -241,13 +241,17 @@ function initCaseStudyOverlay() {
     const data = CASE_STUDIES[caseStudyKey];
     if (!data) return;
 
+    // Inject header
+    const headerText = document.getElementById('case-study-header-text');
+    if (headerText) {
+      headerText.innerHTML = `
+        <h2>${data.title}</h2>
+        <span class="case-study-tag">${data.tag}</span>
+      `;
+    }
+
     // Inject content
     content.innerHTML = `
-      <div class="case-study-header">
-        <span class="case-study-tag">${data.tag}</span>
-        <h2>${data.title}</h2>
-        <p class="case-study-lead">${data.lead}</p>
-      </div>
       <img src="${data.image}" alt="${data.title}" class="case-study-hero-img">
       <div class="case-study-body">
         ${data.content}
