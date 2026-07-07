@@ -1212,3 +1212,190 @@ html.dark .form-submit-btn:hover {
     margin-bottom: 24px;
   }
 }
+
+/* ============================================ */
+/* Case Study Slide-up Overlay (Dribbble-Style) */
+/* ============================================ */
+
+.case-study-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1100;
+  display: flex;
+  align-items: flex-end; /* Align slide-up container to bottom */
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.case-study-overlay.overlay-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.case-study-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: opacity 0.4s ease;
+}
+
+.case-study-container {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  height: 85vh; /* Standard Dribbble style leaves a gap at the top to see the blurred bg */
+  background-color: var(--bg);
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 -16px 48px rgba(0, 0, 0, 0.18), 0 0 0 1px var(--border);
+  overflow-y: auto;
+  z-index: 2;
+  transform: translateY(100%);
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 64px 40px;
+}
+
+.case-study-overlay.overlay-open .case-study-container {
+  transform: translateY(0);
+}
+
+/* Close Button */
+.case-study-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  color: var(--fg-2);
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  z-index: 10;
+}
+
+.case-study-close:hover {
+  background: var(--border);
+  color: var(--fg);
+  transform: scale(1.05);
+}
+
+.case-study-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Case Study Content Layout */
+.case-study-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.case-study-header {
+  margin-bottom: 40px;
+}
+
+.case-study-tag {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg-3);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.case-study-content h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.15;
+  color: var(--fg);
+  margin-bottom: 16px;
+}
+
+.case-study-lead {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--fg-2);
+  margin-bottom: 32px;
+}
+
+.case-study-hero-img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 16px;
+  object-fit: cover;
+  margin-bottom: 48px;
+  background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
+}
+
+.case-study-body {
+  margin-top: 40px;
+}
+
+.case-study-body h3 {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.5vw, 26px);
+  color: var(--fg);
+  margin: 40px 0 16px;
+}
+
+.case-study-body h3:first-child {
+  margin-top: 0;
+}
+
+.case-study-body p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--fg-2);
+  margin-bottom: 24px;
+  max-width: none;
+}
+
+.case-study-body img {
+  width: 100%;
+  border-radius: 12px;
+  margin: 32px 0;
+  object-fit: cover;
+}
+
+.case-study-body ul, .case-study-body ol {
+  margin-bottom: 32px;
+  padding-left: 24px;
+  color: var(--fg-2);
+  font-size: 15px;
+}
+
+.case-study-body li {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .case-study-container {
+    height: 90vh;
+    padding: 48px 24px;
+  }
+  
+  .case-study-close {
+    top: 16px;
+    right: 16px;
+    padding: 8px;
+  }
+  
+  .case-study-close svg {
+    width: 18px;
+    height: 18px;
+  }
+}
