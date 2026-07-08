@@ -1396,6 +1396,7 @@ html.dark .case-study-header-sticky {
   font-size: clamp(20px, 2.5vw, 26px);
   color: var(--fg);
   margin: 40px 0 16px;
+  padding: 0 80px;
 }
 
 .case-study-body h3:first-child {
@@ -1408,6 +1409,7 @@ html.dark .case-study-header-sticky {
   color: var(--fg-2);
   margin-bottom: 24px;
   max-width: none;
+  padding: 0 80px;
 }
 
 .case-study-body img {
@@ -1419,7 +1421,8 @@ html.dark .case-study-header-sticky {
 
 .case-study-body ul, .case-study-body ol {
   margin-bottom: 32px;
-  padding-left: 24px;
+  padding-left: 104px;
+  padding-right: 80px;
   color: var(--fg-2);
   font-size: 15px;
 }
@@ -1431,6 +1434,16 @@ html.dark .case-study-header-sticky {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .case-study-body h3,
+  .case-study-body p {
+    padding: 0 16px;
+  }
+  
+  .case-study-body ul, .case-study-body ol {
+    padding-left: 40px;
+    padding-right: 16px;
+  }
+
   .case-study-container {
     height: 90vh;
     padding: 0 0 48px 0;
