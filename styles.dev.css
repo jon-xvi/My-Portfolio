@@ -1274,15 +1274,21 @@ html.dark .form-submit-btn:hover {
 .case-study-header-sticky {
   position: sticky;
   top: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 40px;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
   z-index: 10;
+}
+
+.case-study-header-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 40px;
 }
 
 html.dark .case-study-header-sticky {
@@ -1406,12 +1412,10 @@ html.dark .case-study-header-sticky {
 @media (max-width: 768px) {
   .case-study-container {
     height: 90vh;
-    padding: 48px 24px;
+    padding: 0 0 48px 0;
   }
   
   .case-study-close {
-    top: 16px;
-    right: 16px;
     padding: 8px;
   }
   
@@ -1533,5 +1537,113 @@ html.dark .case-study-header-sticky {
   .experience-role,
   .experience-location {
     font-size: 13px;
+  }
+}
+
+/* Mobile adjustments for case study modal */
+@media (max-width: 768px) {
+  .case-study-header-inner {
+    padding: 20px 24px;
+  }
+  
+  .case-study-content {
+    padding: 24px 24px 48px 24px;
+  }
+}
+
+/* ============================================ */
+/* About Section                                */
+/* ============================================ */
+.about-section {
+  padding: 0 0 var(--section-padding) 0;
+}
+
+.about-card {
+  background-color: var(--bg-alt);
+  border-radius: 32px;
+  padding: 48px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+}
+
+.about-row-top {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.about-text-column {
+  flex: 1;
+}
+
+.about-tag {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #3b82f6; /* Subtle blue */
+  display: block;
+  margin-bottom: 16px;
+}
+
+html.dark .about-tag {
+  color: #60a5fa;
+}
+
+.about-title {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 600;
+  color: var(--fg);
+  line-height: 1.3;
+  margin-bottom: 24px;
+}
+
+.about-para {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--fg-2);
+}
+
+.about-image-column {
+  flex-shrink: 0;
+  width: 180px;
+}
+
+.about-image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 16px;
+  transform: rotate(4deg);
+  border: 4px solid var(--bg);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-image:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .about-card {
+    padding: 32px 24px;
+    border-radius: 24px;
+  }
+  
+  .about-row-top {
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .about-image-column {
+    display: none; /* Hide image on mobile to match reference */
+  }
+  
+  .about-title {
+    font-size: 24px;
   }
 }
