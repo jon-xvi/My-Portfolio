@@ -212,25 +212,6 @@ const CASE_STUDIES = {
         <li><strong>Natural Physics:</strong> Incorporating inertia and soft bounces for scrolling in a 3D environment.</li>
       </ul>
     `
-  },
-  "glassmorphic-os": {
-    title: "Glassmorphic OS",
-    tag: "Concept",
-    lead: "A desktop OS concept built on layered translucency and depth-aware interactions.",
-    image: "artifacts/projects/project_compact_1781015914671.png",
-    content: `
-      <h3>The Challenge</h3>
-      <p>Operating systems have oscillated between extreme skeuomorphism and flat design. Glassmorphic OS is a design experiment looking at how ambient background light and frosted glass materials can be used to create spatial desktop layers that feel light, airy, and premium.</p>
-      <img src="artifacts/projects/project_compact_1781015914671.png" alt="Glassmorphic OS Screen Design">
-      <h3>The Interface</h3>
-      <p>Every window is styled with dynamic background blur and subtle border highlights that adapt to the user's wallpaper. Active windows receive a soft glow and drop shadow, making them float above background folders.</p>
-      <h3>Key Details</h3>
-      <ul>
-        <li><strong>Layered Depth:</strong> Dynamic backdrop-filters create depth without flat solid colors.</li>
-        <li><strong>Depth-Aware Hover:</strong> Windows cast dynamic shadows based on their virtual distance from the desktop layer.</li>
-        <li><strong>Curated Accents:</strong> Minimal color use, utilizing the wallpaper's colors to tint active indicators.</li>
-      </ul>
-    `
   }
 };
 
