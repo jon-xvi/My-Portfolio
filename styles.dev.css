@@ -422,8 +422,8 @@ html.dark .hero-cta-pill:hover {
 
 .marquee-content {
   display: flex;
-  gap: 24px;
-  padding-right: 24px;
+  gap: 16px;
+  padding-right: 16px;
 }
 
 .marquee-content img {
@@ -432,6 +432,11 @@ html.dark .hero-cta-pill:hover {
   border-radius: 12px;
   object-fit: cover;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.06);
+  transition: filter 0.3s ease;
+}
+
+html.dark .marquee-content img {
+  filter: brightness(0.85) contrast(1.1);
 }
 
 @keyframes scrollMarquee {
