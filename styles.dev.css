@@ -157,7 +157,7 @@ section {
   font-family: var(--font-display);
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -197,7 +197,7 @@ section {
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
 }
 
 .theme-toggle {
@@ -238,7 +238,7 @@ html.dark .icon-moon {
 .nav-cta {
   font-size: 13px;
   font-weight: 500;
-  padding: 8px 20px;
+  padding: 8px 24px;
   border-radius: 100px;
   background: var(--fg);
   color: var(--bg);
@@ -260,7 +260,7 @@ html.dark .icon-moon {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   width: 36px;
   height: 36px;
 }
@@ -301,11 +301,11 @@ html.dark .icon-moon {
 #navbar.nav-open .nav-mobile {
   max-height: 300px;
   opacity: 1;
-  padding: 12px var(--site-margin) 16px;
+  padding: 16px var(--site-margin) 16px;
 }
 
 .nav-mobile a {
-  padding: 12px 0;
+  padding: 16px 0;
   font-size: 16px;
   color: var(--fg-2);
   border-bottom: 1px solid var(--border);
@@ -347,7 +347,7 @@ html.dark .icon-moon {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 24px;
+  padding: 16px 24px;
   background-color: #080808;
   border-radius: 9999px;
   color: #fff;
@@ -400,7 +400,7 @@ html.dark .hero-cta-pill:hover {
 .shots-marquee-section {
   width: 100%;
   overflow: hidden;
-  padding: 20px 0 80px 0;
+  padding: 24px 0 80px 0;
   display: flex;
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
@@ -528,7 +528,7 @@ html.dark .hero-cta-pill:hover {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 28px 0;
+  padding: 32px 0;
   border-bottom: 1px solid var(--border);
   text-decoration: none;
   position: relative;
@@ -556,7 +556,7 @@ html.dark .hero-cta-pill:hover {
 
 .blog-info h3 {
   color: var(--fg);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   transition: color 300ms ease;
 }
 
@@ -600,7 +600,7 @@ html.dark .hero-cta-pill:hover {
   font-style: italic;
   max-width: 700px;
   line-height: 1.5;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   transition: color 0.3s ease;
 }
 
@@ -613,7 +613,7 @@ html.dark .hero-cta-pill:hover {
 /* Footer / CTA                                 */
 /* ============================================ */
 .footer-section {
-  padding-bottom: 60px;
+  padding-bottom: 64px;
 }
 
 .footer-cta {
@@ -708,14 +708,14 @@ html.dark .hero-cta-pill:hover {
 /* ============================================ */
 .floating-dock {
   position: fixed;
-  bottom: 20px;
+  bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 95;
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 8px 8px 8px 12px;
+  padding: 8px 8px 8px 16px;
   background: var(--fg);
   border-radius: 100px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
@@ -758,7 +758,7 @@ html.dark .dock-divider {
 .dock-cta {
   font-size: 13px;
   font-weight: 500;
-  padding: 8px 20px;
+  padding: 8px 24px;
   border-radius: 100px;
   background: var(--bg);
   color: var(--fg);
@@ -825,7 +825,7 @@ html.dark .dock-divider {
 /* ============================================ */
 .floating-dock {
   position: fixed;
-  bottom: 20px;
+  bottom: 24px;
   left: 50%;
   transform: translate(-50%, 100px);
   opacity: 0;
@@ -834,7 +834,7 @@ html.dark .dock-divider {
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 8px 8px 8px 12px;
+  padding: 8px 8px 8px 16px;
   background: var(--fg);
   border-radius: 100px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
@@ -888,7 +888,7 @@ html.dark .dock-divider {
 .dock-cta {
   font-size: 13px;
   font-weight: 500;
-  padding: 8px 20px;
+  padding: 8px 24px;
   border-radius: 100px;
   background: var(--bg);
   color: var(--fg);
@@ -907,7 +907,7 @@ html.dark .dock-divider {
 @media (max-width: 1024px) {
   :root {
     --site-margin: 40px;
-    --section-padding: 100px;
+    --section-padding: 104px;
   }
 
   .projects-grid {
@@ -949,7 +949,7 @@ html.dark .dock-divider {
 
   .hero {
     padding-top: 120px;
-    padding-bottom: 60px;
+    padding-bottom: 64px;
   }
 
   .marquee-content img {
@@ -990,11 +990,11 @@ html.dark .dock-divider {
 @media (max-width: 480px) {
   :root {
     --site-margin: 16px;
-    --section-padding: 60px;
+    --section-padding: 64px;
   }
 
   .hero {
-    padding-top: 100px;
+    padding-top: 104px;
   }
 
   .marquee-content img {
@@ -1003,7 +1003,7 @@ html.dark .dock-divider {
 
   .floating-dock {
     bottom: 16px;
-    padding: 8px 8px 8px 12px;
+    padding: 8px 8px 8px 16px;
   }
 
   .dock-item {
@@ -1089,8 +1089,8 @@ html.dark .modal-content {
 
 .modal-close {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 24px;
+  right: 24px;
   background: none;
   border: none;
   color: var(--fg-3);
@@ -1123,7 +1123,7 @@ html.dark .modal-content h2 {
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
 .form-row {
@@ -1157,7 +1157,7 @@ html.dark .form-group label {
 .form-group input,
 .form-group textarea {
   width: 100%;
-  padding: 14px 16px;
+  padding: 16px 16px;
   background: transparent;
   border: none;
   border-radius: 12px;
@@ -1186,7 +1186,7 @@ html.dark .form-group textarea:focus {
 }
 
 .form-submit-btn {
-  margin-top: 12px;
+  margin-top: 16px;
   width: 100%;
   padding: 16px;
   background: #080808;
@@ -1323,7 +1323,7 @@ html.dark .case-study-header-sticky {
   flex-shrink: 0;
   color: var(--fg-2);
   cursor: pointer;
-  padding: 10px;
+  padding: 8px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1406,7 +1406,7 @@ html.dark .case-study-header-sticky {
 }
 
 .case-study-body li {
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   line-height: 1.6;
 }
 
@@ -1465,7 +1465,7 @@ html.dark .case-study-header-sticky {
 .experience-item {
   display: flex;
   flex-direction: column;
-  padding: 15px 0;
+  padding: 16px 0;
   border-top: 1px solid var(--border);
 }
 
@@ -1477,7 +1477,7 @@ html.dark .case-study-header-sticky {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .experience-company {
@@ -1498,7 +1498,7 @@ html.dark .case-study-header-sticky {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 4px;
 }
 
 .experience-role,
@@ -1545,7 +1545,7 @@ html.dark .case-study-header-sticky {
 /* Mobile adjustments for case study modal */
 @media (max-width: 768px) {
   .case-study-header-inner {
-    padding: 20px 24px;
+    padding: 24px 24px;
   }
   
   .case-study-content {
