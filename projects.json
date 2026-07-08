@@ -1,0 +1,30 @@
+[
+  {
+    "id": "nexus-banking",
+    "title": "Nexus Banking Experience",
+    "tag": "Mobile App",
+    "lead": "A complete redesign of the core banking flow, focusing on minimal friction and aesthetic joy.",
+    "coverMedia": "artifacts/projects/project_standard_1781015903362.png"
+  },
+  {
+    "id": "lumina-ui",
+    "title": "Lumina UI Kit",
+    "tag": "Design System",
+    "lead": "An enterprise-grade component library built for scale, accessibility, and visual harmony.",
+    "coverMedia": "artifacts/projects/project_standard_1781015903362.png"
+  },
+  {
+    "id": "spatial-interfaces",
+    "title": "Spatial Interfaces",
+    "tag": "Exploration",
+    "lead": "Exploring immersive 3D interface paradigms for next-gen spatial computing platforms.",
+    "coverMedia": "artifacts/projects/project_compact_1781015914671.png"
+  },
+  {
+    "id": "glassmorphic-os",
+    "title": "Glassmorphic OS",
+    "tag": "Concept",
+    "lead": "A desktop OS concept built on layered translucency and depth-aware interactions.",
+    "coverMedia": "artifacts/projects/project_compact_1781015914671.png"
+  }
+]
