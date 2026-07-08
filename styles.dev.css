@@ -422,8 +422,8 @@ html.dark .hero-cta-pill:hover {
 
 .marquee-content {
   display: flex;
-  gap: 4px;
-  padding-right: 4px;
+  gap: 8px;
+  padding-right: 8px;
 }
 
 .marquee-content img {
