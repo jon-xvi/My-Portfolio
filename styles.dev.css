@@ -433,6 +433,18 @@ html.dark .hero-cta-pill:hover {
   transition: opacity 0.3s ease;
 }
 
+.marquee-content .img-dark {
+  display: none;
+}
+
+html.dark .marquee-content .img-light {
+  display: none;
+}
+
+html.dark .marquee-content .img-dark {
+  display: block;
+}
+
 @keyframes scrollMarquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
