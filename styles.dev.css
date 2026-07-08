@@ -522,57 +522,80 @@ html.dark .hero-cta-pill:hover {
 /* ============================================ */
 /* Blog / Writing                               */
 /* ============================================ */
-.blog-entry {
+.journal-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.journal-row {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  padding: 28px 0;
+  align-items: center;
+  padding: 40px 24px;
   border-bottom: 1px solid var(--border);
   text-decoration: none;
   position: relative;
-  transition: border-color 0.3s ease;
+  transition: background-color 0.4s ease;
 }
 
-.blog-entry::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--fg);
-  transition: width 300ms ease;
+.journal-row:first-child {
+  border-top: 1px solid var(--border);
 }
 
-.blog-entry:hover::after {
-  width: 100%;
+.journal-row:hover {
+  background-color: var(--bg-alt);
 }
 
-.blog-entry:hover {
-  opacity: 1;
+.journal-content {
+  flex: 1;
+  padding-right: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.blog-info h3 {
+.journal-title {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.5vw, 36px);
+  font-weight: 600;
   color: var(--fg);
-  margin-bottom: 6px;
-  transition: color 300ms ease;
+  line-height: 1.2;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease;
 }
 
-.blog-entry:hover .blog-info h3 {
-  color: var(--fg-3);
+.journal-row:hover .journal-title {
+  transform: translateX(12px);
+  color: #3b82f6;
 }
 
-.blog-info p {
-  font-size: 14px;
-  color: var(--fg-3);
-  line-height: 1.5;
+html.dark .journal-row:hover .journal-title {
+  color: #60a5fa;
 }
 
-.blog-meta {
+.journal-meta {
   font-size: 13px;
   color: var(--fg-4);
-  white-space: nowrap;
-  margin-left: 32px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.journal-row:hover .journal-meta {
+  transform: translateX(12px);
+}
+
+.journal-arrow {
+  color: var(--fg-4);
+  opacity: 0;
+  transform: translateX(-16px) scale(0.8);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease;
+}
+
+.journal-row:hover .journal-arrow {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  color: var(--fg);
 }
 
 /* ============================================ */
@@ -962,13 +985,17 @@ html.dark .dock-divider {
     grid-column: span 1;
   }
 
-  .blog-entry {
-    flex-direction: column;
-    gap: 8px;
+  .journal-row {
+    padding: 24px 16px;
   }
 
-  .blog-meta {
-    margin-left: 0;
+  .journal-row:hover .journal-title,
+  .journal-row:hover .journal-meta {
+    transform: translateX(8px);
+  }
+
+  .journal-content {
+    padding-right: 16px;
   }
 
   .footer-cta-right {
