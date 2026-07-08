@@ -429,7 +429,6 @@ html.dark .hero-cta-pill:hover {
 .marquee-content img {
   height: 280px;
   width: auto;
-  border-radius: 12px;
   object-fit: cover;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.06);
   transition: opacity 0.3s ease;
