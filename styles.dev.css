@@ -124,6 +124,8 @@ section {
 }
 
 .section-title {
+  font-size: clamp(24px, 2.5vw, 32px);
+  font-weight: 600;
   margin-bottom: 48px;
 }
 
