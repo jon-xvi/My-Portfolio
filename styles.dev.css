@@ -177,7 +177,8 @@ section {
   width: 32px;
   height: 32px;
   border-radius: 8px;
-  object-fit: cover;
+  object-fit: contain;
+  max-height: 65vh;
 }
 
 .nav-brand:hover {
@@ -429,7 +430,8 @@ html.dark .hero-cta-pill:hover {
 .marquee-content img {
   height: 280px;
   width: auto;
-  object-fit: cover;
+  object-fit: contain;
+  max-height: 65vh;
   transition: opacity 0.3s ease;
 }
 
@@ -491,7 +493,8 @@ html.dark .marquee-content .img-dark {
 .project-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  max-height: 65vh;
   display: block;
   transition: transform 400ms ease;
 }
@@ -1382,7 +1385,8 @@ html.dark .case-study-header-sticky {
   width: 100%;
   aspect-ratio: 16 / 10;
   border-radius: 16px;
-  object-fit: cover;
+  object-fit: contain;
+  max-height: 65vh;
   margin-bottom: 48px;
   background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
 }
@@ -1416,7 +1420,8 @@ html.dark .case-study-header-sticky {
   width: 100%;
   border-radius: 12px;
   margin: 32px 0;
-  object-fit: cover;
+  object-fit: contain;
+  max-height: 65vh;
 }
 
 .case-study-body ul, .case-study-body ol {
@@ -1649,7 +1654,8 @@ html.dark .about-tag {
 .about-image {
   width: 100%;
   aspect-ratio: 1;
-  object-fit: cover;
+  object-fit: contain;
+  max-height: 65vh;
   border-radius: 16px;
   transform: rotate(4deg);
   border: 4px solid var(--bg);
@@ -1703,7 +1709,8 @@ html.dark .about-tag {
   margin: 0 !important;
   border-radius: 12px;
   scroll-snap-align: center;
-  object-fit: cover;
+  object-fit: contain;
+  max-height: 65vh;
 }
 @media (max-width: 768px) {
   .horizontal-scroll-gallery {
