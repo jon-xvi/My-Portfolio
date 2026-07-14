@@ -1713,3 +1713,31 @@ html.dark .about-tag {
     flex: 0 0 90%;
   }
 }
+
+/* Gallery Wrapper and Dots */
+.gallery-wrapper {
+  margin: 32px 0 48px;
+}
+.gallery-wrapper .horizontal-scroll-gallery {
+  margin: 0 0 16px 0;
+}
+.gallery-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+.gallery-dots .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--fg-3);
+  opacity: 0.4;
+  transition: all 0.3s ease;
+}
+.gallery-dots .dot.active {
+  width: 16px;
+  border-radius: 4px;
+  opacity: 1;
+  background-color: var(--fg);
+}
