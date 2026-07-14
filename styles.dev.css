@@ -1681,3 +1681,35 @@ html.dark .about-tag {
     font-size: 24px;
   }
 }
+
+/* Horizontal Scroll Gallery for Case Studies */
+.horizontal-scroll-gallery {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 0 80px;
+  margin: 32px 0 48px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.horizontal-scroll-gallery::-webkit-scrollbar {
+  display: none;
+}
+.case-study-body .horizontal-scroll-gallery img {
+  flex: 0 0 calc(100% - 32px);
+  max-width: 800px;
+  margin: 0 !important;
+  border-radius: 12px;
+  scroll-snap-align: center;
+  object-fit: cover;
+}
+@media (max-width: 768px) {
+  .horizontal-scroll-gallery {
+    padding: 0 16px;
+  }
+  .case-study-body .horizontal-scroll-gallery img {
+    flex: 0 0 90%;
+  }
+}
