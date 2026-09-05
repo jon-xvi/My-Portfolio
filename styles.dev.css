@@ -1454,6 +1454,7 @@ html.dark .case-study-body h4 {
   margin: 32px 0;
   object-fit: contain;
   max-height: 65vh;
+  cursor: zoom-in;
 }
 
 .case-study-body ul, .case-study-body ol {
@@ -1779,10 +1780,7 @@ html.dark .about-tag {
   border-radius: 12px;
   scroll-snap-align: center;
   object-fit: contain;
-  aspect-ratio: 16 / 10;
   max-height: 65vh;
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
 }
 @media (max-width: 768px) {
   .horizontal-scroll-gallery {
@@ -1833,6 +1831,74 @@ html.dark .about-tag {
 @media (max-width: 768px) {
   .gallery-arrow {
     display: none;
+  }
+}
+
+/* Image Lightbox */
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  padding: 48px;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.image-lightbox.lightbox-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.image-lightbox-img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+  object-fit: contain;
+  transform: scale(0.96);
+  transition: transform 0.3s ease;
+}
+
+.image-lightbox.lightbox-open .image-lightbox-img {
+  transform: scale(1);
+}
+
+.image-lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  z-index: 1;
+}
+
+.image-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+  .image-lightbox {
+    padding: 24px;
+  }
+
+  .image-lightbox-close {
+    top: 16px;
+    right: 16px;
   }
 }
 
