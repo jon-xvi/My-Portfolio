@@ -162,27 +162,8 @@
           </div>
         </a>
 
-        <a href="#" class="project-card animate-on-scroll" data-case-study="lumina-ui">
-          <div class="project-img-wrap">
-            <img src="artifacts/projects/project_standard_1781015903362.png" alt="Design System" class="project-img">
-          </div>
-          <div class="project-info">
-            <span class="project-tag">Design System</span>
-            <h3>Lumina UI Kit <span class="arrow-icon">↗</span></h3>
-            <p>An enterprise-grade component library built for scale, accessibility, and visual harmony.</p>
-          </div>
-        </a>
-
-        <a href="#" class="project-card animate-on-scroll" data-case-study="spatial-interfaces">
-          <div class="project-img-wrap">
-            <img src="artifacts/projects/project_compact_1781015914671.png" alt="Spatial Interfaces" class="project-img">
-          </div>
-          <div class="project-info">
-            <span class="project-tag">Exploration</span>
-            <h3>Spatial Interfaces <span class="arrow-icon">↗</span></h3>
-            <p>Exploring immersive 3D interface paradigms for next-gen spatial computing platforms.</p>
-          </div>
-        </a>
+        <!-- Lumina UI Kit and Spatial Interfaces cards removed for now (placeholder projects) -->
+        <!-- Full markup is preserved in git history; ask to have them restored once real content is ready -->
       </div>
     </div>
   </section>
@@ -403,6 +384,17 @@
         <!-- Content injected dynamically via JavaScript -->
       </div>
     </div>
+  </div>
+
+  <!-- Image Lightbox (full-view for case study images) -->
+  <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
+    <button class="image-lightbox-close" id="image-lightbox-close" aria-label="Close full-size image">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <img src="" alt="" class="image-lightbox-img" id="image-lightbox-img">
   </div>
 
   <script src="main.dev.js"></script>
