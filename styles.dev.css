@@ -208,6 +208,12 @@ section {
   gap: 16px;
 }
 
+.nav-mobile-actions {
+  display: none;
+  align-items: center;
+  gap: 12px;
+}
+
 .theme-toggle {
   width: 36px;
   height: 36px;
@@ -946,6 +952,10 @@ html.dark .dock-divider {
 
   .nav-center, .nav-right {
     display: none;
+  }
+
+  .nav-mobile-actions {
+    display: flex;
   }
 
   .nav-toggle {
