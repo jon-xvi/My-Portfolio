@@ -155,6 +155,8 @@ section {
 }
 
 .nav-inner {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -303,31 +305,36 @@ html.dark .icon-moon {
 
 .nav-mobile {
   display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
   flex-direction: column;
-  width: 100%;
-  max-height: 0;
-  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--bg);
   opacity: 0;
-  padding: 0 var(--site-margin);
-  transition: max-height 400ms var(--ease), opacity 300ms ease, padding 300ms ease;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 #navbar.nav-open .nav-mobile {
-  max-height: 300px;
   opacity: 1;
-  padding: 16px var(--site-margin) 16px;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .nav-mobile a {
-  padding: 16px 0;
-  font-size: 16px;
-  color: var(--fg-2);
-  border-bottom: 1px solid var(--border);
+  font-family: "Six Caps", var(--font-display), sans-serif;
+  font-size: clamp(52px, 15vw, 76px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  color: var(--fg);
+  text-transform: uppercase;
+  text-align: center;
   display: block;
-}
-
-.nav-mobile a:last-child {
-  border-bottom: none;
 }
 
 /* ============================================ */
@@ -1065,12 +1072,15 @@ html.dark .dock-divider {
   background: none;
   border: none;
   color: var(--fg);
-  font-size: 24px;
+  font-family: "Six Caps", var(--font-display), sans-serif;
+  font-size: clamp(52px, 15vw, 76px);
   font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
   cursor: pointer;
   padding: 0;
-  font-family: inherit;
-  text-align: left;
+  text-align: center;
 }
 
 .modal-overlay {
