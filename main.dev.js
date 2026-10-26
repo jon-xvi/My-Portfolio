@@ -339,6 +339,38 @@ function initImageLightbox() {
 }
 
 // ============================================
+// Shots Marquee (GSAP)
+// ============================================
+function initMarquee() {
+  const section = document.querySelector('.shots-marquee-section');
+  const track = section && section.querySelector('.marquee-track');
+  if (!track || typeof gsap === 'undefined') return; // CSS animation stays as the fallback
+
+  track.style.animation = 'none';
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // The content is duplicated, so sliding exactly -50% loops seamlessly.
+  const tween = gsap.to(track, {
+    xPercent: -50,
+    duration: 40,
+    ease: 'none',
+    repeat: -1,
+    force3D: true,
+  });
+
+  // Ease into motion on load instead of starting at full speed.
+  tween.timeScale(0);
+  gsap.to(tween, { timeScale: 1, duration: 1.6, ease: 'power2.out' });
+
+  // Don't burn frames while the marquee is off-screen.
+  new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) tween.resume();
+    else tween.pause();
+  }).observe(section);
+}
+
+// ============================================
 // Floating Dock Scroll Visibility
 // ============================================
 function initFloatingDockVisibility() {
@@ -403,6 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initModal();
   initCaseStudyOverlay();
   initImageLightbox();
+  initMarquee();
   initFloatingDockVisibility();
   initProtection();
 });
