@@ -1,3 +1,60 @@
+/* Trap (headlines) is self-hosted from artifacts/fonts/ */
+@font-face {
+  font-family: "Trap";
+  src: url("artifacts/fonts/trap-sans-serif-font-family/trap-light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Trap";
+  src: url("artifacts/fonts/trap-sans-serif-font-family/trap-regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Trap";
+  src: url("artifacts/fonts/trap-sans-serif-font-family/trap-medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Trap";
+  src: url("artifacts/fonts/trap-sans-serif-font-family/trap-semibold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Trap";
+  src: url("artifacts/fonts/trap-sans-serif-font-family/trap-bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Trap";
+  src: url("artifacts/fonts/trap-sans-serif-font-family/trap-extrabold.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Trap";
+  src: url("artifacts/fonts/trap-sans-serif-font-family/trap-black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ============================================ */
 /* Foundation: Variables & Dark Mode            */
 /* ============================================ */
@@ -18,8 +75,8 @@
   --section-padding: 80px;
 
   /* Typography */
-  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-display: "Plus Jakarta Sans", var(--font-body);
+  --font-body: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-display: "Trap", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   /* Transitions */
   --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -356,6 +413,7 @@ html.dark .icon-moon {
 
 .hero-content h1 {
   margin-bottom: 24px;
+  font-weight: 700;
 }
 
 .hero-sub {
@@ -1192,7 +1250,7 @@ html.dark .modal-content h2 {
 .form-group label {
   font-size: 13px;
   color: #777;
-  font-family: monospace;
+  font-family: var(--font-body);
 }
 
 html.dark .form-group label {
@@ -1239,7 +1297,7 @@ html.dark .form-group textarea:focus {
   border: none;
   border-radius: 12px;
   font-size: 15px;
-  font-family: monospace;
+  font-family: var(--font-body);
   font-weight: 500;
   cursor: pointer;
   transition: transform 0.2s ease, background 0.2s ease;
@@ -1440,7 +1498,7 @@ html.dark .case-study-header-sticky {
 }
 
 .case-study-body h4 {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
@@ -1570,7 +1628,7 @@ html.dark .case-study-body ol li::before {
 }
 
 .experience-label {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 11px;
   font-weight: 500;
   text-transform: uppercase;
@@ -1703,7 +1761,7 @@ html.dark .case-study-body ol li::before {
 }
 
 .about-tag {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
