@@ -1,42 +1,4 @@
 // ============================================
-// Theme Toggle (Dark Mode)
-// ============================================
-function initThemeToggle() {
-  const toggle = document.getElementById('theme-toggle');
-  const mobileToggle = document.getElementById('theme-toggle-mobile');
-  const themeLabelEl = document.querySelector('.theme-label-text');
-
-  // Check for saved preference or system preference
-  const savedTheme = localStorage.getItem('theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-    document.documentElement.classList.add('dark');
-  }
-
-  // Keep the mobile label in sync with current theme
-  function updateMobileLabel() {
-    if (themeLabelEl) {
-      const isDark = document.documentElement.classList.contains('dark');
-      themeLabelEl.textContent = isDark ? 'light' : 'dark';
-    }
-  }
-
-  // Set initial label
-  updateMobileLabel();
-
-  function applyToggle() {
-    document.documentElement.classList.toggle('dark');
-    const isDark = document.documentElement.classList.contains('dark');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    updateMobileLabel();
-  }
-
-  if (toggle) toggle.addEventListener('click', applyToggle);
-  if (mobileToggle) mobileToggle.addEventListener('click', applyToggle);
-}
-
-// ============================================
 // Mobile Navigation
 // ============================================
 function initMobileNav() {
@@ -428,7 +390,6 @@ function initProtection() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  initThemeToggle();
   initMobileNav();
   initScrollAnimations();
   initSmoothScroll();

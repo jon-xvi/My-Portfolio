@@ -56,22 +56,23 @@
 }
 
 /* ============================================ */
-/* Foundation: Variables & Dark Mode            */
+/* Foundation: Variables (dark only)            */
 /* ============================================ */
 :root {
-  /* Light Mode (default) */
-  --bg: #ffffff;
-  --bg-alt: #f7f8fa;
-  --fg: #0a0a0a;
-  --fg-2: #555555;
-  --fg-3: #888888;
-  --fg-4: #bbbbbb;
-  --border: rgba(0, 0, 0, 0.08);
-  --card-bg: #f5f5f5;
+  color-scheme: dark;
 
-  /* Hero accents (light mode: dark ink + a deeper magenta that stays readable on white) */
-  --hero-ink: #0a0a0a;
-  --hero-accent: #c026d3;
+  --bg: #111111;
+  --bg-alt: #1a1a1a;
+  --fg: #efefef;
+  --fg-2: #b0b0b0;
+  --fg-3: #777777;
+  --fg-4: #555555;
+  --border: rgba(255, 255, 255, 0.1);
+  --card-bg: #1e1e1e;
+
+  /* Hero accents: cream headline and pink label, as on gsap.com */
+  --hero-ink: #fffce1;
+  --hero-accent: #ff96f9;
 
   /* Layout */
   --max-width: 1200px;
@@ -85,21 +86,6 @@
   /* Transitions */
   --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --transition-color: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-html.dark {
-  --bg: #111111;
-  --bg-alt: #1a1a1a;
-  --fg: #efefef;
-  --fg-2: #b0b0b0;
-  --fg-3: #777777;
-  --fg-4: #555555;
-  --border: rgba(255, 255, 255, 0.1);
-  --card-bg: #1e1e1e;
-
-  /* Hero accents (dark mode: cream headline and pink label, as on gsap.com) */
-  --hero-ink: #fffce1;
-  --hero-accent: #ff96f9;
 }
 
 /* ============================================ */
@@ -159,7 +145,7 @@ h3 {
 
 p {
   max-width: 640px;
-  color: var(--fg-2);
+  color: var(--hero-ink);
   transition: color 0.3s ease;
 }
 
@@ -195,8 +181,8 @@ section {
 }
 
 .section-subtitle {
-  font-size: 18px;
-  color: var(--fg-3);
+  font-size: clamp(17px, 1.5vw, 20px);
+  color: var(--hero-ink);
   margin-bottom: 48px;
   max-width: 800px;
   line-height: 1.5;
@@ -281,53 +267,23 @@ section {
   gap: 12px;
 }
 
-.theme-toggle {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background: transparent;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--fg-2);
-  transition: var(--transition-color);
-}
-
-.theme-toggle:hover {
-  border-color: var(--fg-3);
-}
-
-.theme-toggle svg {
-  transition: opacity 0.2s ease;
-}
-
-/* Show sun in dark mode, moon in light mode */
-.icon-sun {
-  display: none;
-}
-
-html.dark .icon-sun {
-  display: block;
-}
-
-html.dark .icon-moon {
-  display: none;
-}
-
+/* Outline button, same cream as the hero headline */
 .nav-cta {
+  font-family: var(--font-body);
   font-size: 13px;
   font-weight: 500;
   padding: 8px 24px;
   border-radius: 100px;
-  background: var(--fg);
-  color: var(--bg);
-  transition: var(--transition-color), opacity 0.2s ease;
+  background: transparent;
+  color: var(--hero-ink);
+  border: 1.5px solid var(--hero-ink);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .nav-cta:hover {
-  opacity: 0.85;
+  background: var(--hero-ink);
+  color: var(--bg);
 }
 
 /* Hamburger */
@@ -443,9 +399,9 @@ html.dark .icon-moon {
 }
 
 .hero-sub {
-  font-size: 16px;
-  color: var(--fg-2);
-  max-width: 540px;
+  font-size: clamp(17px, 1.6vw, 20px);
+  color: var(--hero-ink);
+  max-width: 600px;
   line-height: 1.7;
   text-wrap: pretty;
 }
@@ -518,18 +474,6 @@ html.dark .icon-moon {
   object-fit: contain;
   max-height: 65vh;
   transition: opacity 0.3s ease;
-}
-
-.marquee-content .img-dark {
-  display: none;
-}
-
-html.dark .marquee-content .img-light {
-  display: none;
-}
-
-html.dark .marquee-content .img-dark {
-  display: block;
 }
 
 @keyframes scrollMarquee {
@@ -621,8 +565,8 @@ html.dark .marquee-content .img-dark {
 }
 
 .project-info p {
-  font-size: 13px;
-  color: var(--fg-3);
+  font-size: 15px;
+  color: var(--hero-ink);
   line-height: 1.5;
   max-width: none;
 }
@@ -671,8 +615,8 @@ html.dark .marquee-content .img-dark {
 }
 
 .blog-info p {
-  font-size: 14px;
-  color: var(--fg-3);
+  font-size: 16px;
+  color: var(--hero-ink);
   line-height: 1.5;
 }
 
@@ -727,8 +671,8 @@ html.dark .marquee-content .img-dark {
 }
 
 .footer-label {
-  font-size: 18px;
-  color: var(--fg-2);
+  font-size: 20px;
+  color: var(--hero-ink);
   margin-bottom: 16px;
 }
 
@@ -1466,9 +1410,9 @@ html.dark .case-study-header-sticky {
 
 
 .case-study-lead {
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.6;
-  color: var(--fg-2);
+  color: var(--hero-ink);
   margin-bottom: 32px;
 }
 
@@ -1523,9 +1467,9 @@ html.dark .case-study-body h4 {
 }
 
 .case-study-body p {
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.7;
-  color: var(--fg-2);
+  color: var(--hero-ink);
   margin-bottom: 24px;
   max-width: none;
   padding: 0 80px;
@@ -1545,8 +1489,8 @@ html.dark .case-study-body h4 {
   margin-bottom: 32px;
   padding-left: 104px;
   padding-right: 80px;
-  color: var(--fg-2);
-  font-size: 15px;
+  color: var(--hero-ink);
+  font-size: 17px;
 }
 
 .case-study-body ol {
@@ -1694,9 +1638,9 @@ html.dark .case-study-body ol li::before {
 
 .experience-role,
 .experience-location {
-  font-size: 14px;
+  font-size: 16px;
   font-family: var(--font-body);
-  color: var(--fg-3);
+  color: var(--hero-ink);
 }
 
 .experience-separator {
@@ -1729,7 +1673,7 @@ html.dark .case-study-body ol li::before {
   
   .experience-role,
   .experience-location {
-    font-size: 13px;
+    font-size: 14px;
   }
 }
 
@@ -1795,9 +1739,9 @@ html.dark .about-tag {
 }
 
 .about-para {
-  font-size: 16px;
+  font-size: clamp(16px, 1.4vw, 18px);
   line-height: 1.7;
-  color: var(--fg-2);
+  color: var(--hero-ink);
 }
 
 .about-image-column {
