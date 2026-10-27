@@ -70,13 +70,17 @@
     </div>
   </nav>
 
+  <!-- Smooth-scrolled page content. Fixed UI (nav, dock, overlays) lives outside this wrapper. -->
+  <div id="smooth-wrapper">
+  <div id="smooth-content">
+
   <!-- Hero Section -->
   <header class="hero" id="home">
     <div class="container">
       <div class="hero-content animate-on-scroll">
         <p class="hero-eyebrow">Hi, I am John</p>
         <h1>I turn ideas into brands, products, and experiences.</h1>
-        <p class="hero-sub">I design websites and mobile apps that help businesses attract customers, simplify experiences, and grow.</p>
+        <p class="hero-sub">Bringing ideas to life through thoughtful design, creating solutions that help businesses move forward.</p>
         <div class="hero-cta-wrapper">
           <a href="https://instantfind.me/johnerizu" target="_blank" rel="noopener noreferrer" class="hero-cta-pill">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cta-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
@@ -264,6 +268,9 @@
     </div>
   </footer>
 
+  </div><!-- /#smooth-content -->
+  </div><!-- /#smooth-wrapper -->
+
   <!-- Progressive Blur Overlay (Fixed Bottom) -->
   <div class="progressive-blur" aria-hidden="true">
     <div class="blur-layer" style="backdrop-filter: blur(0.5px); -webkit-backdrop-filter: blur(0.5px); mask-image: linear-gradient(to bottom, transparent 0%, black 12.5%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12.5%);"></div>
@@ -371,6 +378,8 @@
   </div>
 
   <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <script src="vendor/ScrollSmoother.min.js"></script>
   <script src="main.dev.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="cms.js"></script>

@@ -55,9 +55,31 @@ function initScrollAnimations() {
 }
 
 // ============================================
-// Smooth Scroll for Anchor Links
+// Smooth Scroll (GSAP ScrollSmoother) + anchor links
+// Only #smooth-content is smoothed; the fixed nav, dock and overlays sit outside the wrapper.
 // ============================================
+let smoother = null;
+
 function initSmoothScroll() {
+  const hasSmoother = typeof ScrollSmoother !== 'undefined' && document.getElementById('smooth-wrapper');
+
+  if (hasSmoother) {
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+    // matchMedia keeps native scrolling for reduced-motion users and cleans up if the preference changes
+    gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+      smoother = ScrollSmoother.create({
+        wrapper: '#smooth-wrapper',
+        content: '#smooth-content',
+        smooth: 1.2
+      });
+      return () => { smoother = null; };
+    });
+    // Web fonts change text height, so re-measure once they have loaded
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => ScrollTrigger.refresh());
+    }
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
@@ -67,11 +89,12 @@ function initSmoothScroll() {
       if (target) {
         e.preventDefault();
         const navHeight = document.getElementById('navbar')?.offsetHeight || 64;
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
+        if (smoother) {
+          smoother.scrollTo(target, true, `top ${navHeight}px`);
+        } else {
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+        }
       }
     });
   });
@@ -225,13 +248,15 @@ function initCaseStudyOverlay() {
     overlay.setAttribute('aria-hidden', 'false');
     overlay.classList.add('overlay-open');
     document.body.style.overflow = 'hidden'; // Lock background scroll
+    if (smoother) smoother.paused(true);
   };
 
   const closeOverlay = () => {
     overlay.classList.remove('overlay-open');
     overlay.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = ''; // Unlock background scroll
-    
+    if (smoother) smoother.paused(false);
+
     // Clear content after animation ends to prevent visual jumps
     setTimeout(() => {
       if (!overlay.classList.contains('overlay-open')) {
