@@ -421,6 +421,25 @@ section {
   text-wrap: balance;
 }
 
+/* Headline melt (see initHeadlineMelt). Words stay unbreakable; the blur is only switched on while the cursor is over it. */
+.hero-content h1 {
+  position: relative;
+}
+
+.melt-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.melt-char {
+  display: inline-block;
+}
+
+.hero-content h1.is-melting .melt-char {
+  filter: blur(calc(var(--melt-blur, 0) * 1px));
+  will-change: transform, filter, opacity;
+}
+
 .hero-sub {
   font-size: clamp(15px, 1.35vw, 17px);
   color: var(--hero-ink);

@@ -121,6 +121,119 @@ function initScrollAnimations() {
 }
 
 // ============================================
+// Hero headline "melt": letters near the cursor smear, blur and drip as it moves over them
+// Mouse only. Touch devices and reduced-motion users keep the plain headline.
+// ============================================
+function initHeadlineMelt() {
+  const h1 = document.querySelector('.hero-content h1');
+  if (!h1 || typeof gsap === 'undefined') return;
+  const original = h1.textContent.trim();
+
+  gsap.matchMedia().add('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)', () => {
+    // Split into words (kept unbreakable) and letters. Screen readers get the label instead of the spans.
+    h1.setAttribute('aria-label', original);
+    h1.textContent = '';
+    const chars = [];
+    const words = original.split(' ');
+    words.forEach((w, i) => {
+      const word = document.createElement('span');
+      word.className = 'melt-word';
+      word.setAttribute('aria-hidden', 'true');
+      [...w].forEach((ch) => {
+        const c = document.createElement('span');
+        c.className = 'melt-char';
+        c.textContent = ch;
+        word.appendChild(c);
+        chars.push(c);
+      });
+      h1.appendChild(word);
+      if (i < words.length - 1) h1.appendChild(document.createTextNode(' '));
+    });
+
+    gsap.set(chars, { transformOrigin: '50% 0%', '--melt-blur': 0 });
+    // quickTo reuses one tween per property, so updating every frame stays cheap and trails smoothly
+    const to = (c, prop) => gsap.quickTo(c, prop, { duration: 0.7, ease: 'power3.out' });
+    const fx = chars.map((c) => ({
+      y: to(c, 'y'), scaleY: to(c, 'scaleY'), skewX: to(c, 'skewX'), opacity: to(c, 'opacity'), blur: to(c, '--melt-blur')
+    }));
+
+    const RADIUS = 150;
+    let centers = [];
+    let px = 0, py = 0, vx = 0, vy = 0;
+    let inside = false;
+    let settle = null;
+
+    const measure = () => {
+      centers = chars.map((c) => ({ x: c.offsetLeft + c.offsetWidth / 2, y: c.offsetTop + c.offsetHeight / 2 }));
+    };
+
+    const render = () => {
+      const rect = h1.getBoundingClientRect();
+      const mx = px - rect.left;
+      const my = py - rect.top;
+      const speed = Math.min(Math.hypot(vx, vy) / 40, 1);
+      const lean = gsap.utils.clamp(-18, 18, -vx * 0.6);
+      vx *= 0.85;
+      vy *= 0.85;
+      chars.forEach((c, i) => {
+        const d = Math.hypot(centers[i].x - mx, centers[i].y - my);
+        const f = Math.max(0, 1 - d / RADIUS);
+        const k = f * f * (3 - 2 * f);               // smoothstep falloff around the cursor
+        const m = k * (0.45 + 0.55 * speed);         // a resting cursor melts a little, a fast one a lot
+        fx[i].y(m * 18);
+        fx[i].scaleY(1 + m * 0.35);
+        fx[i].skewX(lean * k);
+        fx[i].opacity(1 - m * 0.55);
+        fx[i].blur(m * 7);
+      });
+    };
+
+    const relax = () => {
+      fx.forEach((f) => { f.y(0); f.scaleY(1); f.skewX(0); f.opacity(1); f.blur(0); });
+      settle = gsap.delayedCall(1, () => { if (!inside) h1.classList.remove('is-melting'); });
+    };
+
+    const onEnter = (e) => {
+      if (settle) settle.kill();
+      measure();
+      px = e.clientX; py = e.clientY; vx = vy = 0;
+      inside = true;
+      h1.classList.add('is-melting');
+      gsap.ticker.add(render);
+    };
+    const onMove = (e) => {
+      vx = e.clientX - px; vy = e.clientY - py;
+      px = e.clientX; py = e.clientY;
+    };
+    const onLeave = () => {
+      inside = false;
+      gsap.ticker.remove(render);
+      relax();
+    };
+
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(h1);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+    h1.addEventListener('pointerenter', onEnter);
+    h1.addEventListener('pointermove', onMove);
+    h1.addEventListener('pointerleave', onLeave);
+
+    return () => {
+      gsap.ticker.remove(render);
+      ro.disconnect();
+      if (settle) settle.kill();
+      h1.removeEventListener('pointerenter', onEnter);
+      h1.removeEventListener('pointermove', onMove);
+      h1.removeEventListener('pointerleave', onLeave);
+      h1.classList.remove('is-melting');
+      h1.textContent = original;
+      h1.removeAttribute('aria-label');
+    };
+  });
+}
+
+// ============================================
 // Smooth Scroll (GSAP ScrollSmoother) + anchor links
 // Only #smooth-content is smoothed; the fixed nav, dock and overlays sit outside the wrapper.
 // ============================================
@@ -484,6 +597,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   initSmoothScroll(); // creates the ScrollSmoother, which must exist before any ScrollTrigger
   initScrollAnimations();
+  initHeadlineMelt();
   initModal();
   initCaseStudyOverlay();
   initImageLightbox();
