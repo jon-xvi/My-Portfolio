@@ -30,28 +30,94 @@ function initMobileNav() {
 }
 
 // ============================================
-// Scroll Animations (IntersectionObserver)
+// Scroll Animations (GSAP ScrollTrigger)
+// Must run after initSmoothScroll so the smoother exists before any ScrollTrigger.
 // ============================================
 function initScrollAnimations() {
   const elements = document.querySelectorAll('.animate-on-scroll');
   if (!elements.length) return;
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.1,
-      rootMargin: '0px 0px -40px 0px',
-    }
-  );
+  // Fallback if GSAP/ScrollTrigger failed to load: the original IntersectionObserver reveal
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    elements.forEach((el) => observer.observe(el));
+    return;
+  }
 
-  elements.forEach((el) => observer.observe(el));
+  gsap.registerPlugin(ScrollTrigger);
+  document.documentElement.classList.add('gsap-scroll');
+  const mm = gsap.matchMedia();
+
+  mm.add('(prefers-reduced-motion: no-preference)', () => {
+    const heroContent = document.querySelector('.hero-content');
+
+    // Hero: staggered intro on load, then the block drifts up and fades as the next section arrives
+    if (heroContent) {
+      heroContent.classList.add('is-visible');
+      gsap.from(heroContent.querySelectorAll('.hero-eyebrow, h1, .hero-sub, .hero-cta-wrapper'), {
+        autoAlpha: 0,
+        y: 40,
+        duration: 1,
+        ease: 'power3.out',
+        stagger: 0.12,
+        delay: 0.1,
+        clearProps: 'opacity,visibility,transform'
+      });
+      gsap.to(heroContent, {
+        y: -70,
+        autoAlpha: 0.2,
+        ease: 'none',
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+      });
+    }
+
+    // These wrappers stay put; their children reveal one by one instead
+    const wrappers = gsap.utils.toArray('#experience .animate-on-scroll, #writing .blog-list');
+    wrappers.forEach((el) => el.classList.add('is-visible'));
+
+    const targets = [
+      ...gsap.utils.toArray('.shots-marquee-section'),
+      ...gsap.utils.toArray('.animate-on-scroll').filter((el) => el !== heroContent && !wrappers.includes(el)),
+      ...gsap.utils.toArray('.experience-header, .experience-item, .blog-entry')
+    ];
+
+    gsap.set(targets, { autoAlpha: 0, y: 48 });
+
+    ScrollTrigger.batch(targets, {
+      start: 'top 90%',
+      once: true,
+      onEnter: (batch) =>
+        gsap.to(batch, {
+          autoAlpha: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+          stagger: 0.12,
+          overwrite: true,
+          onComplete: () => {
+            // Hand control back to CSS (hover states) once the reveal is done
+            batch.forEach((el) => {
+              if (el.classList.contains('animate-on-scroll')) el.classList.add('is-visible', 'reveal-done');
+            });
+            gsap.set(batch, { clearProps: 'opacity,visibility,transform' });
+          }
+        })
+    });
+  });
+
+  mm.add('(prefers-reduced-motion: reduce)', () => {
+    elements.forEach((el) => el.classList.add('is-visible'));
+  });
 }
 
 // ============================================
@@ -416,8 +482,8 @@ function initProtection() {
 
 document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
+  initSmoothScroll(); // creates the ScrollSmoother, which must exist before any ScrollTrigger
   initScrollAnimations();
-  initSmoothScroll();
   initModal();
   initCaseStudyOverlay();
   initImageLightbox();
