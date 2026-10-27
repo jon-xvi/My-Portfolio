@@ -185,7 +185,7 @@ section {
 }
 
 .section-subtitle {
-  font-size: clamp(17px, 1.5vw, 20px);
+  font-size: clamp(15px, 1.3vw, 17px);
   color: var(--hero-ink);
   margin-bottom: 48px;
   max-width: 800px;
@@ -400,7 +400,7 @@ section {
 
 .hero-eyebrow {
   font-family: var(--font-display);
-  font-size: clamp(16px, 2.1vw, 28px);
+  font-size: clamp(14px, 1.7vw, 22px);
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -421,8 +421,27 @@ section {
   text-wrap: balance;
 }
 
+/* Headline melt (see initHeadlineMelt). Words stay unbreakable; the blur is only switched on while the cursor is over it. */
+.hero-content h1 {
+  position: relative;
+}
+
+.melt-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.melt-char {
+  display: inline-block;
+}
+
+.hero-content h1.is-melting .melt-char {
+  filter: blur(calc(var(--melt-blur, 0) * 1px));
+  will-change: transform, filter, opacity;
+}
+
 .hero-sub {
-  font-size: clamp(17px, 1.6vw, 20px);
+  font-size: clamp(15px, 1.35vw, 17px);
   color: var(--hero-ink);
   max-width: 600px;
   line-height: 1.7;
@@ -884,6 +903,16 @@ html.dark .dock-divider {
 .animate-on-scroll.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* GSAP drives the reveal (see initScrollAnimations), so the CSS transition must not smooth it a second time.
+   Once an element has finished revealing, its own hover transition comes back. */
+html.gsap-scroll .animate-on-scroll {
+  transition: none;
+}
+
+html.gsap-scroll .animate-on-scroll.reveal-done {
+  transition: transform 300ms var(--ease), opacity 0.2s ease;
 }
 
 /* ============================================ */

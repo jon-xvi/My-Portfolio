@@ -30,28 +30,207 @@ function initMobileNav() {
 }
 
 // ============================================
-// Scroll Animations (IntersectionObserver)
+// Scroll Animations (GSAP ScrollTrigger)
+// Must run after initSmoothScroll so the smoother exists before any ScrollTrigger.
 // ============================================
 function initScrollAnimations() {
   const elements = document.querySelectorAll('.animate-on-scroll');
   if (!elements.length) return;
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.1,
-      rootMargin: '0px 0px -40px 0px',
-    }
-  );
+  // Fallback if GSAP/ScrollTrigger failed to load: the original IntersectionObserver reveal
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    elements.forEach((el) => observer.observe(el));
+    return;
+  }
 
-  elements.forEach((el) => observer.observe(el));
+  gsap.registerPlugin(ScrollTrigger);
+  document.documentElement.classList.add('gsap-scroll');
+  const mm = gsap.matchMedia();
+
+  mm.add('(prefers-reduced-motion: no-preference)', () => {
+    const heroContent = document.querySelector('.hero-content');
+
+    // Hero: staggered intro on load, then the block drifts up and fades as the next section arrives
+    if (heroContent) {
+      heroContent.classList.add('is-visible');
+      gsap.from(heroContent.querySelectorAll('.hero-eyebrow, h1, .hero-sub, .hero-cta-wrapper'), {
+        autoAlpha: 0,
+        y: 40,
+        duration: 1,
+        ease: 'power3.out',
+        stagger: 0.12,
+        delay: 0.1,
+        clearProps: 'opacity,visibility,transform'
+      });
+      gsap.to(heroContent, {
+        y: -70,
+        autoAlpha: 0.2,
+        ease: 'none',
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+      });
+    }
+
+    // These wrappers stay put; their children reveal one by one instead
+    const wrappers = gsap.utils.toArray('#experience .animate-on-scroll, #writing .blog-list');
+    wrappers.forEach((el) => el.classList.add('is-visible'));
+
+    const targets = [
+      ...gsap.utils.toArray('.shots-marquee-section'),
+      ...gsap.utils.toArray('.animate-on-scroll').filter((el) => el !== heroContent && !wrappers.includes(el)),
+      ...gsap.utils.toArray('.experience-header, .experience-item, .blog-entry')
+    ];
+
+    gsap.set(targets, { autoAlpha: 0, y: 48 });
+
+    ScrollTrigger.batch(targets, {
+      start: 'top 90%',
+      once: true,
+      onEnter: (batch) =>
+        gsap.to(batch, {
+          autoAlpha: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+          stagger: 0.12,
+          overwrite: true,
+          onComplete: () => {
+            // Hand control back to CSS (hover states) once the reveal is done
+            batch.forEach((el) => {
+              if (el.classList.contains('animate-on-scroll')) el.classList.add('is-visible', 'reveal-done');
+            });
+            gsap.set(batch, { clearProps: 'opacity,visibility,transform' });
+          }
+        })
+    });
+  });
+
+  mm.add('(prefers-reduced-motion: reduce)', () => {
+    elements.forEach((el) => el.classList.add('is-visible'));
+  });
+}
+
+// ============================================
+// Hero headline "melt": letters near the cursor smear, blur and drip as it moves over them
+// Mouse only. Touch devices and reduced-motion users keep the plain headline.
+// ============================================
+function initHeadlineMelt() {
+  const h1 = document.querySelector('.hero-content h1');
+  if (!h1 || typeof gsap === 'undefined') return;
+  const original = h1.textContent.trim();
+
+  gsap.matchMedia().add('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)', () => {
+    // Split into words (kept unbreakable) and letters. Screen readers get the label instead of the spans.
+    h1.setAttribute('aria-label', original);
+    h1.textContent = '';
+    const chars = [];
+    const words = original.split(' ');
+    words.forEach((w, i) => {
+      const word = document.createElement('span');
+      word.className = 'melt-word';
+      word.setAttribute('aria-hidden', 'true');
+      [...w].forEach((ch) => {
+        const c = document.createElement('span');
+        c.className = 'melt-char';
+        c.textContent = ch;
+        word.appendChild(c);
+        chars.push(c);
+      });
+      h1.appendChild(word);
+      if (i < words.length - 1) h1.appendChild(document.createTextNode(' '));
+    });
+
+    gsap.set(chars, { transformOrigin: '50% 0%', '--melt-blur': 0 });
+    // quickTo reuses one tween per property, so updating every frame stays cheap and trails smoothly
+    const to = (c, prop) => gsap.quickTo(c, prop, { duration: 0.7, ease: 'power3.out' });
+    const fx = chars.map((c) => ({
+      y: to(c, 'y'), scaleY: to(c, 'scaleY'), skewX: to(c, 'skewX'), opacity: to(c, 'opacity'), blur: to(c, '--melt-blur')
+    }));
+
+    const RADIUS = 150;
+    let centers = [];
+    let px = 0, py = 0, vx = 0, vy = 0;
+    let inside = false;
+    let settle = null;
+
+    const measure = () => {
+      centers = chars.map((c) => ({ x: c.offsetLeft + c.offsetWidth / 2, y: c.offsetTop + c.offsetHeight / 2 }));
+    };
+
+    const render = () => {
+      const rect = h1.getBoundingClientRect();
+      const mx = px - rect.left;
+      const my = py - rect.top;
+      const speed = Math.min(Math.hypot(vx, vy) / 40, 1);
+      const lean = gsap.utils.clamp(-18, 18, -vx * 0.6);
+      vx *= 0.85;
+      vy *= 0.85;
+      chars.forEach((c, i) => {
+        const d = Math.hypot(centers[i].x - mx, centers[i].y - my);
+        const f = Math.max(0, 1 - d / RADIUS);
+        const k = f * f * (3 - 2 * f);               // smoothstep falloff around the cursor
+        const m = k * (0.45 + 0.55 * speed);         // a resting cursor melts a little, a fast one a lot
+        fx[i].y(m * 18);
+        fx[i].scaleY(1 + m * 0.35);
+        fx[i].skewX(lean * k);
+        fx[i].opacity(1 - m * 0.55);
+        fx[i].blur(m * 7);
+      });
+    };
+
+    const relax = () => {
+      fx.forEach((f) => { f.y(0); f.scaleY(1); f.skewX(0); f.opacity(1); f.blur(0); });
+      settle = gsap.delayedCall(1, () => { if (!inside) h1.classList.remove('is-melting'); });
+    };
+
+    const onEnter = (e) => {
+      if (settle) settle.kill();
+      measure();
+      px = e.clientX; py = e.clientY; vx = vy = 0;
+      inside = true;
+      h1.classList.add('is-melting');
+      gsap.ticker.add(render);
+    };
+    const onMove = (e) => {
+      vx = e.clientX - px; vy = e.clientY - py;
+      px = e.clientX; py = e.clientY;
+    };
+    const onLeave = () => {
+      inside = false;
+      gsap.ticker.remove(render);
+      relax();
+    };
+
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(h1);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+    h1.addEventListener('pointerenter', onEnter);
+    h1.addEventListener('pointermove', onMove);
+    h1.addEventListener('pointerleave', onLeave);
+
+    return () => {
+      gsap.ticker.remove(render);
+      ro.disconnect();
+      if (settle) settle.kill();
+      h1.removeEventListener('pointerenter', onEnter);
+      h1.removeEventListener('pointermove', onMove);
+      h1.removeEventListener('pointerleave', onLeave);
+      h1.classList.remove('is-melting');
+      h1.textContent = original;
+      h1.removeAttribute('aria-label');
+    };
+  });
 }
 
 // ============================================
@@ -416,8 +595,9 @@ function initProtection() {
 
 document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
+  initSmoothScroll(); // creates the ScrollSmoother, which must exist before any ScrollTrigger
   initScrollAnimations();
-  initSmoothScroll();
+  initHeadlineMelt();
   initModal();
   initCaseStudyOverlay();
   initImageLightbox();
