@@ -1,0 +1,71 @@
+/* Work history: centered three-column rows on a light dot grid. */
+#experience {
+  padding: calc(90 * var(--hero-unit)) 0 calc(62 * var(--hero-unit));
+  background-color: #f0f0f0;
+  background-image: radial-gradient(circle at 1px 1px, #cfd5da 1px, transparent 1.2px);
+  background-size: calc(22 * var(--hero-unit)) calc(22 * var(--hero-unit));
+  background-position: calc(11 * var(--hero-unit)) calc(11 * var(--hero-unit));
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  color: #111;
+  font-family: 'Hero Jakarta', Arial, sans-serif;
+}
+#experience .container-narrow {
+  width: 60%;
+  max-width: none;
+  margin: 0 auto;
+  padding: 0;
+}
+#experience .experience-header { margin: 0 0 calc(30 * var(--hero-unit)); }
+#experience h2 {
+  margin: 0;
+  font-family: 'Hero Jakarta', Arial, sans-serif;
+  font-size: max(16px, calc(17 * var(--hero-unit)));
+  font-weight: 600;
+  line-height: calc(24 * var(--hero-unit));
+  letter-spacing: 0;
+  color: #000;
+}
+#experience .experience-list { display: block; list-style: none; margin: 0; padding: 0; border-top: 1px solid #d2d2d2; }
+#experience .experience-item {
+  display: grid;
+  grid-template-columns: minmax(0, 36fr) minmax(0, 40fr) minmax(0, 24fr);
+  align-items: baseline;
+  margin: 0;
+  padding: calc(26 * var(--hero-unit)) 0;
+  border: 0;
+  border-bottom: 1px solid #d2d2d2;
+}
+#experience .experience-item:last-child { border-bottom: 0; }
+#experience .experience-company,
+#experience .experience-role,
+#experience .experience-time {
+  min-width: 0;
+  font-family: 'Hero Jakarta', Arial, sans-serif;
+  font-size: calc(16 * var(--hero-unit));
+  line-height: calc(24 * var(--hero-unit));
+  font-weight: 400;
+  color: #111;
+}
+#experience .experience-company { padding-right: 20px; font-weight: 500; }
+#experience .experience-role { padding-right: 12px; color: #808080; }
+#experience .experience-time { color: #808080; text-align: right; }
+@media (max-width: 1000px) {
+  #experience { padding: 72px 0; background-size: 22px 22px; background-position: 11px 11px; }
+  #experience .container-narrow { width: calc(100% - 96px); }
+  #experience h2 { font-size: 17px; line-height: 24px; }
+  #experience .experience-header { margin-bottom: 30px; }
+  #experience .experience-item { padding: 26px 0; }
+  #experience .experience-company, #experience .experience-role, #experience .experience-time { font-size: 15px; line-height: 24px; }
+}
+@media (max-width: 700px) {
+  #experience { padding: 56px 24px; }
+  #experience .container-narrow { width: 100%; }
+  #experience h2 { font-size: 17px; }
+  #experience .experience-header { margin-bottom: 24px; }
+  #experience .experience-item { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
+  #experience .experience-company { padding: 0; font-size: 17px; font-weight: 600; }
+  #experience .experience-role { padding: 0; }
+  #experience .experience-time { text-align: left; font-size: 14px; }
+}

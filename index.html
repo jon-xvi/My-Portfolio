@@ -14,26 +14,32 @@
   <!-- Open Graph / social share preview -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="John Erizu — Product Designer">
-  <meta property="og:url" content="https://jon-xvi.github.io/My-Portfolio/">
+  <meta property="og:url" content="https://johnerizu.vercel.app/">
   <meta property="og:title" content="John Erizu — Product Designer">
   <meta property="og:description"
     content="Portfolio of John Erizu, a digital product designer crafting elevated experiences for modern businesses.">
-  <meta property="og:image" content="https://jon-xvi.github.io/My-Portfolio/artifacts/og-image.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image" content="https://johnerizu.vercel.app/artifacts/hero/Frame%202147224283.png">
+  <meta property="og:image:width" content="2448">
+  <meta property="og:image:height" content="1632">
+  <meta property="og:image:alt" content="A furniture storefront featured in John Erizu's design portfolio">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="John Erizu — Product Designer">
   <meta name="twitter:description"
     content="Portfolio of John Erizu, a digital product designer crafting elevated experiences for modern businesses.">
-  <meta name="twitter:image" content="https://jon-xvi.github.io/My-Portfolio/artifacts/og-image.jpg">
+  <meta name="twitter:image" content="https://johnerizu.vercel.app/artifacts/hero/Frame%202147224283.png">
 
-  <link rel="icon" type="image/png" href="artifacts/hero/AVI.png">
+  <link rel="icon" type="image/png" sizes="480x480" href="artifacts/Images/Frame%202147224294.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Six+Caps&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=review-1">
+  <link rel="stylesheet" href="hero.css?v=layout-polish-9">
+  <link rel="stylesheet" href="projects.css?v=project-labels-3">
+  <link rel="stylesheet" href="experience.css?v=history-4">
+  <link rel="stylesheet" href="about.css?v=review-1">
+  <link rel="stylesheet" href="footer.css?v=sketch-motion-4">
 </head>
 
 <body>
@@ -42,16 +48,14 @@
   <nav id="navbar" aria-label="Main Navigation">
     <div class="container nav-inner">
       <a href="#home" class="nav-brand">
-        <img src="artifacts/hero/AVI.png" alt="John Erizu" class="nav-avatar">
         JOHN ERIZU
       </a>
       <div class="nav-center">
         <a href="#projects">Work</a>
         <a href="#about">About</a>
-        <a href="#writing">Journal</a>
       </div>
       <div class="nav-right">
-        <button class="nav-cta" data-modal-trigger="contact-modal">Contact me</button>
+        <button class="nav-cta" data-modal-trigger="contact-modal">Get in touch</button>
       </div>
       <div class="nav-mobile-actions">
         <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -65,7 +69,6 @@
     <div class="nav-mobile" id="nav-mobile">
       <a href="#projects">Work</a>
       <a href="#about">About</a>
-      <a href="#writing">Journal</a>
       <button class="mobile-contact-btn" data-modal-trigger="contact-modal">Contact</button>
     </div>
   </nav>
@@ -76,196 +79,225 @@
 
   <!-- Hero Section -->
   <header class="hero" id="home">
+    <div class="hero-spotlight" aria-hidden="true"></div>
     <div class="container">
       <div class="hero-content animate-on-scroll">
-        <p class="hero-eyebrow">Hi, I am John</p>
-        <h1>I turn ideas into brands, products, and experiences.</h1>
-        <p class="hero-sub">Bringing ideas to life through thoughtful design, creating solutions that help businesses move forward.</p>
+        <h1>Hi, <span class="hero-name">I’m John</span>, a product designer based in Abuja. I turn ideas into thoughtful brands, digital products, and experiences that solve real problems.</h1>
+        <img class="hero-name-portrait" src="artifacts/Images/Frame%202147224289.png" alt="" aria-hidden="true" width="300" height="373">
         <div class="hero-cta-wrapper">
-          <a href="https://instantfind.me/johnerizu" target="_blank" rel="noopener noreferrer" class="hero-cta-pill">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cta-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-            View Resume
-          </a>
+          <a href="https://instantfind.me/johnerizu" target="_blank" rel="noopener noreferrer" class="hero-resume-link">Read Resume <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Infinite Marquee Section -->
-  <section class="shots-marquee-section">
-    <div class="marquee-track">
-      <div class="marquee-content">
-        <img src="artifacts/second_section/Slide%201-D.png" alt="Design Shot 1 Dark" class="img-dark">
-        <img src="artifacts/second_section/Slide%202-D.png" alt="Design Shot 2 Dark" class="img-dark">
-        <img src="artifacts/second_section/Slide%203-D.png" alt="Design Shot 3 Dark" class="img-dark">
-        <img src="artifacts/second_section/Slide%204-D.png" alt="Design Shot 4 Dark" class="img-dark">
-        <img src="artifacts/second_section/Slide%205-D.png" alt="Design Shot 5 Dark" class="img-dark">
-      </div>
-      <div class="marquee-content" aria-hidden="true">
-        <img src="artifacts/second_section/Slide%201-D.png" alt="Design Shot 1 Dark" class="img-dark">
-        <img src="artifacts/second_section/Slide%202-D.png" alt="Design Shot 2 Dark" class="img-dark">
-        <img src="artifacts/second_section/Slide%203-D.png" alt="Design Shot 3 Dark" class="img-dark">
-        <img src="artifacts/second_section/Slide%204-D.png" alt="Design Shot 4 Dark" class="img-dark">
-        <img src="artifacts/second_section/Slide%205-D.png" alt="Design Shot 5 Dark" class="img-dark">
+  <!-- Featured work preview -->
+  <section class="shots-marquee-section" aria-label="Selected design work">
+    <div class="hero-work-preview">
+      <div class="hero-marquee-track">
+        <div class="hero-marquee-group">
+          <img src="artifacts/hero/Frame%202147224283.png" alt="AkaDō furniture shop and lounge chair product page" width="2448" height="1632" decoding="async">
+          <img src="artifacts/hero/Frame%202147224260.png" alt="Mobile invoice design displayed on a phone" width="2448" height="1632" decoding="async">
+          <img src="artifacts/hero/Frame%202147224261.png" alt="Japan travel website displayed on a laptop" width="2448" height="1632" decoding="async">
+          <img src="artifacts/hero/Frame%202147224263.png" alt="Mobile analytics dashboard with colorful charts" width="2448" height="1632" decoding="async">
+          <img src="artifacts/hero/Frame%202147224264.png" alt="Outdoor furniture and garden collection website" width="2448" height="1632" decoding="async">
+        </div>
+        <div class="hero-marquee-group" aria-hidden="true" inert>
+          <img src="artifacts/hero/Frame%202147224283.png" alt="AkaDō furniture shop and lounge chair product page" width="2448" height="1632" decoding="async">
+          <img src="artifacts/hero/Frame%202147224260.png" alt="Mobile invoice design displayed on a phone" width="2448" height="1632" decoding="async">
+          <img src="artifacts/hero/Frame%202147224261.png" alt="Japan travel website displayed on a laptop" width="2448" height="1632" decoding="async">
+          <img src="artifacts/hero/Frame%202147224263.png" alt="Mobile analytics dashboard with colorful charts" width="2448" height="1632" decoding="async">
+          <img src="artifacts/hero/Frame%202147224264.png" alt="Outdoor furniture and garden collection website" width="2448" height="1632" decoding="async">
+        </div>
       </div>
     </div>
+    <button class="hero-marquee-toggle" type="button" aria-label="Pause image scrolling" hidden>Pause</button>
   </section>
 
   <!-- Projects Grid Section -->
-  <section id="projects">
+  <section id="projects" aria-labelledby="projects-title">
     <div class="container-narrow">
-      <h2 class="section-title animate-on-scroll">Selected Work</h2>
-      <p class="section-subtitle animate-on-scroll">A selection of products, platforms, and experiences I've helped bring to life.</p>
+      <h2 id="projects-title" class="section-title animate-on-scroll">Selected Projects</h2>
       <div class="projects-grid">
-        <!-- Standard Cards -->
-        <a href="#" class="project-card animate-on-scroll" data-case-study="kobo-kounta">
+        <a href="work/kobo-kounta/" class="project-card animate-on-scroll" data-case-study="kobo-kounta" aria-label="Read the Kobo Kounta case study">
           <div class="project-img-wrap">
-            <img src="artifacts/Kobo%20Kounta/brand-launch.jpg" alt="Kobo Kounta" class="project-img">
+            <img src="artifacts/Kobo%20Kounta/brand-launch.jpg" alt="Kobo Kounta app displayed on a phone" class="project-img" width="1600" height="1067" loading="lazy" decoding="async">
           </div>
-          <div class="project-info">
-            <span class="project-tag">Product & UX Design</span>
-            <h3>Kobo Kounta <span class="arrow-icon">↗</span></h3>
-            <p>A mobile-first budgeting app built to turn financial discipline into a daily habit for Nigeria's paycheck-to-paycheck workforce.</p>
+          <div class="project-label">
+            <span class="project-category">Product &amp; UX Design</span>
+            <h3>Kobo Kounta</h3>
           </div>
         </a>
-        <a href="#" class="project-card animate-on-scroll" data-case-study="maildrip-redesign">
+        <a href="work/maildrip/" class="project-card animate-on-scroll" data-case-study="maildrip-redesign" aria-label="Read the MailDrip Opt-In Forms case study">
           <div class="project-img-wrap">
-            <img src="artifacts/opt-in-case-study/cover-image.png" alt="MailDrip Redesign" class="project-img">
+            <img src="artifacts/opt-in-case-study/cover-image.png" alt="MailDrip opt-in form builder interface" class="project-img" width="4320" height="3284" loading="lazy" decoding="async">
           </div>
-          <div class="project-info">
-            <span class="project-tag">UX/UI DESIGN</span>
-            <h3>MailDrip Opt-In Forms <span class="arrow-icon">↗</span></h3>
-            <p>A complete UX and UI redesign of MailDrip's opt-in forms, shifting from a complex page-builder to a simple, goal-driven workflow.</p>
+          <div class="project-label">
+            <span class="project-category">UX/UI Design</span>
+            <h3>MailDrip Opt-In Forms</h3>
           </div>
         </a>
-        <!-- Nexus Banking Experience removed (dummy project, no longer needed) -->
-        <!-- Lumina UI Kit and Spatial Interfaces cards removed for now (placeholder projects) -->
-        <!-- Full markup is preserved in git history; ask to have them restored once real content is ready -->
       </div>
     </div>
   </section>
 
   <!-- Experience / Work History Section -->
-  <section id="experience" class="experience-section">
+  <section id="experience" class="experience-section" aria-labelledby="experience-title">
     <div class="container-narrow animate-on-scroll">
       <div class="experience-header">
-        <span class="experience-label">Work Experience</span>
+        <h2 id="experience-title">Work History</h2>
       </div>
-      <div class="experience-list">
-        <div class="experience-item">
-          <div class="experience-row-1">
-            <span class="experience-company">Charisol</span>
-            <span class="experience-time">Jan 2026 – Present</span>
-          </div>
-          <div class="experience-row-2">
-            <span class="experience-role">Product Designer (Full-time)</span>
-            <span class="experience-separator">•</span>
-            <span class="experience-location">Nigeria (Remote)</span>
-          </div>
-        </div>
-        <div class="experience-item">
-          <div class="experience-row-1">
-            <span class="experience-company">Pypapi Technologies Limited</span>
-            <span class="experience-time">Feb 2024 – Present</span>
-          </div>
-          <div class="experience-row-2">
-            <span class="experience-role">UI/UX Designer (Contract)</span>
-            <span class="experience-separator">•</span>
-            <span class="experience-location">Nigeria (Remote)</span>
-          </div>
-        </div>
-        <div class="experience-item">
-          <div class="experience-row-1">
-            <span class="experience-company">Pendulum</span>
-            <span class="experience-time">May 2023 – Dec 2025</span>
-          </div>
-          <div class="experience-row-2">
-            <span class="experience-role">UI/UX Designer (Full-time)</span>
-            <span class="experience-separator">•</span>
-            <span class="experience-location">Nigeria (Remote)</span>
-          </div>
-        </div>
-      </div>
+      <ul class="experience-list">
+        <li class="experience-item">
+          <span class="experience-company">Pypapi Technologies Limited</span>
+          <span class="experience-role">UI/UX Designer&nbsp; - Contract</span>
+          <span class="experience-time">Feb 2024 – Present</span>
+        </li>
+        <li class="experience-item">
+          <span class="experience-company">Charisol</span>
+          <span class="experience-role">Product Designer&nbsp; - Full-time</span>
+          <span class="experience-time">Jan 2026 – Oct 2026</span>
+        </li>
+        <li class="experience-item">
+          <span class="experience-company">Pendulum</span>
+          <span class="experience-role">Product Designer&nbsp; - Full-time</span>
+          <span class="experience-time">May 2023 – Dec 2025</span>
+        </li>
+      </ul>
     </div>
   </section>
 
   <!-- About Me Section -->
-  <section id="about" class="about-section">
-    <div class="container container-narrow">
-      <div class="about-card animate-on-scroll">
-        <div class="about-row-top">
-          <div class="about-text-column">
-            <span class="about-tag">// ABOUT ME</span>
-            <h2 class="about-title">Designing experiences that people actually love using.</h2>
-            <p class="about-para">I'm a Product Designer based in Nigeria. For over three years, I've been creating digital products that are clearly structured, work well, and don't seem unnecessarily complicated. For me, good design is best when you hardly have to explain it; it simply makes things easier.</p>
-          </div>
-          <div class="about-image-column">
-            <img src="artifacts/Snapchat-1626232021.jpg" alt="John Erizu" class="about-image">
+  <section id="about" class="about-editorial" aria-labelledby="about-heading">
+    <div class="about-layout">
+      <h2 id="about-heading">JOHN ERIZU</h2>
+      <div class="about-body">
+        <div class="about-portrait-wrap">
+          <svg class="about-text-ring" viewBox="0 0 160 160" aria-hidden="true" focusable="false">
+            <defs><path id="about-ring-path" d="M80 10a70 70 0 1 1 0 140a70 70 0 1 1 0-140"/></defs>
+            <text textLength="439.82" lengthAdjust="spacing"><textPath href="#about-ring-path">PRODUCT DESIGNER ✳ PRODUCT DESIGNER ✳ PRODUCT DESIGNER ✳ </textPath></text>
+          </svg>
+          <div class="about-portrait-stage">
+            <img class="about-portrait" src="artifacts/Images/Frame%202147224292.png" alt="Black-and-white portrait of John Erizu" width="1412" height="1948" loading="lazy" decoding="async">
           </div>
         </div>
-        <div class="about-row-bottom">
-          <p class="about-para">In doing so, I combine clear design with a deep understanding of what users really need. Clean structures, intuitive usability, and the tiny details that ultimately make the difference are what matter most to me.</p>
+        <div class="about-copy">
+          <p>Hi, I'm John, a product designer based in Abuja, Nigeria. For over four years, I've been turning ideas into digital products, figuring out what people need, how things should work, and how to make them easier to use.</p>
+          <p>I enjoy the messy part of building products. Asking questions, challenging assumptions, exploring ideas, and finding practical solutions to problems worth solving.</p>
+          <p>My work doesn't stop in Figma. I use AI tools to experiment, write code, and bring my designs to life. It's changed how I work, giving me the freedom to test ideas, build functional prototypes, and turn concepts into working products.</p>
+          <p>I like being involved from the first idea to the final product. For me, it's not just about making things look good, but understanding what we're building, why it matters, and making sure it actually works.</p>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Journal Section -->
-  <section id="writing">
-    <div class="container">
-      <h2 class="section-title animate-on-scroll">Thoughts & Process</h2>
-      <p class="section-subtitle animate-on-scroll">Notes on design, products, business, and the thinking behind my work.</p>
-
-      <div class="blog-list animate-on-scroll">
-        <a href="https://medium.com/@johnerizu/from-first-impressions-to-lasting-relationships-the-role-of-ux-in-marketing-a23e538dd0d7" target="_blank" rel="noopener noreferrer" class="blog-entry">
-          <div class="blog-info">
-            <h3>From First Impressions to Lasting Relationships: The Role of UX in Marketing</h3>
-            <p>Have you ever been captivated by a beautifully designed product or a striking advertisement, only to be disappointed by the...</p>
-          </div>
-          <div class="blog-meta">5 min read</div>
-        </a>
-
-        <a href="https://medium.com/charisol-pulse/users-dont-need-more-features-they-need-their-first-win-499026006082" target="_blank" rel="noopener noreferrer" class="blog-entry">
-          <div class="blog-info">
-            <h3>Users Don't Need More Features, They Need Their First Win</h3>
-            <p>Let’s be honest. Most products don’t fail because they lack features. They fail because users never reach a moment when...</p>
-          </div>
-          <div class="blog-meta">4 min read</div>
-        </a>
-
-        <a href="https://medium.com/charisol-pulse/why-email-is-still-one-of-the-most-powerful-technologies-on-the-internet-e408d5e51385" target="_blank" rel="noopener noreferrer" class="blog-entry">
-          <div class="blog-info">
-            <h3>Why Email is Still One of the Most Powerful Technologies on the Internet</h3>
-            <p>Every few years, a new communication platform shows up with the same promise. Email is finally on its way out...</p>
-          </div>
-          <div class="blog-meta">6 min read</div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-
 
   <!-- Footer Section -->
-  <footer id="contact" class="footer-section">
-    <div class="container">
-      <!-- CTA Row: "Let's Talk" left, Social Links right -->
-      <div class="footer-cta-row animate-on-scroll">
-        <div class="footer-cta-left">
-          <p class="footer-label">Have a project in mind?</p>
-          <a href="#" class="footer-big-link" data-modal-trigger="contact-modal">Let's Talk....</a>
-        </div>
-        <div class="footer-cta-right">
-          <a href="https://x.com/_JonXVI" target="_blank" rel="noopener noreferrer" class="footer-social-link">X (twitter)</a>
-          <a href="https://www.linkedin.com/in/john-erizu/" target="_blank" rel="noopener noreferrer" class="footer-social-link">LinkedIn</a>
-          <a href="https://medium.com/@johnerizu" target="_blank" rel="noopener noreferrer" class="footer-social-link">Medium</a>
-          <a href="https://www.behance.net/Jon_XVI" target="_blank" rel="noopener noreferrer" class="footer-social-link">Behance</a>
-          <div class="footer-copyright">
-            © 2026 John Erizu. All rights reserved.
-          </div>
-        </div>
-      </div>
+  <footer id="contact" class="footer-section sketch-footer" aria-label="Contact John Erizu">
+    <div class="sketch-footer-top">
+      <button type="button" class="sketch-footer-cta" data-modal-trigger="contact-modal">Have a project in mind?</button>
+      <nav class="sketch-footer-links" aria-label="Footer social links">
+        <a href="https://x.com/_JonXVI" target="_blank" rel="noopener noreferrer">X (twitter)</a>
+        <a href="https://www.linkedin.com/in/john-erizu/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </nav>
+      <span class="sketch-footer-copyright">© 2026 jonxvi
+      </span>
     </div>
+    <span class="footer-accessible-name">JOHN ERIZU</span>
+    <!-- Artwork adapted from the supplied Doodle Crew component; outlined name stays consistent across devices. -->
+    <svg class="footer-illustration" viewBox="0 0 1440 438" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><defs>
+<pattern id="footer-hatch" width="4.6" height="4.6" patternUnits="userSpaceOnUse" patternTransform="rotate(38)"><path d="M0 0V4.6" stroke="#f5f5f3" stroke-width="1.25"/></pattern>
+<filter id="footer-sketch" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="3" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="G"/></filter>
+<filter id="footer-ink" x="-4%" y="-6%" width="108%" height="112%">
+<feTurbulence type="fractalNoise" baseFrequency=".045" numOctaves="3" seed="11" result="edge"/>
+<feDisplacementMap in="SourceGraphic" in2="edge" scale="5" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+<feTurbulence type="fractalNoise" baseFrequency=".018 .32" numOctaves="2" seed="4" result="streak"/>
+<feColorMatrix in="streak" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -16 5.6" result="streakA"/>
+<feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="1" seed="9" result="speck"/>
+<feColorMatrix in="speck" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -24 7.0" result="speckA"/>
+<feComposite in="streakA" in2="speckA" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="holes"/>
+<feComposite in="rough" in2="holes" operator="out"/>
+</filter></defs><g class="footer-scene"><g transform="translate(1125 318) scale(1.48 1.48)"><g class="footer-crew-art" data-crew="ghost"><path d="M-23 -14 L-23 -40 C-23 -59 -12 -67 0 -67 C12 -67 23 -59 23 -40 L23 -14 C12 -10 -12 -10 -23 -14 Z" />
+        <path d="M13 -61 C21 -54 23 -46 23 -36 L23 -15 L15 -13 L15 -36 C15 -46 15 -54 13 -61 Z" fill="url(#footer-hatch)" stroke="none" />
+        <path class="n thin" d="M-16 -56 C-12 -61 -6 -63 -2 -63" />
+        <path class="k" d="M-5 -33 C-3 -27 4 -27 6 -33 Z" />
+        <path class="n thin" d="M-17 -35 l3 -2 M-14 -34 l3 -2 M14 -35 l3 -2 M17 -34 l3 -2" /><circle cx="-8" cy="-44" r="6.5"/><g class="footer-pupil"><circle class="k" cx="-8" cy="-44" r="3.2"/><circle class="dcf-glint" cx="-6.88" cy="-45.28" r="1.024"/></g><circle cx="9" cy="-44" r="6.5"/><g class="footer-pupil"><circle class="k" cx="9" cy="-44" r="3.2"/><circle class="dcf-glint" cx="10.12" cy="-45.28" r="1.024"/></g></g></g><g class="footer-wordmark" fill="#f5f5f3" transform="translate(100 276)"><g filter="url(#footer-ink)"><g transform="scale(0.707105 1.091130)"><g class="footer-letter" data-letter="J"><g class="footer-glyph"><path d="M92.041 3.174 L149.678 3.174 L149.678 104.288 C149.678 125.517 147.795 141.671 144.028 152.751 C140.262 163.831 132.687 173.22 121.304 180.916 C109.92 188.613 95.342 192.461 77.568 192.461 C58.779 192.461 44.222 189.922 33.896 184.844 C23.571 179.766 15.594 172.339 9.966 162.564 C4.338 152.788 1.016 140.706 -0 126.318 L54.971 118.828 C55.055 127.038 55.775 133.132 57.129 137.109 C58.483 141.087 60.768 144.303 63.984 146.758 C66.185 148.366 69.316 149.17 73.379 149.17 C79.811 149.17 84.53 146.781 87.534 142.003 C90.539 137.225 92.041 129.171 92.041 117.84 Z "/></g></g><g class="footer-letter" data-letter="O"><g class="footer-glyph"><path d="M180.781 96.357 C180.781 65.973 189.245 42.318 206.172 25.391 C223.099 8.464 246.67 -0 276.885 -0 C307.861 -0 331.729 8.315 348.486 24.946 C365.244 41.577 373.623 64.873 373.623 94.834 C373.623 116.585 369.963 134.422 362.642 148.345 C355.321 162.267 344.741 173.101 330.903 180.845 C317.065 188.589 299.821 192.461 279.17 192.461 C258.18 192.461 240.809 189.118 227.056 182.432 C213.302 175.745 202.152 165.166 193.604 150.693 C185.055 136.221 180.781 118.109 180.781 96.357 Z M238.291 96.611 C238.291 115.4 241.782 128.9 248.765 137.109 C255.747 145.319 265.247 149.424 277.266 149.424 C289.622 149.424 299.186 145.404 305.957 137.363 C312.728 129.323 316.113 114.893 316.113 94.072 C316.113 76.553 312.58 63.752 305.513 55.669 C298.446 47.586 288.861 43.545 276.758 43.545 C265.163 43.545 255.853 47.65 248.828 55.859 C241.803 64.069 238.291 77.653 238.291 96.611 Z "/></g></g><g class="footer-letter" data-letter="H"><g class="footer-glyph"><path d="M404.854 3.174 L462.363 3.174 L462.363 68.301 L525.205 68.301 L525.205 3.174 L582.969 3.174 L582.969 189.287 L525.205 189.287 L525.205 114.004 L462.363 114.004 L462.363 189.287 L404.854 189.287 Z "/></g></g><g class="footer-letter" data-letter="N"><g class="footer-glyph"><path d="M621.563 3.174 L675.264 3.174 L745.342 106.141 L745.342 3.174 L799.551 3.174 L799.551 189.287 L745.342 189.287 L675.645 87.098 L675.645 189.287 L621.563 189.287 Z "/></g></g><g class="footer-letter" data-letter="E"><g class="footer-glyph"><path d="M924.346 3.174 L1078.467 3.174 L1078.467 42.91 L981.982 42.91 L981.982 72.49 L1071.484 72.49 L1071.484 110.449 L981.982 110.449 L981.982 147.139 L1081.26 147.139 L1081.26 189.287 L924.346 189.287 Z "/></g></g><g class="footer-letter" data-letter="R"><g class="footer-glyph"><path d="M1112.998 189.287 L1112.998 3.174 L1208.848 3.174 C1226.621 3.174 1240.205 4.697 1249.6 7.744 C1258.994 10.791 1266.569 16.44 1272.324 24.692 C1278.079 32.944 1280.957 42.995 1280.957 54.844 C1280.957 65.169 1278.755 74.077 1274.351 81.567 C1269.948 89.058 1263.893 95.13 1256.187 99.785 C1251.276 102.747 1244.543 105.202 1235.99 107.148 C1242.84 109.436 1247.83 111.723 1250.96 114.01 C1253.075 115.535 1256.141 118.796 1260.158 123.794 C1264.176 128.792 1266.861 132.647 1268.214 135.358 L1296.064 189.287 L1231.082 189.287 L1200.342 132.412 C1196.448 125.049 1192.978 120.267 1189.932 118.066 C1185.784 115.189 1181.087 113.75 1175.84 113.75 L1170.762 113.75 L1170.762 189.287 Z M1170.762 78.584 L1195.01 78.584 C1197.633 78.584 1202.712 77.738 1210.244 76.045 C1214.053 75.283 1217.163 73.337 1219.575 70.205 C1221.987 67.074 1223.193 63.477 1223.193 59.414 C1223.193 53.405 1221.289 48.792 1217.48 45.576 C1213.672 42.36 1206.52 40.752 1196.025 40.752 L1170.762 40.752 Z "/></g></g><g class="footer-letter" data-letter="I"><g class="footer-glyph"><path d="M1316.758 3.174 L1374.395 3.174 L1374.395 189.287 L1316.758 189.287 Z "/></g></g><g class="footer-letter" data-letter="Z"><g class="footer-glyph"><path d="M1410.957 3.174 L1573.711 3.174 L1573.711 40.371 L1469.236 149.297 L1577.52 149.297 L1577.52 189.287 L1400.928 189.287 L1400.928 150.693 L1504.309 42.91 L1410.957 42.91 Z "/></g></g><g class="footer-letter" data-letter="U"><g class="footer-glyph"><path d="M1724.531 3.174 L1781.914 3.174 L1781.914 114.058 C1781.914 125.052 1780.2 135.434 1776.772 145.203 C1773.345 154.971 1767.97 163.514 1760.649 170.83 C1753.328 178.147 1745.648 183.285 1737.607 186.244 C1726.436 190.389 1713.021 192.461 1697.363 192.461 C1688.307 192.461 1678.426 191.827 1667.72 190.558 C1657.013 189.289 1648.063 186.773 1640.869 183.009 C1633.675 179.245 1627.095 173.896 1621.128 166.96 C1615.161 160.025 1611.077 152.878 1608.877 145.52 C1605.322 133.679 1603.545 123.192 1603.545 114.058 L1603.545 3.174 L1660.928 3.174 L1660.928 116.698 C1660.928 126.846 1663.742 134.774 1669.37 140.482 C1674.998 146.189 1682.806 149.043 1692.793 149.043 C1702.695 149.043 1710.461 146.231 1716.089 140.608 C1721.717 134.984 1724.531 127.014 1724.531 116.698 Z"/></g></g></g></g></g><g class="footer-characters"><g transform="translate(1125 318) scale(1.48 1.48)"><g class="footer-crew-art" data-crew="ghost"><path d="M-25 -32 C-27 -38 -21 -42 -17 -38 C-15 -42 -10 -41 -10 -36 L-11 -30 C-15 -28 -22 -28 -25 -32 Z" />
+        <path d="M25 -32 C27 -38 21 -42 17 -38 C15 -42 10 -41 10 -36 L11 -30 C15 -28 22 -28 25 -32 Z" /></g></g><g transform="translate(145 450) scale(1.13 1.13)"><g class="footer-crew-art" data-crew="yeti"><ellipse class="dcf-shadow" cx="0" cy="2" rx="54" ry="5" />
+        <path d="M-40 -92 C-62 -92 -70 -76 -68 -56 L-66 -30 C-64 -18 -54 -16 -44 -20 Z" />
+        <path d="M-40 -92 C-62 -92 -70 -76 -68 -56 L-66 -30 C-64 -18 -54 -16 -44 -20 Z" fill="url(#footer-hatch)" stroke="none" />
+        <path class="n" d="M-67 -64 C-58 -59 -50 -59 -43 -64" />
+        <path d="M-30 -104 C-40 -112 -44 -124 -40 -138 C-32 -129 -22 -122 -13 -114 Z" />
+        <path d="M18 -114 C26 -124 36 -130 47 -133 C45 -120 41 -110 32 -101 Z" />
+        <path class="n" d="M-38 -124 L-28 -119 M39 -125 L33 -116" />
+        <path d="M-44 -2 C-54 -28 -54 -66 -42 -90 C-32 -110 -14 -118 2 -118 C22 -118 40 -108 48 -88 C58 -64 58 -28 48 -2 C30 4 -26 4 -44 -2 Z" />
+        <path d="M40 -96 C54 -66 54 -30 46 -4 C40 -2 34 -1 30 0 C40 -30 42 -64 33 -101 Z" fill="url(#footer-hatch)" stroke="none" />
+        <path class="n" d="M-7 -117 C-5 -126 1 -128 3 -120 C5 -127 11 -126 11 -116" />
+        <path class="n thin" d="M-14 -24 l-3 4 M8 -40 l3 4 M14 -46 l3 3 M20 -30 l3 3" />
+        <path class="n" d="M-48 -62 C-22 -50 10 -32 49 -26 M-50 -52 C-24 -40 8 -22 49 -16" />
+        <rect x="-12" y="-46" width="15" height="13" rx="2.5" transform="rotate(26 -4.5 -39.5)" />
+        <path d="M-46 -60 C-62 -50 -63 -29 -51 -19 C-45 -15 -38 -19 -40 -28 C-43 -36 -40 -46 -36 -52" />
+        <path d="M46 -58 C61 -46 61 -26 51 -18 C45 -14 38 -18 40 -26 C43 -34 41 -44 37 -50" />
+        <path d="M-37 -2 C-41 -14 -23 -19 -16 -7 C-14 0 -26 4 -37 -2 Z" />
+        <path d="M37 -2 C41 -14 23 -19 16 -7 C14 0 26 4 37 -2 Z" />
+        <path class="n thin" d="M-30 -4 l1 -4 M-24 -3 l1 -4 M30 -4 l-1 -4 M24 -3 l-1 -4" />
+        <path class="n" d="M-23 -98 L-9 -96 M6 -98 L20 -100" />
+        <path class="n" d="M-12 -70 C-6 -64 6 -64 12 -71" />
+        <path d="M3 -66.5 L5.5 -60 L8 -67.5 Z" /><circle cx="-15" cy="-86" r="8"/><g class="footer-pupil"><circle class="k" cx="-15" cy="-86" r="3.6"/><circle class="dcf-glint" cx="-13.74" cy="-87.44" r="1.1520000000000001"/></g><circle cx="13" cy="-88" r="8"/><g class="footer-pupil"><circle class="k" cx="13" cy="-88" r="3.6"/><circle class="dcf-glint" cx="14.26" cy="-89.44" r="1.1520000000000001"/></g></g></g><g transform="translate(375 276) scale(1.5 1.5)"><g class="footer-crew-art" data-crew="bird"><path class="n" d="M-5 0 L-5 -7 M-9 0 L-1 0 M5 0 L5 -7 M1 0 L9 0" />
+        <path d="M-17 -16 C-26 -18 -31 -14 -33 -9 C-26 -10 -20 -8 -15 -10 Z" />
+        <path d="M-18 -14 C-20 -30 -10 -40 2 -40 C16 -40 22 -28 20 -16 C18 -6 8 -4 0 -4 C-10 -4 -17 -8 -18 -14 Z" />
+        <path d="M-11 -25 C-3 -26 1 -18 -3 -13 C-9 -12 -15 -17 -11 -25 Z" fill="url(#footer-hatch)" />
+        <path class="o" d="M19 -30 L29 -27 L19 -23 Z" />
+        <path class="a" d="M-3 -38 L4 -59 L12 -37 Z" />
+        <path class="n thin" d="M-1 -44 L10 -46 M1 -51 L8 -52" />
+        <circle cx="4" cy="-60" r="2.8" /><circle cx="3" cy="-30" r="4.6"/><g class="footer-pupil"><circle class="k" cx="3" cy="-30" r="2.3"/><circle class="dcf-glint" cx="3.8049999999999997" cy="-30.92" r="0.736"/></g><circle cx="12" cy="-31" r="4.6"/><g class="footer-pupil"><circle class="k" cx="12" cy="-31" r="2.3"/><circle class="dcf-glint" cx="12.805" cy="-31.92" r="0.736"/></g></g></g><g transform="translate(845 278) scale(1.48 1.48)"><g class="footer-crew-art" data-crew="kid"><path d="M-15 -6 L-3 -6 C-3 8 -5 20 -6 30 L-15 30 C-15 18 -16 6 -15 -6 Z" />
+        <path d="M3 -6 L15 -6 C17 6 19 16 22 27 L12 30 C10 18 6 6 3 -6 Z" />
+        <path d="M3 -6 L15 -6 C17 6 19 16 22 27 L12 30 C10 18 6 6 3 -6 Z" fill="url(#footer-hatch)" stroke="none" />
+        <path class="k" d="M-17 30 C-20 34 -20 40 -14 41 L-2 41 C2 40 0 34 -5 30 Z" />
+        <path class="k" d="M11 29 C8 34 10 40 16 40 L26 38 C29 36 27 30 22 27 Z" />
+        <path d="M-20 -4 C-22 -20 -18 -38 -10 -44 L10 -44 C18 -38 22 -20 20 -4 Z" />
+        <path class="n thick" d="M-19.5 -14 L19.5 -14 M-18.5 -26 L18.5 -26 M-14 -36 L14 -36" />
+        <path class="n" d="M-18 -36 C-28 -28 -30 -14 -26 -5" />
+        <circle cx="-26" cy="-3" r="4" />
+        <path class="n" d="M18 -36 C27 -30 30 -18 28 -7" />
+        <circle cx="28" cy="-4" r="4" />
+        <circle cx="-17" cy="-58" r="4" />
+        <circle cx="17" cy="-58" r="4" />
+        <circle cx="0" cy="-60" r="17" />
+        <path class="n thin" d="M-11 -52 l2 -2 M-8 -52 l2 -2 M8 -52 l2 -2 M11 -52 l2 -2" />
+        <path class="n" d="M-5 -50 C-2 -47 2 -47 5 -50" />
+        <path d="M-15 -70 C-14 -87 14 -87 15 -70 Z" />
+        <path d="M-27 -68 C-16 -75 16 -75 27 -68 C18 -63 -18 -63 -27 -68 Z" />
+        <path class="n thick" d="M-14.5 -74 C-6 -77 6 -77 14.5 -74" /><g class="footer-pupil"><circle class="k" cx="-6" cy="-58" r="2.5"/><circle class="dcf-glint" cx="-5.125" cy="-59.0" r="0.8"/></g><g class="footer-pupil"><circle class="k" cx="6.5" cy="-58" r="2.5"/><circle class="dcf-glint" cx="7.375" cy="-59.0" r="0.8"/></g></g></g><g transform="translate(1350 443) scale(-1.15 1.15)"><g class="footer-crew-art" data-crew="cat"><ellipse class="dcf-shadow" cx="4" cy="2" rx="32" ry="4" />
+        <g class="dcf-tail">
+          <path d="M18 -4 C42 -4 52 -24 46 -44 C44 -51 36 -53 34 -46 C40 -30 34 -16 16 -14 Z" />
+          <path class="n thin" d="M40 -16 l5 4 M45 -30 l6 1 M43 -42 l6 -3" />
+        </g>
+        <path d="M-22 0 C-28 -18 -24 -42 -14 -52 L14 -52 C24 -42 28 -18 22 0 C10 3 -10 3 -22 0 Z" />
+        <path d="M14 -46 C24 -36 26 -16 22 0 C18 1 14 2 12 2 C16 -14 16 -32 10 -46 Z" fill="url(#footer-hatch)" stroke="none" />
+        <path class="n" d="M-8 -30 L-9 -1 M8 -30 L9 -1" />
+        <path d="M-16 1 C-16 -5 -3 -5 -3 1 Z M3 1 C3 -5 16 -5 16 1 Z" />
+        <path class="a" d="M-18 -55 C-6 -49 6 -49 18 -55 L17 -46 C6 -40 -6 -40 -17 -46 Z" />
+        <path class="a" d="M9 -45 L18 -32 L6 -37 Z" />
+        <path d="M-22 -86 L-25 -107 L-7 -96 Z" />
+        <path d="M8 -96 L23 -108 L22 -86 Z" />
+        <path class="n thin" d="M-20 -92 L-21 -101 M18 -101 L18 -92" />
+        <path d="M-26 -70 C-28 -88 -16 -98 0 -98 C16 -98 28 -88 26 -70 C24 -56 12 -50 0 -50 C-12 -50 -24 -56 -26 -70 Z" />
+        <path class="n thin" d="M-4 -97 L-3 -90 M3 -97 L3 -91" />
+        <path class="n" d="M-26 -80 C-14 -83 4 -87 25 -93" />
+        <ellipse class="k" cx="-10" cy="-76" rx="7.5" ry="6.5" />
+        <path class="k" d="M-2.5 -68 L2.5 -68 L0 -64.5 Z" />
+        <path class="n" d="M0 -64.5 C-1 -60.5 -5 -60.5 -6 -62.5 M0 -64.5 C1 -60.5 5 -60.5 6 -62.5" />
+        <path class="n thin" d="M-15 -66 L-29 -68 M-15 -63 L-28 -59 M15 -66 L29 -68 M15 -63 L28 -59" /><circle cx="10" cy="-76" r="6"/><g class="footer-pupil"><circle class="k" cx="10" cy="-76" r="2.8"/><circle class="dcf-glint" cx="10.98" cy="-77.12" r="0.8959999999999999"/></g></g></g><g transform="translate(515 446) scale(1.2 1.2)"><g class="footer-crew-art" data-crew="mushroom"><ellipse class="dcf-shadow" cx="0" cy="2" rx="18" ry="3" />
+        <path class="n" d="M-10 -15 L-17 -9 M10 -15 L17 -11" />
+        <path d="M-10 0 C-12 -10 -10 -22 -8 -28 L8 -28 C10 -22 12 -10 10 0 C4 2 -4 2 -10 0 Z" />
+        <path d="M5 -27 C9 -20 11 -10 10 0 C8 1 6 1.5 4 1.5 C6 -8 6 -18 2 -27 Z" fill="url(#footer-hatch)" stroke="none" />
+        <path class="r" d="M-25 -28 C-27 -45 -12 -55 0 -55 C12 -55 27 -45 25 -28 C14 -23 -14 -23 -25 -28 Z" />
+        <circle cx="-12" cy="-40" r="4.2" />
+        <circle cx="6" cy="-46" r="3.4" />
+        <circle cx="15" cy="-34" r="3" />
+        <circle cx="-2" cy="-33" r="2.4" />
+        <path class="n" d="M-2 -10 C-1 -8 1 -8 2 -10" /><g class="footer-pupil"><circle class="k" cx="-4.5" cy="-16" r="1.9"/><circle class="dcf-glint" cx="-3.835" cy="-16.76" r="0.608"/></g><g class="footer-pupil"><circle class="k" cx="4.5" cy="-16" r="1.9"/><circle class="dcf-glint" cx="5.165" cy="-16.76" r="0.608"/></g></g></g></g><g class="footer-doodles" stroke="#f5f5f3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" filter="url(#footer-sketch)"><g transform="translate(615 128) rotate(4) scale(1.25)"><path fill="#ffd23f" d="M0 -13 L3.6 -4.4 L13 -4 L5.8 2.2 L8.2 12 L0 6.6 L-8.2 12 L-5.8 2.2 L-13 -4 L-3.6 -4.4 Z" /></g><g transform="translate(52 182) rotate(-12) scale(1.1)"><path fill="#8fdcff" d="M0 -13 C1 -4 4 -1 13 0 C4 1 1 4 0 13 C-1 4 -4 1 -13 0 C-4 -1 -1 -4 0 -13 Z" /></g><g transform="translate(165 237) rotate(25) scale(1.2)"><path fill="#ff7a1a" d="M0 14 C-9 14 -12 6 -10 0 C-8 -5 -4 -6 -4 -12 C1 -9 3 -5 2 -1 C4 -3 5 -6 5 -8 C10 -3 11 4 8 9 C6 12 3 14 0 14 Z" />
+          <path fill="#ffd23f" d="M0 11.5 C-4 11.5 -6 8 -5 5 C-4 2 -1 1 -1 -3 C2 -1 4 3 3 6 C4 5 5 4 5 3 C7 6 5 11.5 0 11.5 Z" /></g><g transform="translate(1365 328) rotate(-35) scale(1)"><path fill="#ff7a1a" d="M0 14 C-9 14 -12 6 -10 0 C-8 -5 -4 -6 -4 -12 C1 -9 3 -5 2 -1 C4 -3 5 -6 5 -8 C10 -3 11 4 8 9 C6 12 3 14 0 14 Z" />
+          <path fill="#ffd23f" d="M0 11.5 C-4 11.5 -6 8 -5 5 C-4 2 -1 1 -1 -3 C2 -1 4 3 3 6 C4 5 5 4 5 3 C7 6 5 11.5 0 11.5 Z" /></g></g></g></svg>
   </footer>
 
   </div><!-- /#smooth-content -->
@@ -285,41 +317,37 @@
 
   <!-- Floating Social Dock -->
   <div class="floating-dock" aria-label="Social links">
-    <a href="https://x.com/_JonXVI" class="dock-item" title="X (Twitter)" target="_blank" rel="noopener noreferrer">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    <a href="https://x.com/_JonXVI" class="dock-item" title="X (Twitter)" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 21L10.5484 13.4516M21 3L13.4516 10.5484M13.4516 10.5484L8 3H3L10.5484 13.4516M13.4516 10.5484L21 21H16L10.5484 13.4516" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
     </a>
-    <a href="https://www.behance.net/Jon_XVI" class="dock-item" title="Behance" target="_blank" rel="noopener noreferrer">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <mask id="behance-mask">
-            <rect width="24" height="24" fill="white" />
-            <path transform="translate(4.2, 4.2) scale(0.65)" d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.897 5.161 4.414h-7.14c.032 1.488 1.054 2.871 2.656 2.871 1.026 0 1.954-.606 2.39-1.554h2.132zm-4.992-3.876c-.035-1.12-1.01-2.124-2.131-2.124-1.294 0-2.079 1.107-2.22 2.124h4.351zm-10.457-3.124h-6.277v14h6.76c2.476 0 4.238-1.547 4.238-4.004 0-2.001-1.391-3.149-2.73-3.342 1.082-.405 2.212-1.579 2.212-3.21 0-2.316-1.761-3.444-4.203-3.444zm-3.277 5.093h2.64c1.161 0 1.802.723 1.802 1.637 0 1.021-.738 1.62-1.84 1.62h-2.602v-3.257zm0 5.86v-3.805h2.827c1.332 0 2.158.825 2.158 1.95 0 1.155-.839 1.855-2.204 1.855h-2.781z" fill="black"/>
-          </mask>
-        </defs>
-        <circle cx="12" cy="12" r="12" fill="currentColor" mask="url(#behance-mask)"/>
-      </svg>
+    <a href="https://wa.me/message/MCBEWYZQSMZII1" class="dock-item" title="WhatsApp" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.3789 2.27907 14.6926 2.78382 15.8877C3.06278 16.5481 3.20226 16.8784 3.21953 17.128C3.2368 17.3776 3.16334 17.6521 3.01642 18.2012L2 22L5.79877 20.9836C6.34788 20.8367 6.62244 20.7632 6.87202 20.7805C7.12161 20.7977 7.45185 20.9372 8.11235 21.2162C9.30745 21.7209 10.6211 22 12 22Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/>
+<path d="M8.58815 12.3773L9.45909 11.2956C9.82616 10.8397 10.2799 10.4153 10.3155 9.80826C10.3244 9.65494 10.2166 8.96657 10.0008 7.58986C9.91601 7.04881 9.41086 7 8.97332 7C8.40314 7 8.11805 7 7.83495 7.12931C7.47714 7.29275 7.10979 7.75231 7.02917 8.13733C6.96539 8.44196 7.01279 8.65187 7.10759 9.07169C7.51023 10.8548 8.45481 12.6158 9.91948 14.0805C11.3842 15.5452 13.1452 16.4898 14.9283 16.8924C15.3481 16.9872 15.558 17.0346 15.8627 16.9708C16.2477 16.8902 16.7072 16.5229 16.8707 16.165C17 15.8819 17 15.5969 17 15.0267C17 14.5891 16.9512 14.084 16.4101 13.9992C15.0334 13.7834 14.3451 13.6756 14.1917 13.6845C13.5847 13.7201 13.1603 14.1738 12.7044 14.5409L11.6227 15.4118" stroke="currentColor" stroke-width="1.5"/></svg>
     </a>
-    <a href="https://www.linkedin.com/in/john-erizu/" class="dock-item" title="LinkedIn" target="_blank" rel="noopener noreferrer">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    <a href="https://www.linkedin.com/in/john-erizu/" class="dock-item" title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M7 10V17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+<path d="M11 13V17M11 13C11 11.3431 12.3431 10 14 10C15.6569 10 17 11.3431 17 13V17M11 13V10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+<path d="M7.125 6.75H7M7.25 6.75C7.25 6.88807 7.13807 7 7 7C6.86193 7 6.75 6.88807 6.75 6.75C6.75 6.61193 6.86193 6.5 7 6.5C7.13807 6.5 7.25 6.61193 7.25 6.75Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+<path d="M3 12C3 7.75736 3 5.63604 4.31802 4.31802C5.63604 3 7.75736 3 12 3C16.2426 3 18.364 3 19.682 4.31802C21 5.63604 21 7.75736 21 12C21 16.2426 21 18.364 19.682 19.682C18.364 21 16.2426 21 12 21C7.75736 21 5.63604 21 4.31802 19.682C3 18.364 3 16.2426 3 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
     </a>
     <div class="dock-divider"></div>
     <a href="#" data-cal-namespace="30min" data-cal-link="john-erizu/30min" data-cal-config='{"layout":"month_view"}' class="dock-cta">Book a call</a>
   </div>
 
   <!-- Contact Modal -->
-  <div class="modal-overlay" id="contact-modal" aria-hidden="true">
+  <div class="modal-overlay" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-heading" aria-hidden="true">
     <div class="modal-container">
       <div class="modal-content">
         <button class="modal-close" aria-label="Close modal">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
-        <h2>Let's collaborate today!</h2>
+        <h2 id="contact-heading">Let's collaborate today!</h2>
         <form action="https://formsubmit.co/johnerizu7@gmail.com" method="POST" class="contact-form">
           <!-- FormSubmit Configuration -->
           <input type="hidden" name="_subject" value="New Portfolio Contact!">
           <input type="hidden" name="_captcha" value="false">
           <!-- Optional redirect back to your site -->
-          <input type="hidden" name="_next" value="https://jon-xvi.github.io/My-Portfolio/">
+          <input type="hidden" name="_next" value="https://johnerizu.vercel.app/">
 
           <div class="form-row">
             <div class="form-group">
@@ -345,44 +373,10 @@
     </div>
   </div>
 
-  <!-- Case Study Overlay Panel (Dribbble-style) -->
-  <div class="case-study-overlay" id="case-study-overlay" aria-hidden="true">
-    <div class="case-study-backdrop" id="case-study-backdrop"></div>
-    <div class="case-study-container" id="case-study-container">
-      <div class="case-study-header-sticky" id="case-study-header-sticky">
-        <div class="case-study-header-inner">
-          <div class="case-study-header-text" id="case-study-header-text"></div>
-          <button class="case-study-close" id="case-study-close" aria-label="Close case study">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          </button>
-        </div>
-      </div>
-      <div class="case-study-content" id="case-study-content">
-        <!-- Content injected dynamically via JavaScript -->
-      </div>
-    </div>
-  </div>
-
-  <!-- Image Lightbox (full-view for case study images) -->
-  <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
-    <button class="image-lightbox-close" id="image-lightbox-close" aria-label="Close full-size image">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="18" y1="6" x2="6" y2="18"></line>
-        <line x1="6" y1="6" x2="18" y2="18"></line>
-      </svg>
-    </button>
-    <img src="" alt="" class="image-lightbox-img" id="image-lightbox-img">
-  </div>
-
   <script src="vendor/gsap.min.js"></script>
   <script src="vendor/ScrollTrigger.min.js"></script>
   <script src="vendor/ScrollSmoother.min.js"></script>
-  <script src="main.dev.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="cms.js"></script>
+  <script src="main.dev.js?v=case-studies-4"></script>
 
   <!-- Cal embed code begins -->
   <script type="text/javascript">
@@ -393,5 +387,7 @@
     Cal.ns["30min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
   </script>
   <!-- Cal embed code ends -->
+  <script src="footer.js?v=sketch-motion-4"></script>
+  <script src="about.js?v=about-4"></script>
 </body>
 </html>

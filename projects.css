@@ -1,0 +1,57 @@
+/* Selected projects follows the same 1440px reference grid as the hero. */
+#projects {
+  padding: calc(100 * var(--hero-unit)) 0 calc(100 * var(--hero-unit));
+  background: #f0f0f0;
+  color: #000;
+  scroll-margin-top: 80px;
+}
+#projects .container-narrow {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0 calc(100 * var(--hero-unit));
+}
+#projects .section-title {
+  margin: 0 0 calc(56 * var(--hero-unit));
+  font-family: Arial, sans-serif;
+  font-size: calc(52 * var(--hero-unit));
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: #000;
+}
+#projects .projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(80 * var(--hero-unit)) calc(16 * var(--hero-unit));
+}
+#projects .project-card { min-width: 0; }
+#projects .project-label { padding-top: 22px; font-family: 'Hero Jakarta', Arial, sans-serif; }
+#projects .project-category { display: block; margin-bottom: 8px; color: #737373; font-size: 14px; line-height: 1.5; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; }
+#projects .project-label h3 { margin: 0; color: #111; font-family: 'Hero Jakarta', Arial, sans-serif; font-size: clamp(18px, 1.67vw, 26px); line-height: 1.4; font-weight: 600; letter-spacing: -.025em; text-decoration: none; }
+#projects .project-img-wrap {
+  aspect-ratio: 3 / 2;
+  border-radius: 0;
+  background: #e5e5e5;
+}
+#projects .project-img { object-fit: cover; object-position: center; }
+#projects [data-case-study="kobo-kounta"] .project-img { transform: scale(1.15); }
+#projects [data-case-study="kobo-kounta"]:hover .project-img { transform: scale(1.18); }
+#projects .project-card:focus-visible { outline: 3px solid #111; outline-offset: 6px; }
+@media (max-width: 1000px) {
+  #projects { padding: 72px 0; }
+  #projects .section-title { font-size: 36px; margin-bottom: 40px; }
+}
+@media (max-width: 600px) {
+  #projects { padding: 56px 0; }
+  #projects .container-narrow { padding: 0 24px; }
+  #projects .section-title { font-size: clamp(24px, 6.7vw, 28px); line-height: 1.15; margin-bottom: 28px; }
+  #projects .projects-grid { grid-template-columns: 1fr; gap: 32px; }
+  #projects .project-label { padding-top: 18px; }
+  #projects .project-category { font-size: 12px; margin-bottom: 6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #projects .project-card, #projects .project-img { transition: none; }
+  #projects .project-card:hover, #projects .project-card:hover .project-img { transform: none; }
+  #projects [data-case-study="kobo-kounta"]:hover .project-img { transform: scale(1.15); }
+}
