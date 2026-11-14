@@ -28,8 +28,7 @@
 #projects .project-card { min-width: 0; }
 #projects .project-label { padding-top: 22px; font-family: 'Hero Jakarta', Arial, sans-serif; }
 #projects .project-category { display: block; margin-bottom: 8px; color: #737373; font-size: 14px; line-height: 1.5; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; }
-#projects .project-label h3 { margin: 0; color: #111; font-family: 'Hero Jakarta', Arial, sans-serif; font-size: clamp(18px, 1.67vw, 26px); line-height: 1.4; font-weight: 600; letter-spacing: -.025em; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
-#projects .project-label h3 span { white-space: nowrap; }
+#projects .project-label h3 { margin: 0; color: #111; font-family: 'Hero Jakarta', Arial, sans-serif; font-size: clamp(18px, 1.67vw, 26px); line-height: 1.4; font-weight: 600; letter-spacing: -.025em; text-decoration: none; }
 #projects .project-img-wrap {
   aspect-ratio: 3 / 2;
   border-radius: 0;
