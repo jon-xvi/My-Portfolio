@@ -60,19 +60,77 @@ function initScrollAnimations() {
 
   mm.add('(prefers-reduced-motion: no-preference)', () => {
     const heroContent = document.querySelector('.hero-content');
+    let cleanupHeadline = () => {};
 
     // Hero: staggered intro on load, then the block drifts up and fades as the next section arrives
     if (heroContent) {
       heroContent.classList.add('is-visible');
-      gsap.from(heroContent.querySelectorAll('.hero-eyebrow, h1, .hero-sub, .hero-cta-wrapper'), {
-        autoAlpha: 0,
-        y: 40,
-        duration: 1,
-        ease: 'power3.out',
-        stagger: 0.12,
-        delay: 0.1,
-        clearProps: 'opacity,visibility,transform'
-      });
+      const headline = heroContent.querySelector('h1');
+      const resumeLink = heroContent.querySelector('.hero-cta-wrapper');
+      if (headline) {
+        const original = headline.textContent.trim();
+        const originalMarkup = headline.innerHTML;
+        headline.setAttribute('aria-label', original);
+        headline.textContent = '';
+        const words = [];
+        original.split(/(\s+)/).filter(Boolean).forEach((part) => {
+          if (/^\s+$/.test(part)) {
+            headline.appendChild(document.createTextNode(part));
+            return;
+          }
+          const mask = document.createElement('span');
+          mask.className = 'hero-word-mask';
+          if (part === 'I’m' || part === 'John,') mask.classList.add('hero-name-hit');
+          mask.setAttribute('aria-hidden', 'true');
+          const word = document.createElement('span');
+          word.className = 'hero-word';
+          word.textContent = part;
+          mask.appendChild(word);
+          headline.appendChild(mask);
+          words.push(word);
+        });
+
+        // Sample the same heading-wide gradient for every independently animated word.
+        headline.classList.add('hero-headline-split');
+        let active = true;
+        const alignGradient = () => {
+          if (!active) return;
+          const bounds = headline.getBoundingClientRect();
+          const offsets = words.map(word => word.getBoundingClientRect().left - bounds.left);
+          headline.style.setProperty('--hero-gradient-width', `${bounds.width}px`);
+          words.forEach((word, index) => word.style.setProperty('--hero-gradient-x', `${-offsets[index]}px`));
+        };
+        alignGradient();
+        const headlineResize = new ResizeObserver(alignGradient);
+        headlineResize.observe(headline);
+        document.fonts.ready.then(alignGradient);
+        cleanupHeadline = () => {
+          active = false;
+          headlineResize.disconnect();
+          headline.innerHTML = originalMarkup;
+          headline.removeAttribute('aria-label');
+          headline.classList.remove('hero-headline-split');
+          headline.style.removeProperty('--hero-gradient-width');
+        };
+
+        const intro = gsap.timeline({ delay: 0.12 });
+        intro.fromTo(words, { yPercent: 115, autoAlpha: 0, filter: 'blur(10px)' }, {
+          yPercent: 0,
+          autoAlpha: 1,
+          filter: 'blur(0px)',
+          duration: 0.82,
+          ease: 'power4.out',
+          stagger: 0.045,
+          clearProps: 'filter,transform,opacity,visibility'
+        });
+        if (resumeLink) intro.fromTo(resumeLink, { y: 14, autoAlpha: 0 }, {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.65,
+          ease: 'power3.out',
+          clearProps: 'transform,opacity,visibility'
+        }, '-=0.25');
+      }
       gsap.to(heroContent, {
         y: -70,
         autoAlpha: 0.2,
@@ -82,13 +140,13 @@ function initScrollAnimations() {
     }
 
     // These wrappers stay put; their children reveal one by one instead
-    const wrappers = gsap.utils.toArray('#experience .animate-on-scroll, #writing .blog-list');
+    const wrappers = gsap.utils.toArray('#experience .animate-on-scroll');
     wrappers.forEach((el) => el.classList.add('is-visible'));
 
     const targets = [
       ...gsap.utils.toArray('.shots-marquee-section'),
       ...gsap.utils.toArray('.animate-on-scroll').filter((el) => el !== heroContent && !wrappers.includes(el)),
-      ...gsap.utils.toArray('.experience-header, .experience-item, .blog-entry')
+      ...gsap.utils.toArray('.experience-header, .experience-item')
     ];
 
     gsap.set(targets, { autoAlpha: 0, y: 48 });
@@ -113,123 +171,11 @@ function initScrollAnimations() {
           }
         })
     });
+    return cleanupHeadline;
   });
 
   mm.add('(prefers-reduced-motion: reduce)', () => {
     elements.forEach((el) => el.classList.add('is-visible'));
-  });
-}
-
-// ============================================
-// Hero headline "melt": letters near the cursor smear, blur and drip as it moves over them
-// Mouse only. Touch devices and reduced-motion users keep the plain headline.
-// ============================================
-function initHeadlineMelt() {
-  const h1 = document.querySelector('.hero-content h1');
-  if (!h1 || typeof gsap === 'undefined') return;
-  const original = h1.textContent.trim();
-
-  gsap.matchMedia().add('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)', () => {
-    // Split into words (kept unbreakable) and letters. Screen readers get the label instead of the spans.
-    h1.setAttribute('aria-label', original);
-    h1.textContent = '';
-    const chars = [];
-    const words = original.split(' ');
-    words.forEach((w, i) => {
-      const word = document.createElement('span');
-      word.className = 'melt-word';
-      word.setAttribute('aria-hidden', 'true');
-      [...w].forEach((ch) => {
-        const c = document.createElement('span');
-        c.className = 'melt-char';
-        c.textContent = ch;
-        word.appendChild(c);
-        chars.push(c);
-      });
-      h1.appendChild(word);
-      if (i < words.length - 1) h1.appendChild(document.createTextNode(' '));
-    });
-
-    gsap.set(chars, { transformOrigin: '50% 0%', '--melt-blur': 0 });
-    // quickTo reuses one tween per property, so updating every frame stays cheap and trails smoothly
-    const to = (c, prop) => gsap.quickTo(c, prop, { duration: 0.7, ease: 'power3.out' });
-    const fx = chars.map((c) => ({
-      y: to(c, 'y'), scaleY: to(c, 'scaleY'), skewX: to(c, 'skewX'), opacity: to(c, 'opacity'), blur: to(c, '--melt-blur')
-    }));
-
-    const RADIUS = 150;
-    let centers = [];
-    let px = 0, py = 0, vx = 0, vy = 0;
-    let inside = false;
-    let settle = null;
-
-    const measure = () => {
-      centers = chars.map((c) => ({ x: c.offsetLeft + c.offsetWidth / 2, y: c.offsetTop + c.offsetHeight / 2 }));
-    };
-
-    const render = () => {
-      const rect = h1.getBoundingClientRect();
-      const mx = px - rect.left;
-      const my = py - rect.top;
-      const speed = Math.min(Math.hypot(vx, vy) / 40, 1);
-      const lean = gsap.utils.clamp(-18, 18, -vx * 0.6);
-      vx *= 0.85;
-      vy *= 0.85;
-      chars.forEach((c, i) => {
-        const d = Math.hypot(centers[i].x - mx, centers[i].y - my);
-        const f = Math.max(0, 1 - d / RADIUS);
-        const k = f * f * (3 - 2 * f);               // smoothstep falloff around the cursor
-        const m = k * (0.45 + 0.55 * speed);         // a resting cursor melts a little, a fast one a lot
-        fx[i].y(m * 18);
-        fx[i].scaleY(1 + m * 0.35);
-        fx[i].skewX(lean * k);
-        fx[i].opacity(1 - m * 0.55);
-        fx[i].blur(m * 7);
-      });
-    };
-
-    const relax = () => {
-      fx.forEach((f) => { f.y(0); f.scaleY(1); f.skewX(0); f.opacity(1); f.blur(0); });
-      settle = gsap.delayedCall(1, () => { if (!inside) h1.classList.remove('is-melting'); });
-    };
-
-    const onEnter = (e) => {
-      if (settle) settle.kill();
-      measure();
-      px = e.clientX; py = e.clientY; vx = vy = 0;
-      inside = true;
-      h1.classList.add('is-melting');
-      gsap.ticker.add(render);
-    };
-    const onMove = (e) => {
-      vx = e.clientX - px; vy = e.clientY - py;
-      px = e.clientX; py = e.clientY;
-    };
-    const onLeave = () => {
-      inside = false;
-      gsap.ticker.remove(render);
-      relax();
-    };
-
-    measure();
-    const ro = new ResizeObserver(measure);
-    ro.observe(h1);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
-    h1.addEventListener('pointerenter', onEnter);
-    h1.addEventListener('pointermove', onMove);
-    h1.addEventListener('pointerleave', onLeave);
-
-    return () => {
-      gsap.ticker.remove(render);
-      ro.disconnect();
-      if (settle) settle.kill();
-      h1.removeEventListener('pointerenter', onEnter);
-      h1.removeEventListener('pointermove', onMove);
-      h1.removeEventListener('pointerleave', onLeave);
-      h1.classList.remove('is-melting');
-      h1.textContent = original;
-      h1.removeAttribute('aria-label');
-    };
   });
 }
 
@@ -289,9 +235,13 @@ function initModal() {
 
   const triggers = document.querySelectorAll('[data-modal-trigger="contact-modal"]');
   const closeBtn = modal.querySelector('.modal-close');
+  let returnFocus = null;
+  modal.inert = true;
 
   const openModal = (e) => {
     e.preventDefault();
+    returnFocus = e.currentTarget;
+    modal.inert = false;
     modal.setAttribute('aria-hidden', 'false');
     // Close mobile nav if it's open
     const navbar = document.getElementById('navbar');
@@ -300,10 +250,15 @@ function initModal() {
       navbar.classList.remove('nav-open');
       navToggle.setAttribute('aria-expanded', 'false');
     }
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      if (modal.getAttribute('aria-hidden') === 'false') closeBtn.focus({ preventScroll: true });
+    }));
   };
 
   const closeModal = () => {
     modal.setAttribute('aria-hidden', 'true');
+    modal.inert = true;
+    returnFocus?.focus({ preventScroll: true });
   };
 
   triggers.forEach(trigger => trigger.addEventListener('click', openModal));
@@ -318,8 +273,22 @@ function initModal() {
 
   // Close on Escape key
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
+    if (modal.getAttribute('aria-hidden') !== 'false') return;
+    if (e.key === 'Escape') {
       closeModal();
+    }
+    if (e.key === 'Tab') {
+      const controls = [...modal.querySelectorAll('a[href], button, input:not([type="hidden"]), textarea, select, [tabindex="0"]')]
+        .filter(control => !control.disabled && control.getClientRects().length);
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     }
   });
 }
@@ -505,37 +474,101 @@ function initImageLightbox() {
 }
 
 // ============================================
-// Shots Marquee (GSAP)
+// Decorative light behind the hero content
 // ============================================
-function initMarquee() {
-  const section = document.querySelector('.shots-marquee-section');
-  const track = section && section.querySelector('.marquee-track');
-  if (!track || typeof gsap === 'undefined') return; // CSS animation stays as the fallback
+function initHeroSpotlight() {
+  const hero = document.querySelector('.hero');
+  const content = hero?.querySelector('.hero-content');
+  const light = hero?.querySelector('.hero-spotlight');
+  if (!content || !light || typeof gsap === 'undefined') return;
 
-  track.style.animation = 'none';
-
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  // The content is duplicated, so sliding exactly -50% loops seamlessly.
-  const tween = gsap.to(track, {
-    xPercent: -50,
-    duration: 40,
-    ease: 'none',
-    repeat: -1,
-    force3D: true,
+  gsap.matchMedia().add('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)', () => {
+    gsap.set(light, { xPercent: -50, yPercent: -50 });
+    const xTo = gsap.quickTo(light, 'x', { duration: .45, ease: 'power3.out' });
+    const yTo = gsap.quickTo(light, 'y', { duration: .45, ease: 'power3.out' });
+    const position = event => {
+      const bounds = hero.getBoundingClientRect();
+      return { x: event.clientX - bounds.left, y: event.clientY - bounds.top };
+    };
+    const enter = event => {
+      const point = position(event);
+      xTo(point.x, point.x);
+      yTo(point.y, point.y);
+      hero.classList.add('is-spotlit');
+    };
+    const move = event => {
+      const point = position(event);
+      xTo(point.x);
+      yTo(point.y);
+    };
+    const leave = () => hero.classList.remove('is-spotlit');
+    content.addEventListener('pointerenter', enter);
+    content.addEventListener('pointermove', move);
+    content.addEventListener('pointerleave', leave);
+    return () => {
+      leave();
+      content.removeEventListener('pointerenter', enter);
+      content.removeEventListener('pointermove', move);
+      content.removeEventListener('pointerleave', leave);
+    };
   });
-
-  // Ease into motion on load instead of starting at full speed.
-  tween.timeScale(0);
-  gsap.to(tween, { timeScale: 1, duration: 1.6, ease: 'power2.out' });
-
-  // Don't burn frames while the marquee is off-screen.
-  new IntersectionObserver(([entry]) => {
-    if (entry.isIntersecting) tween.resume();
-    else tween.pause();
-  }).observe(section);
 }
 
+// The portrait is outside the word masks so the intro cannot clip it.
+function initHeroNamePortrait() {
+  const content = document.querySelector('.hero-content');
+  const headline = content?.querySelector('h1');
+  const portrait = content?.querySelector('.hero-name-portrait');
+  if (!headline || !portrait) return;
+  const pointer = matchMedia('(hover: hover) and (pointer: fine)');
+  const hide = () => content.classList.remove('is-name-hovered');
+  headline.addEventListener('pointermove', event => {
+    if (!pointer.matches || event.pointerType === 'touch') return;
+    const parts = [...headline.querySelectorAll('.hero-name, .hero-name-hit')];
+    if (!parts.length) return;
+    const boxes = parts.map(part => part.getBoundingClientRect());
+    const left = Math.min(...boxes.map(box => box.left));
+    const right = Math.max(...boxes.map(box => box.right));
+    const top = Math.min(...boxes.map(box => box.top));
+    const bottom = Math.max(...boxes.map(box => box.bottom));
+    if (event.clientX < left || event.clientX > right || event.clientY < top || event.clientY > bottom) { hide(); return; }
+    const container = content.getBoundingClientRect();
+    portrait.style.left = `${(left + right) / 2 - container.left - portrait.offsetWidth / 2}px`;
+    portrait.style.top = `${top - container.top - portrait.offsetHeight + 8}px`;
+    content.classList.add('is-name-hovered');
+  }, { passive: true });
+  headline.addEventListener('pointerleave', hide);
+  window.addEventListener('scroll', hide, { passive: true });
+  window.addEventListener('resize', hide, { passive: true });
+  pointer.addEventListener('change', hide);
+}
+
+// Controls for the continuous CSS image marquee.
+function initMarquee() {
+  const section = document.querySelector('.shots-marquee-section');
+  const toggle = section?.querySelector('.hero-marquee-toggle');
+  if (!section || !toggle) return;
+
+  // CSS owns the continuous loop; JavaScript only controls the pause button.
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let userPaused = null;
+  const syncPlayback = () => {
+    const paused = userPaused ?? reducedMotion.matches;
+    section.style.setProperty('--marquee-state', paused ? 'paused' : 'running');
+    toggle.textContent = paused ? 'Play' : 'Pause';
+    toggle.setAttribute('aria-label', paused ? 'Resume image scrolling' : 'Pause image scrolling');
+  };
+  toggle.hidden = false;
+  toggle.addEventListener('click', () => {
+    userPaused = !(userPaused ?? reducedMotion.matches);
+    syncPlayback();
+  });
+  reducedMotion.addEventListener('change', () => {
+    userPaused = null;
+    syncPlayback();
+  });
+  syncPlayback();
+}
 // ============================================
 // Floating Dock Scroll Visibility
 // ============================================
@@ -546,18 +579,56 @@ function initFloatingDockVisibility() {
 
   const handleScroll = () => {
     const heroHeight = hero.offsetHeight;
-    // Reveal the dock when scrolled past 80% of the hero section height
-    if (window.scrollY > heroHeight * 0.8) {
-      dock.classList.add('dock-visible');
-    } else {
-      dock.classList.remove('dock-visible');
-    }
+    const pageHeight = document.querySelector('#smooth-content')?.scrollHeight || document.documentElement.scrollHeight;
+    const atBottom = window.scrollY + window.innerHeight >= pageHeight - 72;
+    const visible = window.scrollY > heroHeight * 0.8 && !atBottom;
+    dock.classList.toggle('dock-visible', visible);
+    dock.inert = !visible;
+    dock.setAttribute('aria-hidden', String(!visible));
   };
 
   // Check visibility on load in case the page is already scrolled down
   handleScroll();
 
   window.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener('resize', handleScroll, { passive: true });
+  new ResizeObserver(handleScroll).observe(document.querySelector('#smooth-content'));
+}
+
+// Stay attached to the viewport, reveal on upward scroll, and keep open menus usable.
+function initDirectionalNav() {
+  const nav = document.getElementById('navbar');
+  if (!nav) return;
+  let lastY = Math.max(0, window.scrollY);
+  let direction = 0, distance = 0;
+  const reveal = () => nav.classList.remove('nav-hidden');
+  const update = () => {
+    const y = Math.max(0, window.scrollY);
+    const delta = y - lastY;
+    lastY = y;
+    if (y < nav.offsetHeight || nav.classList.contains('nav-open') || nav.querySelector(':focus-visible')) {
+      reveal(); distance = 0; return;
+    }
+    if (Math.abs(delta) < .5) return;
+    const nextDirection = Math.sign(delta);
+    if (nextDirection !== direction) distance = 0;
+    direction = nextDirection;
+    distance += Math.abs(delta);
+    if (distance >= (direction < 0 ? 6 : 14)) nav.classList.toggle('nav-hidden', direction > 0);
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  nav.addEventListener('focusin', reveal);
+  nav.querySelector('#nav-toggle')?.addEventListener('click', reveal);
+  window.addEventListener('resize', () => { lastY = Math.max(0, window.scrollY); distance = 0; reveal(); }, { passive: true });
+}
+
+function initFooterBlurVisibility() {
+  const footer = document.querySelector('#contact');
+  const blur = document.querySelector('.progressive-blur');
+  if (!footer || !blur) return;
+  new IntersectionObserver(entries => {
+    blur.classList.toggle('footer-in-view', entries[0].isIntersecting);
+  }, { threshold: 0 }).observe(footer);
 }
 
 // ============================================
@@ -594,14 +665,18 @@ function initProtection() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  initMarquee();
   initMobileNav();
+  initDirectionalNav();
   initSmoothScroll(); // creates the ScrollSmoother, which must exist before any ScrollTrigger
   initScrollAnimations();
-  initHeadlineMelt();
+  initHeroSpotlight();
+  initHeroNamePortrait();
   initModal();
   initCaseStudyOverlay();
   initImageLightbox();
-  initMarquee();
+
   initFloatingDockVisibility();
+  initFooterBlurVisibility();
   initProtection();
 });

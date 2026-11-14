@@ -1,0 +1,40 @@
+/* The title's intrinsic width defines the portrait frame, ending at the U. */
+#about { padding: calc(110 * var(--hero-unit)) 0 calc(144 * var(--hero-unit)); background: #fdfdfd; color: #111; scroll-margin-top: 68px; }
+.about-layout { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: calc(30 * var(--hero-unit)); width: calc(908 * var(--hero-unit)); margin-left: calc(283 * var(--hero-unit)); font-family: Arial, sans-serif; }
+#about-heading { grid-column: 1; width: max-content; margin: 0; color: #000; font-family: Arial, sans-serif; font-size: calc(64 * var(--hero-unit)); line-height: 1.1; font-weight: 700; letter-spacing: -.025em; }
+.about-body { display: contents; }
+.about-copy { grid-column: 2; grid-row: 2; min-width: 0; font-size: max(15px, calc(15.5 * var(--hero-unit))); line-height: 1.85; font-weight: 400; }
+.about-copy p { max-width: none; margin: 0; color: inherit; font: inherit; }
+.about-copy p + p { margin-top: clamp(12px, 1.25vw, 22px); }
+.about-portrait-wrap { grid-column: 1; grid-row: 2; position: relative; isolation: isolate; width: 100%; min-width: 0; align-self: stretch; }
+.about-portrait-wrap::before { content: ''; display: block; padding-top: 137.96034%; }
+.about-portrait-stage { position: absolute; inset: 0; z-index: 1; transform-origin: 50% 100%; }
+.about-portrait { display: block; width: 100%; height: 100%; object-fit: cover; }
+.about-text-ring { position: absolute; z-index: 0; width: calc(160 * var(--hero-unit)); height: auto; left: calc(-80 * var(--hero-unit)); bottom: calc(-70 * var(--hero-unit)); overflow: visible; fill: #111; transform-origin: center; }
+.about-text-ring text { font: 600 13px Arial, sans-serif; }
+@media (prefers-reduced-motion: no-preference) {
+  .about-text-ring { animation: about-ring-turn 24s linear infinite; animation-play-state: paused; }
+  .about-in-view .about-text-ring { animation-play-state: running; }
+  @keyframes about-ring-turn { to { transform: rotate(360deg); } }
+}
+@media (max-width: 1200px) {
+  #about { padding: 72px 0 120px; }
+  .about-layout { width: calc(100% - 96px); margin: 0 auto; gap: 24px; }
+  #about-heading { font-size: clamp(40px, 4.45vw, 54px); }
+  .about-copy { font-size: 15px; line-height: 1.7; }
+}
+@media (max-width: 900px) {
+  #about { padding: 64px 24px 72px; }
+  .about-layout { display: block; width: 100%; max-width: 600px; margin: 0 auto; }
+  #about-heading { font-size: clamp(28px, 5vw, 44px); margin-bottom: 28px; }
+  .about-body { display: flex; flex-direction: column; gap: 76px; }
+  .about-portrait-wrap { width: 100%; max-width: 400px; margin-left: 0; align-self: flex-start; }
+  .about-text-ring { width: 112px; left: -56px; bottom: -49px; }
+  .about-text-ring text { font-size: 14px; }
+  .about-copy { font-size: 16px; line-height: 1.8; }
+  .about-copy p + p { margin-top: 22px; }
+}
+@media (max-width: 600px) {
+  #about { padding: 48px 24px 56px; }
+  #about-heading { font-size: clamp(26px, 7.2vw, 30px); margin-bottom: 24px; }
+}

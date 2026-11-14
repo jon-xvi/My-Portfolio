@@ -1,0 +1,90 @@
+/* Doodle Crew artwork adapted to the supplied footer composition. */
+.sketch-footer {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  aspect-ratio: 1440 / 438;
+  padding: 0;
+  overflow: hidden;
+  background: #090909;
+  color: #f5f5f3;
+}
+.sketch-footer-top {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 5.3vw;
+  padding: 5.55vw 6.94vw 0;
+  font-family: Arial, sans-serif;
+}
+.sketch-footer-cta {
+  justify-self: start;
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #f1f1d5;
+  font: 600 clamp(18px, 1.32vw, 26px) / 1.4 'Hero Jakarta', sans-serif;
+  cursor: pointer;
+}
+.sketch-footer-links { display: flex; gap: 7.5vw; }
+.sketch-footer-links a,
+.sketch-footer-copyright { font-size: clamp(14px, .98vw, 20px); line-height: 1.5; white-space: nowrap; }
+.sketch-footer-links a { color: #a5a5a5; text-decoration: none; transition: color .2s; }
+.sketch-footer-copyright { color: #797979; }
+.sketch-footer-cta:hover,
+.sketch-footer-links a:hover { color: #fff; text-decoration: underline; text-underline-offset: 6px; }
+.sketch-footer a:focus-visible,
+.sketch-footer button:focus-visible { outline: 2px solid #bce5a6; outline-offset: 7px; border-radius: 2px; }
+.footer-illustration { position: absolute; inset: 0; display: block; width: 100%; height: 100%; user-select: none; }
+.footer-crew-art { fill: #090909; stroke: #f5f5f3; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.footer-crew-art .n { fill: none; }
+.footer-crew-art .k { fill: #f5f5f3; }
+.footer-crew-art .a { fill: #ff7a1a; }
+.footer-crew-art .o { fill: #ff9f1c; }
+.footer-crew-art .r { fill: #ff4d4d; }
+.footer-crew-art .thin { stroke-width: 1.5; }
+.footer-crew-art .thick { stroke-width: 3.4; }
+.footer-crew-art .dcf-glint { fill: #090909; stroke: none; }
+.footer-crew-art .dcf-shadow { fill: #f5f5f3; stroke: none; opacity: .14; }
+.footer-accessible-name { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.sketch-footer-copyright { position: relative; }
+.footer-crew-controls[hidden], .footer-speech[hidden] { display: none; }
+.footer-crew-controls { position: absolute; inset: 0; pointer-events: none; }
+.footer-crew-button { position: absolute; transform: translate(-50%, -50%); min-width: 28px; min-height: 28px; padding: 0; border: 0; background: transparent; border-radius: 12px; cursor: pointer; pointer-events: auto; -webkit-tap-highlight-color: transparent; }
+.footer-crew-button:focus-visible { outline: 2px dashed #bce5a6; outline-offset: 2px; }
+.footer-speech { position: absolute; z-index: 3; max-width: calc(100% - 24px); padding: 8px 12px; border: 2px solid #f5f5f3; border-radius: 14px; background: #090909; color: #f5f5f3; font: 600 13px/1.35 'Hero Jakarta', sans-serif; box-shadow: 3px 3px #f5f5f3; pointer-events: none; }
+.footer-motion-ready .footer-doodle-mover { cursor: pointer; }
+.footer-crew-art { filter: url(#footer-sketch); }
+@media (prefers-reduced-motion: no-preference) {
+  .footer-motion-ready .footer-idle,
+  .footer-motion-ready .dcf-tail,
+  .footer-motion-ready .footer-eye-blink { transform-box: fill-box; transform-origin: 50% 100%; animation: footer-bob 3.2s ease-in-out infinite; animation-delay: var(--idle-delay, 0s); animation-play-state: paused; }
+  .footer-motion-ready .footer-idle[data-kind="bird"] { animation-name: footer-peck; animation-duration: 5.5s; }
+  .footer-motion-ready .footer-idle[data-kind="mushroom"],
+  .footer-motion-ready .footer-idle[data-kind="yeti"] { animation-name: footer-sway; animation-duration: 4s; }
+  .footer-motion-ready .footer-idle[data-kind="cat"] { animation-name: footer-sway; animation-duration: 5s; }
+  .footer-motion-ready .dcf-tail { transform-origin: 0% 100%; animation-name: footer-tail; animation-duration: 2.8s; }
+  .footer-motion-ready .footer-eye-blink { transform-origin: center; animation-name: footer-blink; animation-duration: 4.6s; animation-delay: var(--blink-delay, 0s); }
+  .footer-animating .footer-idle,
+  .footer-animating .dcf-tail,
+  .footer-animating .footer-eye-blink { animation-play-state: running; }
+  @keyframes footer-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+  @keyframes footer-sway { 0%,100% { transform: rotate(-2deg); } 50% { transform: rotate(2.5deg); } }
+  @keyframes footer-peck { 0%,62%,100% { transform: none; } 66% { transform: rotate(14deg) translateY(2px); } 70%,78% { transform: none; } 74% { transform: rotate(12deg) translateY(2px); } }
+  @keyframes footer-tail { 0%,100% { transform: rotate(0); } 50% { transform: rotate(-12deg); } }
+  @keyframes footer-blink { 0%,42%,46%,100% { transform: scaleY(1); } 44% { transform: scaleY(.08); } }
+}
+@media (max-width: 700px) {
+  .sketch-footer { aspect-ratio: auto; height: auto; min-height: 280px; padding-bottom: 30.42vw; }
+  .sketch-footer-top { grid-template-columns: 1fr; gap: 16px; padding: 28px 24px 8px; }
+  .sketch-footer-cta { font-size: 20px; }
+  .sketch-footer-links { gap: 32px; }
+  .sketch-footer-links a, .sketch-footer-copyright { font-size: 14px; }
+  .sketch-footer-copyright { margin-top: -8px; }
+  .footer-illustration { inset: auto 0 0; height: auto; width: 100%; }
+  .footer-crew-controls { inset: auto 0 0; height: auto; aspect-ratio: 1440 / 438; }
+  .footer-crew-button { min-width: 32px; min-height: 32px; }
+}

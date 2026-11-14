@@ -109,9 +109,9 @@ body {
   transition: var(--transition-color);
 }
 
-/* Room for the floating dock; lives on the scrolled content so ScrollSmoother measures it */
+/* The page ends at the footer; the floating dock overlays the content. */
 #smooth-content {
-  padding-bottom: 80px;
+  padding-bottom:0;
 }
 
 /* ============================================ */
@@ -419,25 +419,6 @@ section {
   max-width: 14em;
   margin-bottom: 32px;
   text-wrap: balance;
-}
-
-/* Headline melt (see initHeadlineMelt). Words stay unbreakable; the blur is only switched on while the cursor is over it. */
-.hero-content h1 {
-  position: relative;
-}
-
-.melt-word {
-  display: inline-block;
-  white-space: nowrap;
-}
-
-.melt-char {
-  display: inline-block;
-}
-
-.hero-content h1.is-melting .melt-char {
-  filter: blur(calc(var(--melt-blur, 0) * 1px));
-  will-change: transform, filter, opacity;
 }
 
 .hero-sub {
@@ -2019,3 +2000,7 @@ html.dark .about-tag {
   opacity: 1;
   background-color: var(--fg);
 }
+
+/* Keep the contact dialog usable on short mobile screens. */
+.modal-container { max-height: calc(100dvh - 32px); overflow-y: auto; overscroll-behavior: contain; border-radius: 24px; }
+@media (max-width: 500px) { .modal-content { padding: 28px 24px; } .modal-content h2 { padding-right: 32px; font-size: 24px; } }
