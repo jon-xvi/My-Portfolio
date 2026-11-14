@@ -215,7 +215,8 @@ function initSmoothScroll() {
         e.preventDefault();
         const navHeight = document.getElementById('navbar')?.offsetHeight || 64;
         if (smoother) {
-          smoother.scrollTo(target, true, `top ${navHeight}px`);
+          const top = target.getBoundingClientRect().top - document.getElementById('smooth-content').getBoundingClientRect().top - navHeight;
+          smoother.scrollTo(Math.max(0, top), true);
         } else {
           const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
           window.scrollTo({ top: targetPosition, behavior: 'smooth' });
@@ -289,186 +290,6 @@ function initModal() {
         e.preventDefault();
         first.focus();
       }
-    }
-  });
-}
-
-// ============================================
-// Case Study Slide-up Overlay (Dribbble-Style)
-// ============================================
-
-const CASE_STUDIES = {
-  "kobo-kounta": {
-    title: "Kobo Kounta",
-    tag: "Product & UX Design",
-    lead: "A mobile-first budgeting app built to turn financial discipline into a daily habit for Nigeria's paycheck-to-paycheck workforce.",
-    image: "artifacts/Kobo%20Kounta/kobo-kounta-demo.mp4",
-    content: `<h3>Overview</h3><p>Kobo Kounta is a mobile-first budgeting app built for Nigeria's paycheck-to-paycheck workforce, currently in product design as version 1.0 and in review. The product targets a specific gap: Nigerians already know they should save, and informal saving traditions — ajo, esusu, adashi — prove the instinct is already there. What's missing is a daily structure that turns that intention into a habit, so the app is built around a track–review–save–celebrate loop rather than a static ledger.</p><p>The mission driving the product: <strong>"To make financial discipline frictionless and consistent savings the default for every Nigerian, regardless of income level."</strong></p><h3>The Problem</h3><p>Fewer than 4% of Nigerian adults — roughly 3 million people — are invested in the Nigerian Stock Exchange, not for lack of available products, but because the foundational habits of saving and tracking never form in the first place. Most Nigerians have no personal financial tracking system at all: spending stays invisible, patterns stay unknown, and improvement becomes close to impossible. Three specific failures keep people stuck.</p><ul><li><strong>No daily tracking:</strong> Without a running record, users can't see their own spending patterns, so they can't identify waste, measure progress, or make an intentional decision.</li><li><strong>No daily loop:</strong> Saving takes consistency, not just intention. It takes roughly 66 days on average to build a new habit, and most financial apps aren't built to carry someone through that stretch.</li><li><strong>No reinforcement:</strong> Nothing prompts an overspend in the moment, nothing celebrates a milestone, and any consequence stays invisible until it's already too late.</li></ul><h3>Who It's For</h3><p>The primary user is 22–40 years old, has a smartphone and a regular income, and already understands savings and investing in principle — what they lack is a structured system to act on it. Three segments shape the feature set.</p><ul><li><strong>9–5 Workers:</strong> Salaried, regular monthly income, recurring rent, transport and utility costs. Primary need: structured budgeting and savings targets.</li><li><strong>Busy Executives:</strong> High earners with complex finances and little time to manage money. Primary need: quick insight, automated analysis, high-level oversight.</li><li><strong>Freelancers:</strong> Variable income, irregular cash flow, inconsistent saving habits. Primary need: income smoothing and flexible savings goals.</li></ul><p>In practice: a young Lagos professional earns ₦350,000 a month and owes ₦1,800,000 in rent annually. At the start of the month she logs her income and recurring expenses into Kobo Kounta. The app calculates the monthly savings rate she needs to hit that rent obligation — ₦150,000 — then flags a further ₦80,000 as idle funds for the 25-day window before rent is due, and surfaces a short-term money market fund against it. Money that would otherwise sit dormant in a zero-interest account starts earning a return instead.</p><h3>Early Screens</h3><p>The first flows built out are the ones that set the tone before the user does anything: the brand moment on launch, the onboarding welcome, and the Financial Snapshot — the dashboard the design principles are built around, since a user should reach it within five minutes of download.</p><div class="gallery-wrapper"><div class="gallery-track"><button class="gallery-arrow gallery-arrow-left" aria-label="Previous image" onclick="const g=this.nextElementSibling; g.scrollBy({left:-(g.querySelector('img').offsetWidth+16),behavior:'smooth'})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button><div class="horizontal-scroll-gallery" onscroll="const d=this.parentElement.nextElementSibling.children; const m=this.scrollWidth-this.clientWidth; const i=m>0?Math.round((this.scrollLeft/m)*(d.length-1)):0; Array.from(d).forEach((x,j)=>x.className=j===i?'dot active':'dot')"><img src="artifacts/Kobo%20Kounta/brand-launch.jpg" alt="Brand launch screen" loading="lazy" decoding="async"><img src="artifacts/Kobo%20Kounta/onboarding-welcome.jpg" alt="Onboarding welcome screen" loading="lazy" decoding="async"><img src="artifacts/Kobo%20Kounta/financial-snapshot-dark.jpg" alt="Financial Snapshot dashboard" loading="lazy" decoding="async"><img src="artifacts/Kobo%20Kounta/financial-snapshot-context.jpg" alt="Financial Snapshot shown in hand" loading="lazy" decoding="async"></div><button class="gallery-arrow gallery-arrow-right" aria-label="Next image" onclick="const g=this.previousElementSibling; g.scrollBy({left:g.querySelector('img').offsetWidth+16,behavior:'smooth'})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button></div><div class="gallery-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><h3>Design Principles</h3><ul><li><strong>Frictionless logging:</strong> Every interaction to log an expense should take three taps or fewer — the habit fails if the logging itself is the chore.</li><li><strong>Proactive, not reactive:</strong> Kobo Kounta pushes insight to the user at relevant moments; the user should never have to go looking for their own numbers.</li><li><strong>Trust through transparency:</strong> Every calculation and every suggestion has to be explainable in plain language — no black-box scores.</li><li><strong>Built for Nigeria:</strong> ₦ formatting, local institutions and local investment instruments run through the design, not a US or UK template with the currency symbol swapped.</li></ul><h3>Feature Scope</h3><p>Seven features are treated as non-negotiable for a first release; two are valuable enough to include if time allows; one is explicitly deferred.</p><h4>Must-Have</h4><ul><li>Expense tracker</li><li>Financial analysis engine</li><li>Savings goal manager</li><li>SMS integration</li><li>Push notification engine</li><li>Authentication &amp; secure storage</li><li>Financial dashboard</li></ul><h4>Should-Have</h4><ul><li>Investment opportunity prompts</li><li>Debt tracker</li></ul><h4>Nice-to-Have</h4><ul><li>In-app financial education</li></ul><h3>What's Next</h3><p>Two constraints are shaping the next round of design work. iOS doesn't permit third-party SMS access, so auto-logging — the low-friction path Android gets for free — isn't available there. That's currently pushing exploration toward a faster manual-entry surface for iOS specifically.</p><ul><li><strong>Offline quick-add widget (being scoped):</strong> A home-screen widget that logs a transaction straight to local storage, no connectivity and no re-login required, with a background job syncing it once the device is back online. Closes the SMS-parity gap on iOS in particular.</li><li><strong>Investment opportunity prompts &amp; debt tracker (should-have):</strong> Scoped and prioritized, not yet designed.</li><li><strong>In-app financial education (nice-to-have):</strong> Bite-sized budgeting content, surfaced contextually rather than as a separate section.</li></ul>`
-  },
-  "maildrip-redesign": {
-    title: "MailDrip Opt-In Forms Redesign",
-    tag: "UX/UI Design",
-    lead: "A complete UX and UI redesign of MailDrip's opt-in forms, shifting from a complex page-builder to a simple, goal-driven workflow.",
-    image: "artifacts/opt-in-case-study/cursorful-video-compressed.mp4",
-    content: `<h3>Overview</h3><p>MailDrip's Opt-In Pages feature was designed to help users collect leads, grow their audience, and capture customer information. Despite being a core growth feature, adoption remained low and users frequently abandoned the creation flow before publishing a form.</p><p>The objective of this redesign was to improve both the user experience and visual experience by simplifying the workflow, reducing friction, and creating a modern interface that encouraged users to complete and publish forms confidently.</p><div class="gallery-wrapper"><div class="gallery-track"><button class="gallery-arrow gallery-arrow-left" aria-label="Previous image" onclick="const g=this.nextElementSibling; g.scrollBy({left:-(g.querySelector('img').offsetWidth+16),behavior:'smooth'})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button><div class="horizontal-scroll-gallery" onscroll="const d=this.parentElement.nextElementSibling.children; const m=this.scrollWidth-this.clientWidth; const i=m>0?Math.round((this.scrollLeft/m)*(d.length-1)):0; Array.from(d).forEach((x,j)=>x.className=j===i?'dot active':'dot')"><img src="artifacts/opt-in-case-study/PS%201.png" alt="Problem State 1" loading="lazy" decoding="async"><img src="artifacts/opt-in-case-study/PS%202.png" alt="Problem State 2" loading="lazy" decoding="async"><img src="artifacts/opt-in-case-study/PS%203.png" alt="Problem State 3" loading="lazy" decoding="async"></div><button class="gallery-arrow gallery-arrow-right" aria-label="Next image" onclick="const g=this.previousElementSibling; g.scrollBy({left:g.querySelector('img').offsetWidth+16,behavior:'smooth'})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button></div><div class="gallery-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div></div><h3>The Problem</h3><p>After auditing the existing product and reviewing user behaviour, it became clear that the feature suffered from both UX and UI issues.</p><h4>UX Problems</h4><ul><li><strong>Complex Mental Model:</strong> The feature was built around creating complete "Opt-In Pages" rather than simple lead-capture forms. Many users only wanted to collect emails or registrations, yet the workflow forced them into a page-building experience that felt unnecessarily complicated.</li><li><strong>Marketing Jargon:</strong> Terms such as Opt-In Pages, Lead Magnets, and Conversion Funnels created confusion, especially for creators and small business owners who were focused on outcomes rather than marketing terminology.</li><li><strong>High Cognitive Load:</strong> Users were required to make multiple configuration decisions before seeing value. Starting from a blank canvas increased friction and contributed to workflow abandonment.</li></ul><h4>UI Problems</h4><ul><li><strong>Poor Visual Hierarchy:</strong> Important actions competed for attention, making it difficult for users to understand where to start or what to do next. Primary and secondary actions lacked clear distinction, increasing decision fatigue.</li><li><strong>Outdated Interface Design:</strong> The interface felt visually dense and dated. Large blocks of content, inconsistent spacing, and crowded layouts made the experience feel more complicated than it actually was.</li><li><strong>Weak Information Scanning:</strong> Users had to read through multiple sections before understanding available templates and options. The lack of visual grouping made information difficult to scan and process quickly.</li><li><strong>Low Perceived Quality:</strong> The visual design did not reflect the quality expected from a modern SaaS product. This affected user confidence during form creation and reduced the perceived value of the feature.</li></ul><h3>Research Insights</h3><p>Through user feedback and workflow analysis, one insight became obvious: Users were not trying to build pages. They were trying to achieve specific outcomes.</p><p>Their goals were simple: Grow an audience, Capture leads, Collect registrations, Promote an event.</p><p>This insight became the foundation for both the UX and UI redesign.</p><h3>Design Strategy</h3><p>The redesign focused on two parallel objectives:</p><ol><li><strong>Simplify the Experience:</strong> Move from a page-centric workflow to an intent-driven workflow.</li><li><strong>Modernize the Interface:</strong> Create a cleaner, more structured visual system that improved clarity, usability, and trust.</li></ol><h3>Key Design Decisions</h3><ul><li><strong>Reframing "Opt-In Pages" as "Opt-In Forms":</strong> The feature was renamed to better match user expectations. Users immediately understood what they were creating, reducing confusion before the workflow even began.</li><li><strong>Goal-Based Entry Points:</strong> Rather than asking users what type of page they wanted to build, the system now asks: "What would you like this form to achieve?" Options included Grow Your Audience, Capture Leads, Promote an Event, and Drive Customer Action. This aligned the product with users' natural thought process.</li><li><strong>AI-Assisted Form Generation:</strong> To eliminate blank-page anxiety, users can describe their objective in plain language. The system automatically generates a recommended structure, fields, and layout based on the intended goal. This significantly reduces setup time while helping users reach value faster.</li><li><strong>Visual System Overhaul:</strong> A complete interface redesign introduced clear visual hierarchy, consistent spacing system, improved typography scale, stronger contrast between actions, better content grouping, and reduced visual clutter. The result was a cleaner experience that required less effort to understand and navigate.</li><li><strong>Redesigned Template Experience:</strong> Templates were reorganized around common user goals instead of technical categories. Each template included clear use-case descriptions, visual previews, and recommended scenarios. This made selection faster and more intuitive.</li></ul><div class="gallery-wrapper"><div class="gallery-track"><button class="gallery-arrow gallery-arrow-left" aria-label="Previous image" onclick="const g=this.nextElementSibling; g.scrollBy({left:-(g.querySelector('img').offsetWidth+16),behavior:'smooth'})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button><div class="horizontal-scroll-gallery" onscroll="const d=this.parentElement.nextElementSibling.children; const m=this.scrollWidth-this.clientWidth; const i=m>0?Math.round((this.scrollLeft/m)*(d.length-1)):0; Array.from(d).forEach((x,j)=>x.className=j===i?'dot active':'dot')"><img src="artifacts/opt-in-case-study/SO%201.png" alt="Solution Outcome 1" loading="lazy" decoding="async"><img src="artifacts/opt-in-case-study/SO%202.png" alt="Solution Outcome 2" loading="lazy" decoding="async"><img src="artifacts/opt-in-case-study/SO%203.png" alt="Solution Outcome 3" loading="lazy" decoding="async"><img src="artifacts/opt-in-case-study/SO%204.png" alt="Solution Outcome 4" loading="lazy" decoding="async"></div><button class="gallery-arrow gallery-arrow-right" aria-label="Next image" onclick="const g=this.previousElementSibling; g.scrollBy({left:g.querySelector('img').offsetWidth+16,behavior:'smooth'})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button></div><div class="gallery-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><h3>UX & UI Outcomes</h3><p>The redesigned experience delivered improvements across both usability and aesthetics.</p><ul><li><strong>UX Improvements:</strong> Reduced setup complexity, faster form creation, lower cognitive load, improved workflow completion.</li><li><strong>UI Improvements:</strong> Better visual clarity, faster information scanning, improved accessibility, stronger perceived product quality, increased user confidence.</li></ul><h3>Results</h3><p>Following launch, key product metrics improved significantly.</p><ul><li><strong>Feature Adoption:</strong> 14% to 42% (3x increase)</li><li><strong>Workflow Completion:</strong> 38% to 79% (More than double)</li><li><strong>Form Conversion Rate:</strong> 2.4% to 4.8% (100% increase)</li></ul><h3>Reflection</h3><p>This project demonstrated that poor performance was not caused by workflow complexity alone. The combination of confusing terminology, unnecessary setup steps, and a visually overwhelming interface created friction throughout the experience.</p><p>By redesigning both the user journey and the interface itself, MailDrip's Opt-In Forms evolved from an underutilized feature into a more intuitive, visually polished, and conversion-focused product experience.</p>`
-  },
-  "lumina-ui": {
-    title: "Lumina UI Kit",
-    tag: "Design System",
-    lead: "An enterprise-grade component library built for scale, accessibility, and visual harmony.",
-    image: "artifacts/projects/project_standard_1781015903362.png",
-    content: `
-      <h3>The Challenge</h3>
-      <p>As enterprise platforms grow, maintaining design consistency across multiple development squads becomes a huge challenge. Lumina was built to bridge the gap between design and engineering with unified design tokens, highly reusable components, and strict accessibility standards.</p>
-      <img src="artifacts/projects/project_standard_1781015903362.png" alt="Lumina UI Components">
-      <h3>The System</h3>
-      <p>Lumina goes beyond simple button and input states. It defines a systemic language of motion, spatial relationships, and accessibility defaults that are baked directly into the React/HTML code components.</p>
-      <h3>Key Features</h3>
-      <ul>
-        <li><strong>Comprehensive Tokens:</strong> Multi-theme support for color, spacing, typography, and depth shadows.</li>
-        <li><strong>WCAG 2.1 AA Compliant:</strong> Every component is tested for screen readers and high contrast.</li>
-        <li><strong>Fully Documented:</strong> An interactive playground allows developers to prototype layouts in seconds.</li>
-      </ul>
-    `
-  },
-  "spatial-interfaces": {
-    title: "Spatial Interfaces",
-    tag: "Exploration",
-    lead: "Exploring immersive 3D interface paradigms for next-gen spatial computing platforms.",
-    image: "artifacts/projects/project_compact_1781015914671.png",
-    content: `
-      <h3>The Challenge</h3>
-      <p>With the rise of spatial computing, design is transitioning from flat screens to infinite, three-dimensional spaces. This exploration probes how depth, physical lighting, and hand gestures can be utilized to make spatial layouts intuitive without causing user fatigue.</p>
-      <img src="artifacts/projects/project_compact_1781015914671.png" alt="3D Spatial UI Concept">
-      <h3>The Experiment</h3>
-      <p>Using physical shadows, volumetric lighting, and depth layers, we prototyped responsive menus that float in the user's environment. The key was to ensure the interface reacts dynamically to where the user's gaze is directed, creating a soft focus effect.</p>
-      <h3>Findings</h3>
-      <ul>
-        <li><strong>Depth as Hierarchy:</strong> Utilizing Z-axis distance to stack secondary information layers rather than hiding them.</li>
-        <li><strong>Interactive Depth Cues:</strong> Subtle scaling and glow effects when elements are focused or selected.</li>
-        <li><strong>Natural Physics:</strong> Incorporating inertia and soft bounces for scrolling in a 3D environment.</li>
-      </ul>
-    `
-  }
-};
-
-function initCaseStudyOverlay() {
-  const overlay = document.getElementById('case-study-overlay');
-  const container = document.getElementById('case-study-container');
-  const backdrop = document.getElementById('case-study-backdrop');
-  const closeBtn = document.getElementById('case-study-close');
-  const content = document.getElementById('case-study-content');
-  const triggers = document.querySelectorAll('[data-case-study]');
-
-  if (!overlay || !container || !backdrop || !closeBtn || !content) return;
-
-  const openOverlay = (caseStudyKey) => {
-    const data = CASE_STUDIES[caseStudyKey];
-    if (!data) return;
-
-    // Inject header
-    const headerText = document.getElementById('case-study-header-text');
-    if (headerText) {
-      headerText.innerHTML = `
-        <h2>${data.title}</h2>
-        <span class="case-study-tag">${data.tag}</span>
-      `;
-    }
-
-    // Inject content
-    let mediaHTML = '';
-    if (data.image.endsWith('.mp4') || data.image.endsWith('.webm')) {
-      mediaHTML = `<video src="${data.image}" class="case-study-hero-img" autoplay loop muted playsinline></video>`;
-    } else if (data.image.endsWith('.gif')) {
-      mediaHTML = `<img src="${data.image}" alt="${data.title}" class="case-study-hero-img case-study-hero-img--square">`;
-    } else {
-      mediaHTML = `<img src="${data.image}" alt="${data.title}" class="case-study-hero-img">`;
-    }
-
-    content.innerHTML = `
-      ${mediaHTML}
-      <div class="case-study-body">
-        ${data.content}
-      </div>
-    `;
-
-    // Open animations
-    overlay.setAttribute('aria-hidden', 'false');
-    overlay.classList.add('overlay-open');
-    document.body.style.overflow = 'hidden'; // Lock background scroll
-    if (smoother) smoother.paused(true);
-  };
-
-  const closeOverlay = () => {
-    overlay.classList.remove('overlay-open');
-    overlay.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = ''; // Unlock background scroll
-    if (smoother) smoother.paused(false);
-
-    // Clear content after animation ends to prevent visual jumps
-    setTimeout(() => {
-      if (!overlay.classList.contains('overlay-open')) {
-        content.innerHTML = '';
-        container.scrollTop = 0; // Scroll back to top for next open
-      }
-    }, 550); // Match transition duration (0.55s)
-  };
-
-  triggers.forEach(trigger => {
-    trigger.addEventListener('click', (e) => {
-      e.preventDefault();
-      const caseStudyKey = trigger.getAttribute('data-case-study');
-      openOverlay(caseStudyKey);
-    });
-  });
-
-  closeBtn.addEventListener('click', closeOverlay);
-  backdrop.addEventListener('click', closeOverlay);
-
-  // Close on Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && overlay.classList.contains('overlay-open')) {
-      closeOverlay();
-    }
-  });
-}
-
-// ============================================
-// Image Lightbox (click a case study image to view full-size)
-// ============================================
-function initImageLightbox() {
-  const lightbox = document.getElementById('image-lightbox');
-  const lightboxImg = document.getElementById('image-lightbox-img');
-  const closeBtn = document.getElementById('image-lightbox-close');
-  const content = document.getElementById('case-study-content');
-
-  if (!lightbox || !lightboxImg || !closeBtn || !content) return;
-
-  const openLightbox = (src, alt) => {
-    lightboxImg.src = src;
-    lightboxImg.alt = alt || '';
-    lightbox.setAttribute('aria-hidden', 'false');
-    lightbox.classList.add('lightbox-open');
-  };
-
-  const closeLightbox = () => {
-    lightbox.classList.remove('lightbox-open');
-    lightbox.setAttribute('aria-hidden', 'true');
-  };
-
-  content.addEventListener('click', (e) => {
-    const img = e.target.closest('.case-study-body img');
-    if (img) openLightbox(img.src, img.alt);
-  });
-
-  closeBtn.addEventListener('click', closeLightbox);
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightbox.classList.contains('lightbox-open')) {
-      closeLightbox();
     }
   });
 }
@@ -673,10 +494,29 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroSpotlight();
   initHeroNamePortrait();
   initModal();
-  initCaseStudyOverlay();
-  initImageLightbox();
 
   initFloatingDockVisibility();
   initFooterBlurVisibility();
   initProtection();
+  restoreSectionFromHash();
 });
+
+// Direct links from a case study must land on the selected section after
+// ScrollSmoother and the web fonts have finished measuring the home page.
+function restoreSectionFromHash() {
+  if (!location.hash) return;
+  let id;
+  try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+  const target = document.getElementById(id);
+  if (!target) return;
+  const loaded = document.readyState === 'complete' ? Promise.resolve() : new Promise(resolve => window.addEventListener('load', resolve, { once: true }));
+  Promise.all([document.fonts?.ready, loaded]).then(() => requestAnimationFrame(() => {
+    if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+    const offset = document.getElementById('navbar')?.offsetHeight || 64;
+    if (smoother) {
+      const top = target.getBoundingClientRect().top - document.getElementById('smooth-content').getBoundingClientRect().top - offset;
+      smoother.scrollTop(Math.max(0, top));
+    }
+    else window.scrollTo({ top: target.getBoundingClientRect().top + scrollY - offset, behavior: 'instant' });
+  }));
+}
